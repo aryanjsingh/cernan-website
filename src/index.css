@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-family);
+  --color-popover: #fff3e9;
+  --color-popover-foreground: #34352f;
+  --color-accent: #f0dfd0;
+  --color-accent-foreground: #34352f;
+  --color-ring: #c56c3e;
+  --color-border: #d4c6b8;
+}
+
+:root {
+  --font-family: 'Oxanium Variable', sans-serif;
+  font-family: var(--font-family);
+  color: #454545;
+  --color-background: #fff3e9;
+  background: var(--color-background);
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+button, input, select, textarea, optgroup, option, code, pre, kbd, samp, svg text { font-family: inherit; }
+body { margin: 0; min-width: 320px; }
+main { min-height: 100dvh; }
+
+.hero { display: grid; align-items: center; justify-items: end; padding: 28px clamp(12px, 3vw, 56px); overflow: hidden; }
+.compass {
+  --ink: #34352f;
+  --accent: #c56c3e;
+  width: min(58.8vw, 518px, 61.6svh);
+  height: auto;
+  transform: translateY(-8svh);
+  overflow: visible;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: .8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.compass .fine { stroke-width: .5; }
+.compass .faint { opacity: .34; }
+.compass .rim { stroke-width: 1.6; }
+.compass .tick { stroke-width: .6; opacity: .68; }
+.compass .major-tick { stroke-width: 1.5; }
+.compass text { fill: var(--ink); stroke: none; text-anchor: middle; }
+.compass .degree { font-size: 5.5px; letter-spacing: .65px; }
+.compass .cardinal { font-size: 10px; letter-spacing: 2px; }
+.compass .north { fill: var(--accent); }
+.compass .index-marker { fill: var(--ink); stroke: none; }
+.compass .solid { fill: var(--ink); stroke: none; }
+.compass .software-system { stroke: #656052; }
+.compass .trace { stroke-width: .65; opacity: .4; }
+.compass .signal { stroke: var(--accent); stroke-width: 1.35; stroke-dasharray: 5 95; animation: signal-flow 6s linear infinite; }
+.compass .neural-link { stroke-width: .45; opacity: .28; }
+.compass .network-node, .compass .surface { fill: var(--color-background); stroke-width: .8; }
+.compass .node-activation { fill: var(--accent); stroke: none; animation: node-activation 4s ease-in-out infinite; }
+.compass .system-label { font-size: 7px; letter-spacing: 1px; fill: #59554e; }
+.compass .layout-outline { stroke-width: .65; }
+.compass .interface-build { animation: interface-build 7s ease-in-out infinite; }
+.compass .render-pass { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 100; animation: render-pass 7s ease-in-out infinite; }
+.compass .code-mark { stroke-width: .8; }
+.compass .field-point { fill: var(--ink); stroke: none; animation: node-activation 5s ease-in-out infinite; }
+.compass .bearing-base { fill: var(--color-background); stroke-width: 1; }
+.compass .needle-clearance { fill: var(--color-background); stroke: var(--color-background); stroke-width: 8; }
+.compass .needle-north { fill: var(--color-background); stroke: var(--accent); stroke-width: 1.2; }
+.compass .needle-south { fill: var(--color-background); stroke-width: 1.2; }
+.compass .needle-spine { stroke-width: .5; }
+.compass .needle-inlay { fill: var(--accent); stroke: none; }
+.compass .needle-inlay-south { fill: var(--ink); stroke: none; }
+.compass .hub { fill: var(--color-background); stroke-width: 1.4; }
+.compass .hub-inner { fill: var(--ink); }
+.compass .hub-slot { stroke: var(--color-background); stroke-width: .65; }
+@keyframes signal-flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes node-activation { 0%, 70%, 100% { opacity: .15; } 25%, 40% { opacity: 1; } }
+@keyframes interface-build { 0%, 100% { opacity: .35; transform: translateY(2px); } 25%, 80% { opacity: 1; transform: translateY(0); } }
+@keyframes render-pass { 0%, 10% { stroke-dashoffset: 100; opacity: 0; } 20% { opacity: 1; } 75%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@media (max-width: 600px) {
+  .compass { width: min(67.2vw, 56svh); }
+  .hero { justify-items: center; padding-inline: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .compass .signal, .compass .node-activation, .compass .interface-build, .compass .render-pass, .compass .field-point { animation: none; }
+}
+
+.compass .capability-initial { fill: var(--accent); font-weight: 700; }
+.compass .connection-port { fill: var(--color-background); stroke: var(--accent); stroke-width: .8; }
+
+.compass .contour { stroke-width: .5; opacity: .6; }
+
+.compass .design-curve { stroke: var(--accent); stroke-width: 1; }
+
+.compass[data-ambient="paused"] * { animation-play-state: paused; }
+
+.compass-trigger { cursor: pointer; outline: none; }
+.compass-trigger[aria-disabled="true"] { cursor: default; }
+.compass .hub-hit-area { fill: transparent; stroke: none; pointer-events: all; }
+.compass .hub-focus-ring { fill: none; stroke: var(--accent); stroke-width: 1; opacity: 0; pointer-events: none; }
+.compass-trigger:not([aria-disabled="true"]):hover .hub-focus-ring,
+.compass-trigger:focus-visible .hub-focus-ring { opacity: 1; }
+
+/* Cernan navigation — Spectrum UI primitives, shared site typography. */
+.topbar { position: absolute; z-index: 20; top: 0; left: 0; right: 0; margin: 0 clamp(20px, 3vw, 44px); height: 56px; display: flex; gap: 28px; align-items: center; border-bottom: 1px solid #34352f22; }
+.topbar a { text-decoration: none; color: #34352f; }
+.brand { display: inline-flex; align-items: center; gap: 5px; width: fit-content; font-size: 16px; font-weight: 600; letter-spacing: 1.8px; }
+.brand img { width: 28px; height: 28px; mix-blend-mode: multiply; }
+.brand { background: var(--color-background); }
+.brand-period { color: #b96537; }
+.desktop-nav { display: flex; align-items: center; gap: 4px; }
+.desktop-nav a { position: relative; padding: 6px 10px; border-radius: 6px; font-size: 12px; letter-spacing: .1px; transition: background 180ms ease; }
+.desktop-nav a:hover, .desktop-nav a:focus-visible { background: #34352f08; }
+.topbar .contact-link { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; border: 1px solid #34352f40; border-radius: 6px; padding: 5px 10px; font-size: 11px; transition: background 180ms ease, border-color 180ms ease; }
+.contact-link svg { color: #b96537; }
+.topbar .contact-link:hover { background: #f5e3d3; border-color: #b96537; }
+.topbar a:focus-visible, .menu-trigger:focus-visible { outline: 2px solid #b96537; outline-offset: 5px; }
+.mobile-nav { display: none; }
+.nav-dropdown { width: 168px; border-radius: 9px; padding: 5px; background: var(--color-background); font-family: var(--font-family); }
+.nav-dropdown a { display: flex; justify-content: space-between; padding: 8px 10px; border-radius: 5px; color: #34352f; font-size: 12px; text-decoration: none; cursor: pointer; }
+.nav-dropdown a svg { color: #b96537; }
+@media (max-width: 700px) {
+  .topbar { height: 52px; margin-inline: 16px; gap: 16px; }
+  .brand { font-size: 15px; gap: 4px; letter-spacing: 1.6px; }
+  .brand img { width: 26px; height: 26px; }
+  .desktop-nav, .topbar .contact-link { display: none; }
+  .mobile-nav { display: block; margin-left: auto; }
+  .menu-trigger { border-radius: 6px; width: 32px; height: 32px; color: #34352f; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .topbar a, .desktop-nav a::after { transition: none; }
+}
