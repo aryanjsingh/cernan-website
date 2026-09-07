@@ -16,8 +16,8 @@
   --ink: #161616;
   --muted-ink: #555555;
   --label-ink: #4a4a4a;
-  --accent: #111111;
-  --signal: #111111;
+  --accent: #ff6600;
+  --signal: #ff6600;
   --border: #16161640;
   --divider: #16161622;
   --hover: #eeeeee;
@@ -36,8 +36,8 @@
   --ink: #eeeeee;
   --muted-ink: #aaaaaa;
   --label-ink: #bbbbbb;
-  --accent: #ffffff;
-  --signal: #ffffff;
+  --accent: #ff6600;
+  --signal: #ff6600;
   --border: #eeeeee38;
   --divider: #eeeeee1c;
   --hover: #202020;
