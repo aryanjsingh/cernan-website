@@ -33,7 +33,7 @@
 }
 :root[data-theme="dark"] {
   --color-background: #000000;
-  --ink: #eeeeee;
+  --ink: #c4c4c4;
   --muted-ink: #aaaaaa;
   --label-ink: #bbbbbb;
   --accent: #ff6600;
@@ -160,5 +160,15 @@ main { min-height: 100dvh; }
 .theme-toggle button:hover { background: var(--hover); }
 .theme-toggle button[aria-pressed="true"] { color: var(--accent); background: var(--selected); box-shadow: 0 1px 3px #00000012; }
 .theme-toggle button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-:root[data-theme="dark"] .brand img { filter: invert(1); mix-blend-mode: screen; }
+:root[data-theme="dark"] .brand img { filter: invert(1); mix-blend-mode: screen; opacity: .76; }
+:root[data-theme="dark"] .compass {
+  --ink: #969696;
+  --muted-ink: #929292;
+  --label-ink: #a0a0a0;
+}
+:root[data-theme="dark"] .compass .rim { stroke: #777777; }
+:root[data-theme="dark"] .compass .major-tick { stroke: #737373; }
+:root[data-theme="dark"] .compass .needle-south { stroke: #9a9a9a; }
+:root[data-theme="dark"] .compass .degree,
+:root[data-theme="dark"] .compass .cardinal:not(.north) { fill: #a0a0a0; }
 @media (max-width: 700px) { .topbar { gap: 10px; } }
