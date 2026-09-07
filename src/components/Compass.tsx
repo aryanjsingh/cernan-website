@@ -63,7 +63,7 @@ export default function Compass() {
   return (
     <svg ref={svgRef} className="compass" data-motion="paused" viewBox="-320 -320 640 640" role="group" aria-labelledby={`${id}-title ${id}-description`}>
       <title id={`${id}-title`}>Cernan software compass</title>
-      <desc id={`${id}-description`}>Six connected capabilities spell CERNAN clockwise: Create, Engineer, Research, Neural, Automate, Navigate. Orange signals flow between intricate interface layers, software architecture, research contours, neural networks, automation branches, and navigation maps.</desc>
+      <desc id={`${id}-description`}>Six connected capabilities spell CERNAN clockwise: Create, Engineer, Research, Neural, Automate, Navigate. Signals flow between intricate interface layers, software architecture, research contours, neural networks, automation branches, and navigation maps.</desc>
       <g className="dial">
         <circle r="244" className="fine faint" />
         <circle r="237" className="rim" />
