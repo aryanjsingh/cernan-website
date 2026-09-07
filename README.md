@@ -49,3 +49,7 @@ Documentation: [Vite](https://vite.dev/guide/), [React Three Fiber](https://r3f.
 Spectrum UI is configured in `components.json`; install further components with `npx shadcn@latest add @spectrumui/<name>`. The topbar adapts Spectrum's floating-navbar with Radix dropdown keyboard and focus handling. Tailwind v4 supports the shared primitives; site typography remains Oxanium.
 
 Services, Work, About, and Contact link to future homepage section IDs (`services`, `work`, `about`, `contact`). These content sections have not been built yet.
+
+## Color themes
+
+The compact Light/Dark controls beside Contact set the entire page theme, including the compass and mobile menu. Light is the default; the choice is saved locally under `cernan-theme` and restored before the app renders. Colors are shared CSS variables in `src/index.css`; future elements should use those variables and inherit Oxanium.

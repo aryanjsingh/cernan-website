@@ -3,6 +3,7 @@ import { ArrowUpRight, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import logo from '../../../branding/logo.png'
+import ThemeToggle from '../ThemeToggle'
 
 const links = [
   { label: 'Services', href: '#services' },
@@ -21,7 +22,10 @@ export default function Floatingnavbar() {
       <nav className="desktop-nav" aria-label="Main navigation">
         {links.slice(0, 3).map(link => <a key={link.href} href={link.href}>{link.label}</a>)}
       </nav>
-      <a className="contact-link" href="#contact">Contact <ArrowUpRight size={15} strokeWidth={1.5} aria-hidden="true" /></a>
+      <div className="nav-actions">
+        <a className="contact-link" href="#contact">Contact <ArrowUpRight size={15} strokeWidth={1.5} aria-hidden="true" /></a>
+        <ThemeToggle />
+      </div>
       <div className="mobile-nav">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
