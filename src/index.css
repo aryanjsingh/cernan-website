@@ -121,8 +121,9 @@ main { min-height: 100dvh; }
 .compass-trigger[aria-disabled="true"] { cursor: default; }
 .compass .hub-hit-area { fill: transparent; stroke: none; pointer-events: all; }
 .compass .hub-focus-ring { fill: none; stroke: var(--accent); stroke-width: 1; opacity: 0; pointer-events: none; }
-.compass-trigger:not([aria-disabled="true"]):hover .hub-focus-ring,
+.compass-trigger:not([aria-disabled="true"]) .hub-focus-ring,
 .compass-trigger:focus-visible .hub-focus-ring { opacity: 1; }
+.compass-trigger:focus-visible .hub-focus-ring { stroke-width: 2; }
 
 /* Cernan navigation — Spectrum UI primitives, shared site typography. */
 .topbar { position: absolute; z-index: 20; top: 0; left: 0; right: 0; margin: 0; padding-inline: 20px; height: 56px; display: flex; gap: 28px; align-items: center; border-bottom: 1px solid var(--divider); }
