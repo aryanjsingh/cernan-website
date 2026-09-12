@@ -50,7 +50,11 @@ button, input, select, textarea, optgroup, option, code, pre, kbd, samp, svg tex
 body { margin: 0; min-width: 320px; }
 main { min-height: 100dvh; }
 
-.hero { display: grid; align-items: center; justify-items: end; padding: 28px 0; overflow: hidden; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; justify-items: end; padding: 28px 0; overflow: hidden; }
+.hero-copy { justify-self: start; padding-left: 20px; padding-right: 24px; max-width: 510px; transform: translateY(-8svh); }
+.hero-copy h1 { margin: 0; color: var(--ink); font-size: clamp(40px, 5vw, 72px); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+.hero-copy h1 span { color: var(--accent); }
+.hero-copy p { margin: 18px 0 0; max-width: 360px; color: var(--muted-ink); font-size: 15px; line-height: 1.7; text-wrap: pretty; }
 .compass {
   --accent: var(--signal);
   width: min(67.62vw, 595.7px, 70.84svh);
@@ -103,6 +107,13 @@ main { min-height: 100dvh; }
 @media (max-width: 600px) {
   .compass { width: min(77.28vw, 64.4svh); }
   .hero { justify-items: center; padding-inline: 0; }
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; align-content: start; justify-items: center; gap: 28px; padding-top: 112px; padding-bottom: 32px; }
+  .hero-copy { width: 100%; max-width: none; padding-inline: 20px; transform: none; }
+  .hero-copy h1 { font-size: 42px; }
+  .hero-copy p { margin-top: 12px; font-size: 14px; max-width: 340px; }
+  .hero .compass { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .compass .signal, .compass .node-activation, .compass .interface-build, .compass .render-pass, .compass .field-point { animation: none; }
