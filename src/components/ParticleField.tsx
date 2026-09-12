@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 
+type Particle = { x: number; y: number; size: number; depth: number; phase: number; speed: number; radius: number }
+
 export default function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -11,7 +13,7 @@ export default function ParticleField() {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     const host = canvas.parentElement!
-    let layers: HTMLCanvasElement[] = []
+    let groups: { color: string; particles: Particle[] }[] = []
     let width = 0
     let height = 0
     let frame = 0
@@ -23,13 +25,16 @@ export default function ParticleField() {
     function paint() {
       if (!context) return
       context.clearRect(0, 0, width, height)
-      layers.forEach((layer, index) => {
-        const depth = (index + 1) / 3
-        const driftX = reduced.matches ? 0 : Math.sin(elapsed * .13 + index) * width * .006
-        const driftY = reduced.matches ? 0 : Math.sin(elapsed * .1 + index * 2) * height * .005
-        context.drawImage(layer, -width * .07 + driftX + pointer.x * depth,
-          -height * .07 + driftY + pointer.y * depth, width * 1.14, height * 1.14)
-      })
+      for (const group of groups) {
+        context.fillStyle = group.color
+        for (const particle of group.particles) {
+          const phase = elapsed * particle.speed + particle.phase
+          const driftX = reduced.matches ? 0 : Math.sin(phase) * particle.radius
+          const driftY = reduced.matches ? 0 : Math.cos(phase * .83 + particle.phase) * particle.radius * .7
+          context.fillRect(particle.x + driftX + pointer.x * particle.depth,
+            particle.y + driftY + pointer.y * particle.depth, particle.size, particle.size)
+        }
+      }
     }
 
     function tick(time: number) {
@@ -75,24 +80,17 @@ export default function ParticleField() {
       canvas.width = Math.round(width * ratio)
       canvas.height = Math.round(height * ratio)
       context.setTransform(ratio, 0, 0, ratio, 0, 0)
-      layers = Array.from({ length: 3 }, () => {
-        const layer = document.createElement('canvas')
-        layer.width = Math.round(width * 1.14 * ratio)
-        layer.height = Math.round(height * 1.14 * ratio)
-        return layer
-      })
-      const brushes = layers.map(layer => {
-        const brush = layer.getContext('2d')!
-        brush.setTransform(ratio, 0, 0, ratio, width * .07 * ratio, height * .07 * ratio)
-        return brush
-      })
       const dark = document.documentElement.dataset.theme === 'dark'
+      groups = Array.from({ length: 12 }, (_, index) => {
+        const opacity = (index + .5) / 12 * .34
+        return { color: dark ? `rgba(164,164,164,${opacity})` : `rgba(70,70,70,${opacity * .7})`, particles: [] }
+      })
       let seed = 1739
       const random = () => {
         seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0
         return seed / 4294967296
       }
-      const count = Math.min(30000, Math.round(width * height / 38))
+      const count = Math.min(22000, Math.round(width * height / 45))
       for (let i = 0; i < count; i++) {
         const u = random() * 1.14 - .07
         const depth = random()
@@ -104,9 +102,12 @@ export default function ParticleField() {
           * Math.min(1, Math.max(0, (1.05 - y / height) * 7))
         const opacity = (.06 + random() * .28) * edgeFade
         const size = .6 + random() * 1.1
-        const brush = brushes[Math.min(2, Math.floor(depth * 3))]
-        brush.fillStyle = dark ? `rgba(164,164,164,${opacity})` : `rgba(70,70,70,${opacity * .7})`
-        brush.fillRect(u * width, y, size, size)
+        groups[Math.min(11, Math.floor(opacity / .34 * 12))].particles.push({
+          x: u * width, y, size, depth: .3 + depth * .7,
+          phase: random() * Math.PI * 2,
+          speed: .25 + random() * .4,
+          radius: 5 + random() * 13,
+        })
       }
       paint()
     }
