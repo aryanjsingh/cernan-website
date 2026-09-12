@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-type Particle = { x: number; y: number; size: number; depth: number; phase: number; speed: number; radius: number }
+type Particle = { x: number; y: number; size: number; depth: number; phase: number; speed: number; radius: number; offsetX: number; offsetY: number }
 
 export default function ParticleField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -20,19 +20,40 @@ export default function ParticleField() {
     let lastTime = 0
     let elapsed = 0
     let visible = true
-    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 }
+    const pointer = { x: 0, y: 0, active: false }
 
-    function paint() {
+    function paint(delta = 0) {
       if (!context) return
       context.clearRect(0, 0, width, height)
+      const influenceRadius = Math.min(180, width * .35)
+      const ease = 1 - Math.exp(-delta * 5)
       for (const group of groups) {
         context.fillStyle = group.color
         for (const particle of group.particles) {
           const phase = elapsed * particle.speed + particle.phase
           const driftX = reduced.matches ? 0 : Math.sin(phase) * particle.radius
           const driftY = reduced.matches ? 0 : Math.cos(phase * .83 + particle.phase) * particle.radius * .7
-          context.fillRect(particle.x + driftX + pointer.x * particle.depth,
-            particle.y + driftY + pointer.y * particle.depth, particle.size, particle.size)
+          const x = particle.x + driftX
+          const y = particle.y + driftY
+          let targetX = 0
+          let targetY = 0
+          if (pointer.active && !reduced.matches) {
+            const dx = x - pointer.x
+            const dy = y - pointer.y
+            const distance = Math.hypot(dx, dy)
+            if (distance < influenceRadius) {
+              const falloff = (1 - distance / influenceRadius) ** 2
+              const push = influenceRadius * .05 * falloff * particle.depth
+              targetX = distance > .01 ? dx / distance * push : Math.cos(particle.phase) * push
+              targetY = distance > .01 ? dy / distance * push : Math.sin(particle.phase) * push
+            }
+          }
+          if (reduced.matches) particle.offsetX = particle.offsetY = 0
+          else {
+            particle.offsetX += (targetX - particle.offsetX) * ease
+            particle.offsetY += (targetY - particle.offsetY) * ease
+          }
+          context.fillRect(x + particle.offsetX, y + particle.offsetY, particle.size, particle.size)
         }
       }
     }
@@ -46,10 +67,7 @@ export default function ParticleField() {
       const delta = lastTime ? Math.min((time - lastTime) / 1000, .05) : 0
       lastTime = time
       elapsed += delta
-      const ease = 1 - Math.exp(-delta * 3)
-      pointer.x += (pointer.targetX - pointer.x) * ease
-      pointer.y += (pointer.targetY - pointer.y) * ease
-      paint()
+      paint(delta)
       frame = requestAnimationFrame(tick)
     }
 
@@ -58,7 +76,7 @@ export default function ParticleField() {
       frame = 0
       lastTime = 0
       if (reduced.matches) {
-        pointer.x = pointer.y = pointer.targetX = pointer.targetY = 0
+        pointer.active = false
         paint()
       } else if (!document.hidden && visible) frame = requestAnimationFrame(tick)
     }
@@ -66,10 +84,11 @@ export default function ParticleField() {
     function move(event: PointerEvent) {
       if (reduced.matches || event.pointerType === 'touch') return
       const bounds = host.getBoundingClientRect()
-      pointer.targetX = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1)) * width * .05
-      pointer.targetY = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1)) * height * .05
+      pointer.x = event.clientX - bounds.left
+      pointer.y = event.clientY - bounds.top
+      pointer.active = true
     }
-    function leave() { pointer.targetX = pointer.targetY = 0 }
+    function leave() { pointer.active = false }
 
     function draw() {
       if (!canvas || !context) return
@@ -106,7 +125,7 @@ export default function ParticleField() {
           x: u * width, y, size, depth: .3 + depth * .7,
           phase: random() * Math.PI * 2,
           speed: .25 + random() * .4,
-          radius: 5 + random() * 13,
+          radius: 5 + random() * 13, offsetX: 0, offsetY: 0,
         })
       }
       paint()
