@@ -89,9 +89,8 @@ export default function Compass() {
           <path d={path} className="trace" />
           <path d={path} pathLength="100" className="signal" style={{animationDelay:`${-i*1.1}s`}} />
         </g>)}
-        {capabilities.map(({name,x,y,port,labelY},i) => <g key={name} data-capability={name} transform={`translate(${x} ${y})`}>
+        {capabilities.map(({name,x,y,port},i) => <g key={name} data-capability={name} transform={`translate(${x} ${y})`}>
           <CompassDetails index={i} />
-          <text y={labelY} className="system-label"><tspan className="capability-initial">{name[0]}</tspan>{name.slice(1).toUpperCase()}</text>
           <circle cx={port[0]} cy={port[1]} r="1.8" className="connection-port" />
         </g>)}
       </g>

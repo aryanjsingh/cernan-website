@@ -1,10 +1,10 @@
 export const capabilities = [
-  { name: 'Create', x: -28, y: -127, port: [0, 27], labelY: -43 },
-  { name: 'Engineer', x: 118, y: -63, port: [-30, 0], labelY: 50 },
-  { name: 'Research', x: 116, y: 72, port: [-30, 20], labelY: 46 },
-  { name: 'Neural', x: 3, y: 139, port: [0, -26], labelY: 39 },
-  { name: 'Automate', x: -130, y: 54, port: [26, 0], labelY: 54 },
-  { name: 'Navigate', x: -121, y: -76, port: [25, 15], labelY: 41 },
+  { name: 'Create', x: -28, y: -127, port: [0, 27] },
+  { name: 'Engineer', x: 118, y: -63, port: [-30, 0] },
+  { name: 'Research', x: 116, y: 72, port: [-30, 20] },
+  { name: 'Neural', x: 3, y: 139, port: [0, -26] },
+  { name: 'Automate', x: -130, y: 54, port: [26, 0] },
+  { name: 'Navigate', x: -121, y: -76, port: [25, 15] },
 ]
 
 const drift = [[-6, 7], [-7, -8], [-7, 5], [7, -6], [6, 7], [-5, 6]]
