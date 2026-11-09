@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cernan — V3 Monolith</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafaf8;
+    --ink: #0a0a0a;
+    --muted: #6d6d6a;
+    --line: #0a0a0a;
+    --sans: "Inter Tight", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body { overflow: hidden; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 0 32px; height: 64px; border-bottom: 1px solid var(--line); background: var(--bg);
+    font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .brand { font-family: var(--sans); font-weight: 700; font-size: 20px; letter-spacing: -0.04em; text-transform: none; display: flex; align-items: center; gap: 8px; }
+  .brand svg { display: block; }
+  .links { display: flex; gap: 0; }
+  .links a { color: var(--ink); text-decoration: none; padding: 0 18px; height: 64px; display: flex; align-items: center; border-left: 1px solid var(--line); transition: background .15s, color .15s; }
+  .links a:last-child { border-right: 1px solid var(--line); }
+  .links a:hover { background: var(--ink); color: var(--bg); }
+  .meta { justify-self: end; display: flex; align-items: center; gap: 10px; }
+  .meta i { width: 8px; height: 8px; background: var(--ink); border-radius: 50%; animation: blink 1.6s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  main { position: relative; z-index: 2; height: 100%; padding: 64px 32px 0; display: flex; flex-direction: column; justify-content: space-between; pointer-events: none; }
+  main a { pointer-events: auto; }
+  .top { display: flex; justify-content: space-between; padding-top: 28px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+  .bottom { padding-bottom: 32px; }
+  h1 { font-weight: 600; font-size: clamp(56px, 10.6vw, 188px); line-height: 0.86; letter-spacing: -0.06em; }
+  h1 span { display: block; }
+  h1 .out { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+  .row { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; }
+  p { max-width: 460px; font-size: 16px; line-height: 1.5; color: #2b2b29; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0; text-decoration: none; color: var(--bg); background: var(--ink);
+    font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
+    border: 1px solid var(--ink); transition: background .15s, color .15s;
+  }
+  .btn span { padding: 18px 24px; }
+  .btn b { width: 56px; align-self: stretch; display: grid; place-items: center; border-left: 1px solid var(--bg); background: var(--ink); transition: background .15s; }
+  .btn:hover { background: var(--bg); color: var(--ink); }
+  .btn:hover b { background: var(--ink); color: var(--bg); }
+
+  .fade { opacity: 0; animation: in .8s steps(6) forwards; }
+  @keyframes in { to { opacity: 1; } }
+  @media (max-width: 760px) { .links { display: none; } nav { grid-template-columns: 1fr 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; opacity: 1; } .meta i { animation: none; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<nav>
+  <div class="brand"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="none" stroke="#0a0a0a" stroke-width="2"/><circle cx="9" cy="9" r="3" fill="#0a0a0a"/></svg>Cernan</div>
+  <div class="links"><a href="#">Research</a><a href="#">Products</a><a href="#">Systems</a><a href="#">Journal</a></div>
+  <div class="meta"><i></i>Systems online</div>
+</nav>
+<main>
+  <div class="top fade" style="animation-delay:.1s"><span>(01) — Studio</span><span>Est. 2026</span><span>Research / Product / Neural</span></div>
+  <div class="bottom">
+    <h1 class="fade" style="animation-delay:.2s"><span>Ideas,</span><span class="out">engineered.</span></h1>
+    <div class="row fade" style="animation-delay:.4s">
+      <p>Built to move you. We research new possibilities, create thoughtful products, and engineer neural systems that automate your work.</p>
+      <a class="btn" href="#"><span>Work with us</span><b><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6"/></svg></b></a>
+    </div>
+  </div>
+</main>
+<script>
+// Halftone sphere rotating, dot sizes follow lighting
+const c = document.getElementById('c'), x = c.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, dpr, t = 0, mx = 0, my = 0;
+function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
+addEventListener('resize', size); size();
+addEventListener('pointermove', e => { mx = e.clientX / W - .5; my = e.clientY / H - .5; });
+function frame() {
+  x.clearRect(0, 0, W, H);
+  const step = Math.max(9, Math.min(W, H) / 70);
+  const cx = W * 0.72, cy = H * 0.36, R = Math.min(W, H) * 0.3;
+  const ang = t * 0.4 + mx * 1.2, lx = Math.cos(ang), lz = Math.sin(ang), ly = -0.5 + my;
+  x.fillStyle = '#0a0a0a';
+  for (let gy = 64 + step / 2; gy < H; gy += step) {
+    for (let gx = step / 2; gx < W; gx += step) {
+      const dx = (gx - cx) / R, dy = (gy - cy) / R, d2 = dx * dx + dy * dy;
+      let r = 0;
+      if (d2 < 1) {
+        const dz = Math.sqrt(1 - d2);
+        const l = Math.max(0, dx * lx + dy * ly + dz * lz);
+        r = (1 - l) * step * 0.48;
+        // latitude stripe
+        if (Math.abs(Math.sin(Math.asin(dy) * 6 + t)) < 0.08) r = step * 0.1;
+      } else {
+        // shadow ellipse below sphere
+        const sx = (gx - cx - R * 0.15) / (R * 1.1), sy = (gy - (cy + R * 1.35)) / (R * 0.16);
+        const s = sx * sx + sy * sy;
+        if (s < 1) r = (1 - s) * step * 0.32;
+      }
+      if (r > 0.4) { x.beginPath(); x.arc(gx, gy, r, 0, 6.283); x.fill(); }
+    }
+  }
+  if (!reduce) { t += 0.01; requestAnimationFrame(frame); }
+}
+frame();
+</script>
+</body>
+</html>

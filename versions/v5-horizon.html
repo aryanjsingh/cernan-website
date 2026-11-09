@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cernan — V5 Horizon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #050608;
+    --fg: #f4f2ee;
+    --muted: #8b8d93;
+    --line: rgba(244,242,238,0.1);
+    --orange: #ff6b2c;
+    --sky: #6cc4ff;
+    --sans: "Geist", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+    --serif: "Instrument Serif", Georgia, serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body { overflow: hidden; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .vignette { position: fixed; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(5,6,8,0.95) 0%, rgba(5,6,8,0.35) 45%, rgba(5,6,8,0) 70%); }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 500; font-size: 16px; letter-spacing: -0.01em; }
+  .brand svg { display: block; }
+  .links { display: flex; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); }
+  .links a { color: var(--muted); text-decoration: none; font-size: 13.5px; padding: 8px 16px; border-radius: 999px; transition: color .2s, background .2s; }
+  .links a:hover { color: var(--fg); background: rgba(255,255,255,0.06); }
+  .nav-cta { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg); text-decoration: none; }
+  .nav-cta::before { content: "["; color: var(--orange); margin-right: 6px; }
+  .nav-cta::after { content: "]"; color: var(--orange); margin-left: 6px; }
+
+  main { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; padding: 22vh 24px 0; text-align: center; }
+  .badge { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 28px; }
+  .badge b { font-weight: 500; color: var(--bg); background: var(--sky); padding: 3px 7px; border-radius: 4px; }
+  h1 { font-weight: 400; font-size: clamp(48px, 7.2vw, 120px); line-height: 0.98; letter-spacing: -0.045em; }
+  h1 em { font-family: var(--serif); font-style: italic; letter-spacing: -0.015em; background: linear-gradient(90deg, var(--orange), #ffb36b 45%, var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: 0.08em; }
+  p { margin-top: 26px; max-width: 520px; font-size: 16.5px; line-height: 1.55; color: var(--muted); }
+  .actions { margin-top: 38px; display: flex; gap: 14px; align-items: center; }
+  .btn {
+    position: relative; display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+    color: #0a0a0a; background: var(--fg); font-weight: 500; font-size: 15px; padding: 15px 24px; border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.4), 0 10px 50px rgba(255,107,44,0.35);
+    transition: transform .2s, box-shadow .3s;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(255,255,255,0.6), 0 14px 60px rgba(108,196,255,0.45); }
+  .cmd { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 15px 18px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); }
+  .cmd span { color: var(--orange); margin-right: 8px; }
+
+  .fade { opacity: 0; transform: translateY(14px); animation: in 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+  @media (max-width: 760px) { .links { display: none; } nav { padding: 20px; } .actions { flex-direction: column; } main { padding-top: 18vh; } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="vignette"></div>
+<nav class="fade">
+  <div class="brand"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 14 A8 8 0 0 1 18 14" fill="none" stroke="#f4f2ee" stroke-width="1.6"/><line x1="0" y1="14" x2="20" y2="14" stroke="#ff6b2c" stroke-width="1.6"/></svg>Cernan</div>
+  <div class="links"><a href="#">Research</a><a href="#">Products</a><a href="#">Systems</a><a href="#">Journal</a></div>
+  <a class="nav-cta" href="#">Contact</a>
+</nav>
+<main>
+  <div class="badge fade" style="animation-delay:.1s"><b>New</b> Neural systems for every team</div>
+  <h1 class="fade" style="animation-delay:.2s">Ideas, engineered.<br/><em>Built to move you.</em></h1>
+  <p class="fade" style="animation-delay:.35s">We research new possibilities, create thoughtful products, and engineer neural systems that automate your work and help you navigate what comes next.</p>
+  <div class="actions fade" style="animation-delay:.5s">
+    <a class="btn" href="#">Work with us <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6"/></svg></a>
+    <div class="cmd"><span>$</span>hello@cernan.ai</div>
+  </div>
+</main>
+<script>
+// Ordered-dither horizon: sky-blue upper atmosphere, orange sun band, rolling at low res
+const c = document.getElementById('c'), x = c.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PX = 3; // pixel size
+let W, H, w, h, img, t = 0;
+const bayer = [0,48,12,60,3,51,15,63,32,16,44,28,35,19,47,31,8,56,4,52,11,59,7,55,40,24,36,20,43,27,39,23,2,50,14,62,1,49,13,61,34,18,46,30,33,17,45,29,10,58,6,54,9,57,5,53,42,26,38,22,41,25,37,21].map(v => v / 64);
+const palette = [[5,6,8],[18,30,48],[40,90,150],[108,196,255],[255,107,44],[255,179,107],[255,240,220]];
+function size() { W = innerWidth; H = innerHeight; w = Math.ceil(W / PX); h = Math.ceil(H / PX); c.width = w; c.height = h; img = x.createImageData(w, h); }
+addEventListener('resize', size); size();
+function mix(a, b, f) { return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f]; }
+function frame() {
+  const d = img.data;
+  const horizon = h * 0.78, sunX = w * 0.5;
+  for (let j = 0; j < h; j++) {
+    for (let i = 0; i < w; i++) {
+      const th = bayer[(j & 7) * 8 + (i & 7)];
+      let level; // 0..palette.length-1 continuous
+      if (j < horizon) {
+        const dy = (horizon - j) / horizon;
+        const dx = (i - sunX) / w;
+        const glow = Math.exp(-(dx * dx) * 9 - dy * 5.5);
+        const wave = Math.sin(i * 0.03 + t) * Math.sin(j * 0.05 - t * 0.7) * 0.18;
+        const sky = Math.max(0, 1 - dy * 1.25) * (0.55 + wave);
+        level = sky * 3.2 + glow * 3.4;
+      } else {
+        // reflective plane with scanlines
+        const dy = (j - horizon) / (h - horizon);
+        const dx = (i - sunX) / w;
+        const ref = Math.exp(-(dx * dx) * 30 / (0.3 + dy)) * (1 - dy) * (0.5 + 0.5 * Math.sin(j * 1.2 - t * 6));
+        level = ref * 5 + (1 - dy) * 0.9;
+      }
+      level = Math.max(0, Math.min(palette.length - 1.001, level));
+      const lo = level | 0, f = level - lo;
+      const col = f > th ? palette[lo + 1] : palette[lo];
+      const k = (j * w + i) * 4;
+      d[k] = col[0]; d[k + 1] = col[1]; d[k + 2] = col[2]; d[k + 3] = 255;
+    }
+  }
+  x.putImageData(img, 0, 0);
+  if (!reduce) { t += 0.02; requestAnimationFrame(frame); }
+}
+frame();
+</script>
+</body>
+</html>
