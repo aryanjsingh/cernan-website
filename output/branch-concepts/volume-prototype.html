@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cernan · Material prototype</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;color:#0b1a2b;background:linear-gradient(#3d97e0,#79bdf1 38%,#b9defb 70%,#eaf5ff);font:13px/1.5 ui-monospace,monospace;min-height:100vh;overflow:hidden}
+    header{padding:30px 40px;display:flex;justify-content:space-between;position:relative;z-index:2}header span{opacity:.6}
+    #volume{position:absolute;right:0;top:12vh;width:82vw;height:78vh}#geometry{position:absolute;width:1500px;height:1000px;visibility:hidden;pointer-events:none}
+    footer{position:absolute;bottom:35px;right:12vw;font-size:11px}#status{opacity:.6}
+    @media(max-width:600px){#volume{width:170vw;height:60vh;top:19vh;right:-9vw}header{padding:24px}footer{right:24px;left:24px}}
+  </style>
+</head>
+<body>
+  <header>CERNAN <span>Material study</span></header>
+  <div id="volume"></div><div id="geometry" aria-hidden="true"></div>
+  <footer>Procedural depth <span id="status">· Preparing</span></footer>
+  <script src="../../assets/branch-volume.js"></script>
+  <script>
+    (async()=>{
+      const status=document.getElementById('status');
+      try{
+        const response=await fetch('./fiber-study.svg');
+        if(!response.ok)throw new Error('Could not load branch geometry');
+        document.getElementById('geometry').innerHTML=await response.text();
+        const renderer=BranchVolume.mount(document.getElementById('volume'),document.querySelector('#geometry svg'));
+        status.textContent=`· ${renderer.edgeCount} connected segments`;
+      }catch(error){status.textContent='· '+error.message;console.error(error);}
+    })();
+  </script>
+</body>
+</html>

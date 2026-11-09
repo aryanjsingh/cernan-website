@@ -1,0 +1,52 @@
+You are generating hero images for a website. Use your image generation tool (image edit, with refs/background.png as the base). Create 10 images and save them as v4/branch-01.png ... v4/branch-10.png, each exactly 2880 x 1800 px. Generate one at a time, check each against this spec, regenerate any that fail. Composite over the original background exactly as you did for v2/ so the sky, clouds and nav stay pixel-identical.
+
+== THE IDEA IN ONE LINE ==
+An abandoned piece of futuristic technology shaped like a great tree limb — a metal and machine sculpture — that NATURE HAS RECLAIMED. Moss, ivy, ferns and hanging moss have grown all over it over decades. It should feel like a real overgrown ruin you could photograph: mostly nature, with the metal and tech showing through where the growth is thinner.
+
+== WHAT WENT WRONG BEFORE (do not repeat) ==
+- v2/ (natural mossy branch): good realism, good scale, good greenery, but no tech at all.
+- v3/ (graphite network): rejected. Far too futuristic and clean, and the branching was too EVEN and symmetrical, like a diagram: same angles, same spacing, same-size nodes in neat rows. Never do that.
+The target sits between them, much closer to v2 in feel: about 65% nature, 35% machine.
+
+== BASE (do not change) ==
+refs/background.png: the live site at 2880x1800. Sky-blue gradient, soft clouds, top nav (CERNAN logo top-left, "Research FAQs Contact" top-centre, white "Book a meeting" pill top-right). Keep it all unchanged and unobstructed.
+
+== PLACEMENT & SCALE (same as v2) ==
+One huge limb enters from OFF-SCREEN at the RIGHT EDGE (no ground, no trunk base, no roots in soil), centre line at the edge between y=300 and y=650, 380-520 px thick at the edge. It reaches leftward and widens into a canopy, outermost tips reaching x = 1150-1500. Foliage and structure cover roughly 40-55% of the frame, mostly the right half and upper area.
+
+== STRUCTURE: RANDOM AND NATURAL ==
+Branch like a real old tree, not a diagram: irregular fork positions, uneven angles, limbs of very different lengths and thicknesses, some limbs twisting, crossing behind others, one or two sagging, one broken stub, some short, some reaching far. Asymmetric overall silhouette, denser in some places and open in others. Nothing evenly spaced, nothing mirrored, no repeated angles.
+
+== THE MACHINE UNDERNEATH ==
+The limb was built, not grown: aged, weathered dark gunmetal / graphite plating and segmented sleeves, with rust, patina and scratches. Where the moss is thinner you can see:
+- machined ring joints and riveted collars at SOME of the forks (not all, and different sizes);
+- a few round sensor/hub nodes at forks, half covered in moss, some cracked, a couple faintly glowing;
+- inlaid channels / grooves running along the limbs, with a thin fiber-optic or glass core that still glows faintly pale cyan (#bff0ff) in places, disappearing under moss and reappearing further along;
+- a few loose cables and thin conduits hanging down, tangled with vines.
+The tech must stay subtle, worn and partly hidden. No neon, no clean surfaces, no sci-fi glow overload. The faint glowing channels must still be visible in several continuous stretches on the main limbs (a later SVG animation will send light pulses along them), so do not bury every channel.
+
+== THE NATURE ON TOP (dominant) ==
+Thick cushions of green moss along the tops of the limbs (see refs/8.png), lush ivy and vine leaves climbing and draping (refs/7.png, refs/9.png), small ferns and epiphytes in the crooks, and plenty of long hanging Spanish-style moss and vines dropping straight down, various lengths, the longest reaching y = 1300-1600 on the right half. Leaves cluster irregularly. Greens range from deep shadow green to glowing backlit lime.
+
+== LIGHT & INTEGRATION ==
+Photoreal, like a high-end nature photograph of a real overgrown sculpture. Bright daylight from the upper right, leaves backlit and translucent, dark inner foliage, cool blue sky light on the shadow side of the metal, rim light on top edges. Far tips slightly hazy into the sky. Natural soft edges: no cut-out look, no halos, no white fringes. The nearest leaves at the right edge can be softly out of focus.
+
+== KEEP-OUT ZONES ==
+- y < 230 from x=0 to x=2360: nothing over the logo or nav links.
+- The "Book a meeting" pill (about x 2060-2360, y 40-120) stays fully visible.
+- Rectangle x 0-1250, y 700-1800 stays pure background sky (text goes there).
+- No text, labels, numbers, logos, watermarks, UI or HUD.
+
+== 10 VARIATIONS (all random and natural, each different) ==
+01  Balanced: heavy moss and ivy over a weathered metal limb, a few hub nodes peeking out, faint cyan channel stretches on the main limbs.
+02  More overgrown: nature has nearly swallowed it; tech visible only in a few joints and one long glowing channel.
+03  More machine visible: larger stretches of bare plated metal and segmented sleeves between moss cushions.
+04  Sagging and heavy: limbs droop, long curtains of hanging moss and tangled cables falling to the lower right.
+05  Wild and sprawling: very irregular, long reaching limbs, one crossing over another, open gaps of sky.
+06  Close-up: camera near the input limb at the right edge, detailed moss on a riveted collar and a cracked glowing hub, foreground blur.
+07  Ruin character: rust, broken plates, a snapped stub, vines wrapped tightly around exposed conduits.
+08  Lush and bright: freshest backlit greens, ferns in every crook, tech subtle.
+09  Warm hint: like 01 but two or three hub nodes glowing faint warm orange (#ff7a2f) under the moss.
+10  Depth: a large sharp overgrown limb in front plus a hazier one behind it higher up.
+
+When finished, print the saved files with a one-line note each, and save a contact sheet to .work-v4/contact-sheet.png.

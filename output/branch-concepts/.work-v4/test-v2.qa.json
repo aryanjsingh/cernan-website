@@ -1,0 +1,21 @@
+{
+  "file": ".work-v4/test-v2.png",
+  "width": 2880,
+  "height": 1800,
+  "sourceWidth": 1586,
+  "sourceHeight": 992,
+  "sourceBounds": [
+    559,
+    123,
+    1585,
+    974
+  ],
+  "finalBounds": [
+    1280,
+    235,
+    2880,
+    1570
+  ],
+  "navigationChangedPixels": 0,
+  "textAreaChangedPixels": 0
+}

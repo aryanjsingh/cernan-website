@@ -1,0 +1,1474 @@
+Reading prompt from stdin...
+2026-11-09T19:14:18.421997Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (http://127.0.0.1:29979/mcp)")))
+OpenAI Codex v0.164.0
+--------
+workdir: /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a1c1bb-92a2-7b81-8579-5040a0360585
+--------
+user
+You are generating hero images for a website. Use your image generation tool (image edit, with refs/background.png as the base). Create 10 images and save them as v4/branch-01.png ... v4/branch-10.png, each exactly 2880 x 1800 px. Generate one at a time, check each against this spec, regenerate any that fail. Composite over the original background exactly as you did for v2/ so the sky, clouds and nav stay pixel-identical.
+
+== THE IDEA IN ONE LINE ==
+An abandoned piece of futuristic technology shaped like a great tree limb — a metal and machine sculpture — that NATURE HAS RECLAIMED. Moss, ivy, ferns and hanging moss have grown all over it over decades. It should feel like a real overgrown ruin you could photograph: mostly nature, with the metal and tech showing through where the growth is thinner.
+
+== WHAT WENT WRONG BEFORE (do not repeat) ==
+- v2/ (natural mossy branch): good realism, good scale, good greenery, but no tech at all.
+- v3/ (graphite network): rejected. Far too futuristic and clean, and the branching was too EVEN and symmetrical, like a diagram: same angles, same spacing, same-size nodes in neat rows. Never do that.
+The target sits between them, much closer to v2 in feel: about 65% nature, 35% machine.
+
+== BASE (do not change) ==
+refs/background.png: the live site at 2880x1800. Sky-blue gradient, soft clouds, top nav (CERNAN logo top-left, "Research FAQs Contact" top-centre, white "Book a meeting" pill top-right). Keep it all unchanged and unobstructed.
+
+== PLACEMENT & SCALE (same as v2) ==
+One huge limb enters from OFF-SCREEN at the RIGHT EDGE (no ground, no trunk base, no roots in soil), centre line at the edge between y=300 and y=650, 380-520 px thick at the edge. It reaches leftward and widens into a canopy, outermost tips reaching x = 1150-1500. Foliage and structure cover roughly 40-55% of the frame, mostly the right half and upper area.
+
+== STRUCTURE: RANDOM AND NATURAL ==
+Branch like a real old tree, not a diagram: irregular fork positions, uneven angles, limbs of very different lengths and thicknesses, some limbs twisting, crossing behind others, one or two sagging, one broken stub, some short, some reaching far. Asymmetric overall silhouette, denser in some places and open in others. Nothing evenly spaced, nothing mirrored, no repeated angles.
+
+== THE MACHINE UNDERNEATH ==
+The limb was built, not grown: aged, weathered dark gunmetal / graphite plating and segmented sleeves, with rust, patina and scratches. Where the moss is thinner you can see:
+- machined ring joints and riveted collars at SOME of the forks (not all, and different sizes);
+- a few round sensor/hub nodes at forks, half covered in moss, some cracked, a couple faintly glowing;
+- inlaid channels / grooves running along the limbs, with a thin fiber-optic or glass core that still glows faintly pale cyan (#bff0ff) in places, disappearing under moss and reappearing further along;
+- a few loose cables and thin conduits hanging down, tangled with vines.
+The tech must stay subtle, worn and partly hidden. No neon, no clean surfaces, no sci-fi glow overload. The faint glowing channels must still be visible in several continuous stretches on the main limbs (a later SVG animation will send light pulses along them), so do not bury every channel.
+
+== THE NATURE ON TOP (dominant) ==
+Thick cushions of green moss along the tops of the limbs (see refs/8.png), lush ivy and vine leaves climbing and draping (refs/7.png, refs/9.png), small ferns and epiphytes in the crooks, and plenty of long hanging Spanish-style moss and vines dropping straight down, various lengths, the longest reaching y = 1300-1600 on the right half. Leaves cluster irregularly. Greens range from deep shadow green to glowing backlit lime.
+
+== LIGHT & INTEGRATION ==
+Photoreal, like a high-end nature photograph of a real overgrown sculpture. Bright daylight from the upper right, leaves backlit and translucent, dark inner foliage, cool blue sky light on the shadow side of the metal, rim light on top edges. Far tips slightly hazy into the sky. Natural soft edges: no cut-out look, no halos, no white fringes. The nearest leaves at the right edge can be softly out of focus.
+
+== KEEP-OUT ZONES ==
+- y < 230 from x=0 to x=2360: nothing over the logo or nav links.
+- The "Book a meeting" pill (about x 2060-2360, y 40-120) stays fully visible.
+- Rectangle x 0-1250, y 700-1800 stays pure background sky (text goes there).
+- No text, labels, numbers, logos, watermarks, UI or HUD.
+
+== 10 VARIATIONS (all random and natural, each different) ==
+01  Balanced: heavy moss and ivy over a weathered metal limb, a few hub nodes peeking out, faint cyan channel stretches on the main limbs.
+02  More overgrown: nature has nearly swallowed it; tech visible only in a few joints and one long glowing channel.
+03  More machine visible: larger stretches of bare plated metal and segmented sleeves between moss cushions.
+04  Sagging and heavy: limbs droop, long curtains of hanging moss and tangled cables falling to the lower right.
+05  Wild and sprawling: very irregular, long reaching limbs, one crossing over another, open gaps of sky.
+06  Close-up: camera near the input limb at the right edge, detailed moss on a riveted collar and a cracked glowing hub, foreground blur.
+07  Ruin character: rust, broken plates, a snapped stub, vines wrapped tightly around exposed conduits.
+08  Lush and bright: freshest backlit greens, ferns in every crook, tech subtle.
+09  Warm hint: like 01 but two or three hub nodes glowing faint warm orange (#ff7a2f) under the moss.
+10  Depth: a large sharp overgrown limb in front plus a hazier one behind it higher up.
+
+When finished, print the saved files with a one-line note each, and save a contact sheet to .work-v4/contact-sheet.png.
+
+warning: Under-development features enabled: default_mode_request_user_input. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /Users/dixi/.codex/config.toml.
+2026-11-09T19:14:18.674821Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (http://127.0.0.1:29979/mcp)")))
+2026-11-09T19:14:19.676508Z ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when Client(HttpRequest(HttpRequest("http/request failed: error sending request for url (http://127.0.0.1:29979/mcp)")))
+hook: SessionStart
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+codex
+I’m using the imagegen skill and checking the v2 compositing method first so the original sky and navigation remain pixel-identical. I’ll generate and inspect all 10 variations individually, then save a contact sheet.
+
+exec
+/bin/zsh -lc 'cat /Users/dixi/.codex/skills/.system/imagegen/SKILL.md' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+---
+name: "imagegen"
+description: "Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas."
+---
+
+# Image Generation Skill
+
+Generates or edits images for the current project (for example website assets, game assets, UI mockups, product mockups, wireframes, logo design, photorealistic images, or infographics).
+
+## Top-level modes and rules
+
+This skill has exactly two top-level modes:
+
+- **Default built-in tool mode (preferred):** built-in `image_gen` tool for image generation, editing, and transparent-image requests. Does not require `OPENAI_API_KEY`.
+- **Fallback CLI mode:** `scripts/image_gen.py` CLI. Use when the user explicitly asks for or confirms the CLI/API/model path. Requires `OPENAI_API_KEY`.
+
+Within CLI fallback, the CLI exposes three subcommands:
+
+- `generate`
+- `edit`
+- `generate-batch`
+
+Rules:
+- Use the built-in `image_gen` tool by default for normal image generation and editing requests.
+- Do not switch to CLI fallback for ordinary quality, size, or file-path control.
+- For transparent images, ask built-in `image_gen` for a transparent background and preserve the generated alpha.
+- Never silently switch from built-in `image_gen` or CLI `gpt-image-2` to CLI `gpt-image-1.5`; ask the user first unless they explicitly requested `gpt-image-1.5`.
+- The word `batch` by itself does not mean CLI fallback. If the user asks for many assets or says to batch-generate assets without explicitly asking for CLI/API/model controls, stay on the built-in path and issue one built-in call per requested asset or variant.
+- If the built-in tool fails or is unavailable, tell the user the CLI fallback exists and that it requires `OPENAI_API_KEY`. Proceed only if the user explicitly asks for that fallback.
+- If the user explicitly asks for CLI mode, use the bundled `scripts/image_gen.py` workflow. Do not create one-off SDK runners.
+- Never modify `scripts/image_gen.py`. If something is missing, ask the user before doing anything else.
+
+Built-in save-path policy:
+- In built-in tool mode, Codex saves generated images under `$CODEX_HOME/*` by default.
+- Do not describe or rely on OS temp as the default built-in destination.
+- Do not describe or rely on a destination-path argument (if any) on the built-in `image_gen` tool. If a specific location is needed, generate first and then move or copy the selected output from `$CODEX_HOME/generated_images/...`.
+- Save-path precedence in built-in mode:
+  1. If the user names a destination, move or copy the selected output there.
+  2. If the image is meant for the current project, move or copy the final selected image into the workspace before finishing.
+  3. If the image is only for preview or brainstorming, render it inline; the underlying file can remain at the default `$CODEX_HOME/*` path.
+- Never leave a project-referenced asset only at the default `$CODEX_HOME/*` path.
+- Do not overwrite an existing asset unless the user explicitly asked for replacement; otherwise create a sibling versioned filename such as `hero-v2.png` or `item-icon-edited.png`.
+
+Shared prompt guidance for both modes lives in `references/prompting.md` and `references/sample-prompts.md`.
+
+Fallback-only docs/resources for CLI mode:
+- `references/cli.md`
+- `references/image-api.md`
+- `references/codex-network.md`
+- `scripts/image_gen.py`
+
+## When to use
+- Generate a new image (concept art, product shot, cover, website hero)
+- Generate a new image using one or more reference images for style, composition, or mood
+- Edit an existing image (inpainting, lighting or weather transformations, background replacement, object removal, compositing, transparent background)
+- Produce many assets or variants for one task
+
+## When not to use
+- Extending or matching an existing SVG/vector icon set, logo system, or illustration library inside the repo
+- Creating simple shapes, diagrams, wireframes, or icons that are better produced directly in SVG, HTML/CSS, or canvas
+- Making a small project-local asset edit when the source file already exists in an editable native format
+- Any task where the user clearly wants deterministic code-native output instead of a generated bitmap
+
+## Decision tree
+
+Think about two separate questions:
+
+1. **Intent:** is this a new image or an edit of an existing image?
+2. **Execution strategy:** is this one asset or many assets/variants?
+
+Intent:
+- If the user wants to modify an existing image while preserving parts of it, treat the request as **edit**.
+- If the user provides images only as references for style, composition, mood, or subject guidance, treat the request as **generate**.
+- If the user provides no images, treat the request as **generate**.
+
+Built-in edit semantics:
+- Built-in edit mode is for images already visible in the conversation context, such as attached images or images generated earlier in the thread.
+- If the user wants to edit a local image file with the built-in tool, first load it with built-in `view_image` tool so the image is visible in the conversation context, then proceed with the built-in edit flow.
+- Do not promise arbitrary filesystem-path editing through the built-in tool.
+- If a local file still needs direct file-path control, masks, or other explicit CLI-only parameters, use the explicit CLI fallback only when the user asks for it.
+- For edits, preserve invariants aggressively and save non-destructively by default.
+
+Execution strategy:
+- In the built-in default path, produce many assets or variants by issuing one `image_gen` call per requested asset or variant.
+- In the CLI fallback path, use the CLI `generate-batch` subcommand only when the user explicitly chose CLI mode and needs many prompts/assets.
+- For many distinct assets, do not use `n` as a substitute for separate prompts. `n` is for variants of one prompt; distinct assets need distinct built-in calls or distinct CLI `generate-batch` jobs.
+
+Assume the user wants a new image unless they clearly ask to change an existing one.
+
+## Workflow
+1. Decide the top-level mode: built-in by default, including transparent-output requests; fallback CLI only if explicitly requested or confirmed.
+2. Decide the intent: `generate` or `edit`.
+3. Decide whether the output is preview-only or meant to be consumed by the current project.
+4. Decide the execution strategy: single asset vs repeated built-in calls vs CLI `generate-batch`.
+5. Collect inputs up front: prompt(s), exact text (verbatim), constraints/avoid list, and any input images.
+6. For every input image, label its role explicitly:
+   - reference image
+   - edit target
+   - supporting insert/style/compositing input
+7. If the edit target is only on the local filesystem and you are staying on the built-in path, inspect it with `view_image` first so the image is available in conversation context.
+8. If the user asked for a photo, illustration, sprite, product image, banner, or other explicitly raster-style asset, use `image_gen` rather than substituting SVG/HTML/CSS placeholders. If the request is for an icon, logo, or UI graphic that should match existing repo-native SVG/vector/code assets, prefer editing those directly instead.
+9. Augment the prompt based on specificity:
+   - If the user's prompt is already specific and detailed, normalize it into a clear spec without adding creative requirements.
+   - If the user's prompt is generic, add tasteful augmentation only when it materially improves output quality.
+10. Use the built-in `image_gen` tool by default.
+11. For transparent-output requests, ask built-in `image_gen` for a transparent background and preserve the generated alpha channel.
+12. Inspect outputs and validate: subject, style, composition, text accuracy, and invariants/avoid items.
+13. Iterate with a single targeted change, then re-check.
+14. For preview-only work, render the image inline; the underlying file may remain at the default `$CODEX_HOME/generated_images/...` path.
+15. For project-bound work, move or copy the selected artifact into the workspace and update any consuming code or references. Never leave a project-referenced asset only at the default `$CODEX_HOME/generated_images/...` path.
+16. For batches or multi-asset requests, persist every requested deliverable final in the workspace unless the user explicitly asked to keep outputs preview-only. Discarded variants do not need to be kept unless requested.
+17. If the user explicitly chooses or confirms the CLI fallback, then use the fallback-only docs for model, quality, size, `input_fidelity`, masks, output format, output paths, and network setup.
+18. Always report the final saved path(s) for any workspace-bound asset(s), plus the final prompt or prompt set and whether the built-in tool or fallback CLI mode was used.
+
+## Transparent image requests
+
+Ask built-in `image_gen` for a genuinely transparent background and preserve its alpha.
+
+## Prompt augmentation
+
+Reformat user prompts into a structured, production-oriented spec. Make the user's goal clearer and more actionable, but do not blindly add detail.
+
+Treat this as prompt-shaping guidance, not a closed schema. Use only the lines that help, and add a short extra labeled line when it materially improves clarity.
+
+### Specificity policy
+
+Use the user's prompt specificity to decide how much augmentation is appropriate:
+
+- If the prompt is already specific and detailed, preserve that specificity and only normalize/structure it.
+- If the prompt is generic, you may add tasteful augmentation when it will materially improve the result.
+
+Allowed augmentations:
+- composition or framing hints
+- polish level or intended-use hints
+- practical layout guidance
+- reasonable scene concreteness that supports the stated request
+
+Not allowed augmentations:
+- extra characters or objects that are not implied by the request
+- brand names, slogans, palettes, or narrative beats that are not implied
+- arbitrary side-specific placement unless the surrounding layout supports it
+
+## Use-case taxonomy (exact slugs)
+
+Classify each request into one of these buckets and keep the slug consistent across prompts and references.
+
+Generate:
+- photorealistic-natural — candid/editorial lifestyle scenes with real texture and natural lighting.
+- product-mockup — product/packaging shots, catalog imagery, merch concepts.
+- ui-mockup — app/web interface mockups and wireframes; specify the desired fidelity.
+- infographic-diagram — diagrams/infographics with structured layout and text.
+- scientific-educational — classroom explainers, scientific diagrams, and learning visuals with required labels and accuracy constraints.
+- ads-marketing — campaign concepts and ad creatives with audience, brand position, scene, and exact tagline/copy.
+- productivity-visual — slide, chart, workflow, and data-heavy business visuals.
+- logo-brand — logo/mark exploration, vector-friendly.
+- illustration-story — comics, children’s book art, narrative scenes.
+- stylized-concept — style-driven concept art, 3D/stylized renders.
+- historical-scene — period-accurate/world-knowledge scenes.
+
+Edit:
+- text-localization — translate/replace in-image text, preserve layout.
+- identity-preserve — try-on, person-in-scene; lock face/body/pose.
+- precise-object-edit — remove/replace a specific element (including interior swaps).
+- lighting-weather — time-of-day/season/atmosphere changes only.
+- background-extraction — transparent background / clean cutout. Ask built-in `image_gen` for actual transparency.
+- style-transfer — apply reference style while changing subject/scene.
+- compositing — multi-image insert/merge with matched lighting/perspective.
+- sketch-to-render — drawing/line art to photoreal render.
+
+## Shared prompt schema
+
+Use the following labeled spec as shared prompt scaffolding for both top-level modes:
+
+```text
+Use case: <taxonomy slug>
+Asset type: <where the asset will be used>
+Primary request: <user's main prompt>
+Input images: <Image 1: role; Image 2: role> (optional)
+Scene/backdrop: <environment>
+Subject: <main subject>
+Style/medium: <photo/illustration/3D/etc>
+Composition/framing: <wide/close/top-down; placement>
+Lighting/mood: <lighting + mood>
+Color palette: <palette notes>
+Materials/textures: <surface details>
+Text (verbatim): "<exact text>"
+Constraints: <must keep/must avoid>
+Avoid: <negative constraints>
+```
+
+Notes:
+- `Asset type` and `Input images` are prompt scaffolding, not dedicated CLI flags.
+- `Scene/backdrop` refers to the visual setting. It is not the same as the fallback CLI `background` parameter, which controls output transparency behavior.
+- Fallback-only execution notes such as `Quality:`, `Input fidelity:`, masks, output format, and output paths belong in the CLI path only. Do not treat them as built-in `image_gen` tool arguments.
+
+Augmentation rules:
+- Keep it short.
+- Add only the details needed to improve the prompt materially.
+- For edits, explicitly list invariants (`change only X; keep Y unchanged`).
+- If any critical detail is missing and blocks success, ask a question; otherwise proceed.
+
+## Examples
+
+### Generation example (hero image)
+```text
+Use case: product-mockup
+Asset type: landing page hero
+Primary request: a minimal hero image of a ceramic coffee mug
+Style/medium: clean product photography
+Composition/framing: wide composition with usable negative space for page copy if needed
+Lighting/mood: soft studio lighting
+Constraints: no logos, no text, no watermark
+```
+
+### Edit example (invariants)
+```text
+Use case: precise-object-edit
+Asset type: product photo background replacement
+Primary request: replace only the background with a warm sunset gradient
+Constraints: change only the background; keep the product and its edges unchanged; no text; no watermark
+```
+
+## Prompting best practices
+- Structure prompt as scene/backdrop -> subject -> details -> constraints.
+- Include intended use (ad, UI mock, infographic) to set the mode and polish level.
+- Use camera/composition language for photorealism.
+- Only use SVG/vector stand-ins when the user explicitly asked for vector output or a non-image placeholder.
+- Quote exact text and specify typography + placement.
+- For tricky words, spell them letter-by-letter and require verbatim rendering.
+- For multi-image inputs, reference images by index and describe how they should be used.
+- For edits, repeat invariants every iteration to reduce drift.
+- Iterate with single-change follow-ups.
+- If the prompt is generic, add only the extra detail that will materially help.
+- If the prompt is already detailed, normalize it instead of expanding it.
+- For CLI fallback only, see `references/cli.md` and `references/image-api.md` for model, `quality`, `input_fidelity`, masks, output format, and output-path guidance.
+- For transparent images, ask built-in `image_gen` for actual transparency and preserve its alpha.
+
+More principles shared by both modes: `references/prompting.md`.
+Copy/paste specs shared by both modes: `references/sample-prompts.md`.
+
+## Guidance by asset type
+Asset-type templates (website assets, game assets, wireframes, logo) are consolidated in `references/sample-prompts.md`.
+
+## gpt-image-2 guidance for CLI fallback
+
+The fallback CLI defaults to `gpt-image-2`.
+
+- Use `gpt-image-2` for new CLI/API workflows unless the user confirms a different model.
+- CLI `gpt-image-2` does not support `background=transparent`; ask before using `gpt-image-1.5` unless the user explicitly requested that model.
+- `gpt-image-2` always uses high fidelity for image inputs; do not set `input_fidelity` with this model.
+- `gpt-image-2` supports `quality` values `low`, `medium`, `high`, and `auto`.
+- Use `quality low` for fast drafts, thumbnails, and quick iterations. Use `medium`, `high`, or `auto` for final assets, dense text, diagrams, identity-sensitive edits, or high-resolution outputs.
+- Square images are typically fastest to generate. Use `1024x1024` for fast square drafts.
+- If the user asks for 4K-style output, use `3840x2160` for landscape or `2160x3840` for portrait.
+- `gpt-image-2` size may be `auto` or `WIDTHxHEIGHT` if all constraints hold: max edge `<= 3840px`, both edges multiples of `16px`, long-to-short ratio `<= 3:1`, total pixels between `655,360` and `8,294,400`.
+
+Popular `gpt-image-2` sizes:
+- `1024x1024` square
+- `1536x1024` landscape
+- `1024x1536` portrait
+- `2048x2048` 2K square
+- `2048x1152` 2K landscape
+- `3840x2160` 4K landscape
+- `2160x3840` 4K portrait
+- `auto`
+
+## Fallback CLI mode only
+
+### Temp and output conventions
+These conventions apply only to the CLI fallback. They do not describe built-in `image_gen` output behavior.
+- Use `tmp/imagegen/` for intermediate files (for example JSONL batches); delete them when done.
+- Write final artifacts under `output/imagegen/`.
+- Use `--out` or `--out-dir` to control output paths; keep filenames stable and descriptive.
+
+### Dependencies
+Prefer `uv` for dependency management in this repo.
+
+Required Python package:
+```bash
+uv pip install openai
+```
+
+Optional for image inspection and downscaling:
+```bash
+uv pip install pillow
+```
+
+Portability note:
+- If you are using the installed skill outside this repo, install dependencies into that environment with its package manager.
+- In uv-managed environments, `uv pip install ...` remains the preferred path.
+
+### Environment
+- `OPENAI_API_KEY` must be set for live API calls.
+- Do not ask the user for `OPENAI_API_KEY` when using the built-in `image_gen` tool.
+- Never ask the user to paste the full key in chat. Ask them to set it locally and confirm when ready.
+
+If the key is missing, give the user these steps:
+1. Create an API key in the OpenAI platform UI: https://platform.openai.com/api-keys
+2. Set `OPENAI_API_KEY` as an environment variable in their system.
+3. Offer to guide them through setting the environment variable for their OS/shell if needed.
+
+If installation is not possible in this environment, tell the user which dependency is missing and how to install it into their active environment.
+
+### Script-mode notes
+- CLI commands + examples: `references/cli.md`
+- API parameter quick reference: `references/image-api.md`
+- Network approvals / sandbox settings for CLI mode: `references/codex-network.md`
+
+## Reference map
+- `references/prompting.md`: shared prompting principles for both modes.
+- `references/sample-prompts.md`: shared copy/paste prompt recipes for both modes.
+- `references/cli.md`: fallback-only CLI usage via `scripts/image_gen.py`.
+- `references/image-api.md`: fallback-only API/CLI parameter reference.
+- `references/codex-network.md`: fallback-only network/sandbox troubleshooting for CLI mode.
+- `scripts/image_gen.py`: fallback-only CLI implementation. Use only when the user explicitly chooses or confirms CLI mode.
+
+hook: PostToolUse
+exec
+/bin/zsh -lc "rg -n -i 'branch-concepts|Cernan/website|composit|hero images' /Users/dixi/.codex/memories/MEMORY.md" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+844:- Do not present hero headline, CTA, or composition as finalized; the shared notes left them unspecified. [Task 3]
+1351:applies_to: cwd=/Users/dixi/Desktop/Ships.studio/gg(react); reuse_rule=reuse the documented Sheet file, sidebar composition, and design contract only after confirming the active Sheet file and current dashboard conventions; do not treat this as authorization to modify React code.
+1371:- The final composition starts directly with New chat and search: no logo, Guest Genius wordmark/AI qualifier, or descriptive masthead. Preserve New chat, search with `⌘ F`, pinned conversations, date groups, fixed icon/action lanes, selected gold marker, and independent history scrolling. [Task 1]
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g '*.py' -g '*.js' -g '*.json' -g '*.md' -g '*.sh' -g '*.png' -g '"'!node_modules'"' -g '"'!v3/*'"' -g '"'!v2/*'"' | head -160" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts
+refs/7.png
+refs/background.png
+refs/9.png
+refs/8.png
+v1/branch-09.png
+v1/branch-08.png
+v1/branch-01.png
+v1/branch-03.png
+v1/branch-02.png
+v1/branch-06.png
+v1/branch-07.png
+v1/branch-05.png
+v1/branch-10.png
+v1/branch-04.png
+
+hook: PostToolUse
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc "ls -la && rg --files --hidden -g '"'!v1/*'"' -g '"'!v2/*'"' -g '"'!v3/*'"' -g '"'!refs/*'"' -g '"'!.git/**'"' | head -100 && rg -n -i 'branch-concepts|Cernan/website|composit|hero images' /Users/dixi/.codex/memories/MEMORY.md" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+total 1648
+drwxr-xr-x@ 16 dixi  staff     512 Nov 10 00:44 .
+drwxr-xr-x@  4 dixi  staff     128 Nov 10 00:41 ..
+-rw-r--r--@  1 dixi  staff    8196 Nov 10 00:42 .DS_Store
+drwxr-xr-x@ 19 dixi  staff     608 Nov 10 00:15 .work-v2
+drwxr-xr-x@ 22 dixi  staff     704 Nov 10 00:42 .work-v3
+-rw-r--r--@  1 dixi  staff   73910 Nov 10 00:15 codex-v2.log
+-rw-r--r--@  1 dixi  staff  696374 Nov 10 00:43 codex-v3.log
+-rw-r--r--@  1 dixi  staff   28343 Nov 10 00:44 codex-v4.log
+-rw-r--r--@  1 dixi  staff    5559 Nov  9 23:53 prompt-v2.txt
+-rw-r--r--@  1 dixi  staff    6630 Nov 10 00:18 prompt-v3.txt
+-rw-r--r--@  1 dixi  staff    5765 Nov 10 00:44 prompt-v4.txt
+drwxr-xr-x@  6 dixi  staff     192 Nov  9 23:28 refs
+drwxr-xr-x@ 13 dixi  staff     416 Nov  9 23:53 v1
+drwxr-xr-x@ 12 dixi  staff     384 Nov 10 00:14 v2
+drwxr-xr-x@ 10 dixi  staff     320 Nov 10 00:42 v3
+drwxr-xr-x@  2 dixi  staff      64 Nov 10 00:44 v4
+prompt-v4.txt
+prompt-v2.txt
+prompt-v3.txt
+.work-v2/branch-01.qa.json
+.work-v2/branch-01.first-export.qa.json
+.work-v2/branch-08.qa.json
+.work-v2/branch-09.qa.json
+.work-v2/leaves-check.png
+.work-v2/branch-10.qa.json
+.work-v2/contact-sheet.png
+.work-v2/verification.json
+.work-v2/branch-02.qa.json
+.work-v2/branch-03.qa.json
+.work-v2/branch-06.qa.json
+.work-v2/verify.cjs
+.work-v2/branch-07.qa.json
+.work-v2/branch-05.qa.json
+.work-v2/finish.cjs
+.work-v2/prompts.txt
+.work-v2/branch-04.qa.json
+codex-v4.log
+.work-v3/branch-01.qa.json
+.work-v3/branch-03.preview.png
+.work-v3/raw/branch-08.png
+.work-v3/raw/branch-01.png
+.work-v3/raw/branch-03.png
+.work-v3/raw/branch-02.png
+.work-v3/raw/branch-06.png
+.work-v3/raw/branch-07.png
+.work-v3/raw/branch-05.png
+.work-v3/raw/branch-04.png
+.work-v3/branch-08.qa.json
+.work-v3/branch-06.preview.png
+.work-v3/branch-05.preview.png
+.work-v3/prompts/branch-08.txt
+.work-v3/prompts/branch-09.txt
+.work-v3/prompts/branch-07-retry.txt
+.work-v3/prompts/branch-06-retry.txt
+.work-v3/prompts/branch-03-retry.txt
+.work-v3/prompts/branch-06-proportions.txt
+.work-v3/prompts/branch-02.txt
+.work-v3/prompts/branch-03.txt
+.work-v3/prompts/branch-07.txt
+.work-v3/prompts/branch-06.txt
+.work-v3/prompts/branch-04.txt
+.work-v3/prompts/branch-05.txt
+.work-v3/branch-02.qa.json
+.work-v3/branch-03.qa.json
+.work-v3/branch-07.preview.png
+.work-v3/branch-06.qa.json
+.work-v3/branch-07.qa.json
+.work-v3/branch-02.preview.png
+.work-v3/branch-05.qa.json
+.work-v3/finish.cjs
+.work-v3/branch-01.preview.png
+.work-v3/layers/branch-08.png
+.work-v3/layers/branch-01.png
+.work-v3/layers/branch-03.png
+.work-v3/layers/branch-02.png
+.work-v3/layers/branch-06.png
+.work-v3/layers/branch-07.png
+.work-v3/layers/branch-05.png
+.work-v3/layers/branch-04.png
+.work-v3/branch-08.preview.png
+.work-v3/branch-04.qa.json
+.work-v3/branch-04.preview.png
+codex-v2.log
+codex-v3.log
+.DS_Store
+844:- Do not present hero headline, CTA, or composition as finalized; the shared notes left them unspecified. [Task 3]
+1351:applies_to: cwd=/Users/dixi/Desktop/Ships.studio/gg(react); reuse_rule=reuse the documented Sheet file, sidebar composition, and design contract only after confirming the active Sheet file and current dashboard conventions; do not treat this as authorization to modify React code.
+1371:- The final composition starts directly with New chat and search: no logo, Guest Genius wordmark/AI qualifier, or descriptive masthead. Preserve New chat, search with `⌘ F`, pinned conversations, date groups, fixed icon/action lanes, selected gold marker, and independent history scrolling. [Task 1]
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+exec
+/bin/zsh -lc 'for f in /AGENTS.md /Users/AGENTS.md /Users/dixi/AGENTS.md /Users/dixi/Desktop/AGENTS.md /Users/dixi/Desktop/Cernan/AGENTS.md /Users/dixi/Desktop/Cernan/website/AGENTS.md /Users/dixi/Desktop/Cernan/website/output/AGENTS.md /Users/dixi/Desktop/Cernan/website/output/branch-concepts/AGENTS.md; do if [ -f "$f" ]; then echo "$f"; cat "$f"; fi; done' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+hook: PostToolUse
+exec
+/bin/zsh -lc 'cat .work-v2/finish.cjs && cat .work-v2/verify.cjs && cat .work-v2/branch-01.qa.json && cat .work-v3/finish.cjs' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+const fs=require('fs');
+const [src,out,minxArg,minyArg,maxyArg]=process.argv.slice(2);
+const minx=+minxArg,miny=+minyArg,maxy=+maxyArg;
+const smooth=(a,b,v)=>{let t=Math.max(0,Math.min(1,(v-a)/(b-a)));return t*t*(3-2*t)};
+(async()=>{
+ const {data,info}=await sharp(src).removeAlpha().raw().toBuffer({resolveWithObject:true});
+ const W=info.width,H=info.height,rgba=Buffer.alloc(W*H*4); let x0=W,y0=H,x1=0,y1=0;
+ for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+ const i=(y*W+x)*3,j=(y*W+x)*4,r=data[i],g=data[i+1],b=data[i+2];
+ const sky=smooth(-16,-2,b-g)*smooth(-3,8,b-r)*smooth(145,195,b);
+ const white=smooth(205,225,Math.min(r,g,b));
+ let a=1-Math.max(sky,white);
+ // Discard generated UI and preserve only botanical content.
+ if(y<H*.1&&x<W*.60)a=0;
+ if(y<H*.09&&x>W*.84&&x<W*.98&&!(g>r*1.08&&g>b*1.08))a=0;
+ if(a<.025)a=0;
+ rgba[j]=r;rgba[j+1]=g;rgba[j+2]=b;rgba[j+3]=Math.round(a*255);
+ if(a>.5){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y)}
+ }
+ let leaves=[];
+ if(out.endsWith('branch-07.png')){
+  const boxes=[[448,275,41,29],[517,288,49,44],[625,250,44,31],[665,302,39,40],[724,277,40,31],[474,355,49,38],[573,342,32,46],[690,342,52,40]];
+  const original=Buffer.from(rgba);
+  for(const [l,t,w,h] of boxes){
+   const leaf=await sharp(original,{raw:{width:W,height:H,channels:4}}).extract({left:l,top:t,width:w,height:h}).raw().toBuffer();
+   const seen=new Uint8Array(w*h);let best=[];
+   for(let k=0;k<w*h;k++){if(seen[k]||leaf[k*4+3]<10)continue;let q=[k];seen[k]=1;for(let j=0;j<q.length;j++){let v=q[j],x=v%w,y=Math.floor(v/w);for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){let nx=x+dx,ny=y+dy,n=ny*w+nx;if(nx<0||ny<0||nx>=w||ny>=h||seen[n]||leaf[n*4+3]<10)continue;seen[n]=1;q.push(n)}}if(q.length>best.length)best=q}
+   const keep=new Set(best);for(let k=0;k<w*h;k++)if(!keep.has(k))leaf[k*4+3]=0;
+   leaves.push({input:await sharp(leaf,{raw:{width:w,height:h,channels:4}}).resize(Math.round(w*2880/W),Math.round(h*1800/H)).png().toBuffer(),left:Math.round(l*2880/W),top:Math.round(t*1800/H)-35});
+   for(let y=t;y<t+h;y++)for(let x=l;x<l+w;x++)rgba[(y*W+x)*4+3]=0;
+  }
+  x0=W;y0=H;x1=0;y1=0;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(rgba[(y*W+x)*4+3]>127){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y)}
+ }
+ const tw=2880-minx, th=maxy-miny;
+ const layer=await sharp(rgba,{raw:{width:W,height:H,channels:4}}).extract({left:x0,top:y0,width:W-x0,height:y1-y0+1}).resize(tw,th,{fit:'fill',kernel:'lanczos3'}).png().toBuffer();
+ await sharp('refs/background.png').composite([{input:layer,left:minx,top:miny},...leaves]).png().toFile(out);
+ const base=await sharp('refs/background.png').removeAlpha().raw().toBuffer();const final=await sharp(out).removeAlpha().raw().toBuffer();
+ let nav=0,copy=0;for(let y=0;y<1800;y++)for(let x=0;x<2880;x++){if((y<230&&x<2360)||(x<1250&&y>=700)){let i=(y*2880+x)*3;let diff=base[i]!=final[i]||base[i+1]!=final[i+1]||base[i+2]!=final[i+2];if(diff){if(y<230)nav++;else copy++}}}
+ const meta=await sharp(out).metadata();const report={file:out,width:meta.width,height:meta.height,sourceWidth:W,sourceHeight:H,sourceBounds:[x0,y0,x1,y1],finalBounds:[minx,miny,2880,maxy],navigationChangedPixels:nav,textAreaChangedPixels:copy};console.log(JSON.stringify(report));fs.writeFileSync('.work-v2/'+out.split('/').pop().replace('.png','.qa.json'),JSON.stringify(report,null,2));
+})();
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+const fs=require('fs'),crypto=require('crypto');
+(async()=>{
+ const base=await sharp('refs/background.png').removeAlpha().raw().toBuffer();
+ const reports=[],tiles=[];let all=true;
+ const labels=['Classic','Wide & heavy','Airy','Low dip','Upswept','Close-up','Drifting leaves','Old giant','Spring light','Layered depth'];
+ for(let n=1;n<=10;n++){
+ const file=`v2/branch-${String(n).padStart(2,'0')}.png`,m=await sharp(file).metadata(),d=await sharp(file).removeAlpha().raw().toBuffer();
+ const zones={navBand:[0,0,2360,230],meetingButton:[2440,35,2820,170],textArea:[0,700,1250,1800]};const changed={};
+ for(const [name,[x0,y0,x1,y1]]of Object.entries(zones)){let c=0;for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){const i=(y*2880+x)*3;if(base[i]!==d[i]||base[i+1]!==d[i+1]||base[i+2]!==d[i+2])c++}changed[name]=c;}
+ const ok=m.width===2880&&m.height===1800&&m.format==='png'&&Object.values(changed).every(c=>c===0);all&&=ok;
+ reports.push({file,width:m.width,height:m.height,bytes:fs.statSync(file).size,sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex'),changedPixels:changed,passed:ok});
+ const col=(n-1)%2,row=Math.floor((n-1)/2),left=col*720,top=row*480;
+ tiles.push({input:await sharp(file).resize(720,450).png().toBuffer(),left,top});
+ const title=Buffer.from(`<svg width="720" height="30"><rect width="720" height="30" fill="#f6f8fa"/><text x="12" y="21" font-family="Arial" font-size="16" fill="#102338">${String(n).padStart(2,'0')} — ${labels[n-1].replace('&','&amp;')}</text></svg>`);
+ tiles.push({input:title,left,top:top+450});
+ }
+ await sharp({create:{width:1440,height:2400,channels:3,background:'#f6f8fa'}}).composite(tiles).png().toFile('.work-v2/contact-sheet.png');
+ fs.writeFileSync('.work-v2/verification.json',JSON.stringify({allPassed:all,images:reports},null,2));
+ console.log(JSON.stringify({allPassed:all,imageCount:reports.length,totalMB:Math.round(reports.reduce((s,r)=>s+r.bytes,0)/1e6*10)/10,images:reports.map(({file,width,height,changedPixels,passed})=>({file,width,height,changedPixels,passed}))},null,2));
+})();
+{
+  "file": "v2/branch-01.png",
+  "width": 2880,
+  "height": 1800,
+  "sourceWidth": 1586,
+  "sourceHeight": 992,
+  "sourceBounds": [
+    547,
+    68,
+    1585,
+    942
+  ],
+  "finalBounds": [
+    1350,
+    235,
+    2880,
+    1600
+  ],
+  "navigationChangedPixels": 0,
+  "textAreaChangedPixels": 0
+}const sharp = require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+const fs = require('fs');
+const [src, number, minxArg='1270', minyArg='255', maxyArg='1570'] = process.argv.slice(2);
+const id=String(number).padStart(2,'0');
+const smooth=(a,b,v)=>{const t=Math.max(0,Math.min(1,(v-a)/(b-a)));return t*t*(3-2*t);};
+const clamp=v=>Math.max(0,Math.min(255,Math.round(v)));
+(async()=>{
+ const {data,info}=await sharp(src).removeAlpha().raw().toBuffer({resolveWithObject:true});
+ const W=info.width,H=info.height,N=W*H;
+ const baseSmall=await sharp('refs/background.png').resize(W,H,{fit:'fill'}).removeAlpha().raw().toBuffer();
+ // Estimate only the generator's smooth sky colour drift from pixels close to
+ // the supplied sky. This keeps dark graphite, bright metal, and cyan glass.
+ const sample=Buffer.alloc(N*4);
+ for(let k=0;k<N;k++){
+  const i=k*3,j=k*4,y=Math.floor(k/W);
+  const d=[0,1,2].map(c=>data[i+c]-baseSmall[i+c]);
+  const ok=y>H*.13&&Math.max(...d.map(Math.abs))<27&&data[i+2]>200;
+  for(let c=0;c<3;c++)sample[j+c]=ok?clamp(128+d[c]*3):0;
+  sample[j+3]=ok?255:0;
+ }
+ // Blur each weighted channel independently (alpha must not be premultiplied).
+ const channels=[];
+ for(let c=0;c<4;c++){
+  const ch=Buffer.alloc(N);for(let k=0;k<N;k++)ch[k]=sample[k*4+c];
+  channels.push(await sharp(ch,{raw:{width:W,height:H,channels:1}}).blur(45).greyscale().raw().toBuffer());
+ }
+ const matte=Buffer.alloc(N),estimated=Buffer.alloc(N*3),rgba=Buffer.alloc(N*4);
+ for(let k=0;k<N;k++){
+  const i=k*3,y=Math.floor(k/W),weight=channels[3][k]/255;
+  let difference=0;
+  for(let c=0;c<3;c++){
+   const offset=weight>.035?(channels[c][k]/weight-128)/3:0;
+   estimated[i+c]=clamp(baseSmall[i+c]+offset);
+  }
+  const dr=data[i]-estimated[i],dg=data[i+1]-estimated[i+1],db=data[i+2]-estimated[i+2];
+  difference=Math.max(-db,-dg*.65,-dr*.35,Math.min(dr*.6,dg));
+  let edge=0;
+  for(const off of [-W*2,-2,2,W*2]){
+   const q=k+off;if(q<0||q>=N)continue;
+   for(let c=0;c<3;c++)edge=Math.max(edge,Math.abs(data[i+c]-data[q*3+c]));
+  }
+  if(difference<23&&edge<5)difference=0;
+  // Smooth blue regions are sky, even where a large regenerated cloud differs
+  // from the base. Real fine filaments retain their local edge contrast.
+  if(data[i+2]>215&&data[i+2]>data[i]+12&&data[i+2]>data[i+1]+6&&edge<8)difference=0;
+  // Remove generated navigation entirely before finding the branch bounds.
+  matte[k]=y<H*.105?0:clamp(255*smooth(8,22,difference));
+ }
+ // Remove isolated background noise, retaining fine connected optical strands.
+ const seen=new Uint8Array(N),keep=new Uint8Array(N);let components=0;
+ for(let k=0;k<N;k++){
+  if(seen[k]||matte[k]<5)continue;
+  const q=[k];seen[k]=1;let strong=0;
+  for(let p=0;p<q.length;p++){
+   const v=q[p],x=v%W,y=Math.floor(v/W);if(matte[v]>220)strong++;
+   for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+    const nx=x+dx,ny=y+dy,n=ny*W+nx;
+    if(nx<0||nx>=W||ny<0||ny>=H||seen[n]||matte[n]<5)continue;
+    seen[n]=1;q.push(n);
+   }
+  }
+  if(q.length>=18&&strong>=2){components++;for(const v of q)keep[v]=1;}
+ }
+ let x0=W,y0=H,x1=0,y1=0;
+ for(let k=0;k<N;k++){
+  let a=keep[k]?matte[k]/255:0;
+  const i=k*3,j=k*4;
+  for(let c=0;c<3;c++)rgba[j+c]=a>.02?clamp((data[i+c]-estimated[i+c]*(1-a))/a):0;
+  rgba[j+3]=clamp(a*255);
+  if(a>.1){const x=k%W,y=Math.floor(k/W);x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
+ }
+ x0=Math.max(0,x0-2);y0=Math.max(0,y0-2);y1=Math.min(H-1,y1+2);
+ const minx=+minxArg,miny=+minyArg,maxy=+maxyArg;
+ const tw=2880-minx,th=maxy-miny;
+ const layer=await sharp(rgba,{raw:{width:W,height:H,channels:4}}).extract({left:x0,top:y0,width:W-x0,height:y1-y0+1}).resize(tw,th,{fit:'fill',kernel:'lanczos3'}).png().toBuffer();
+ await sharp(layer).toFile(`.work-v3/layers/branch-${id}.png`);
+ const out=`v3/branch-${id}.png`;
+ await sharp('refs/background.png').composite([{input:layer,left:minx,top:miny}]).png().toFile(out);
+ await sharp(out).resize(1440,900).png().toFile(`.work-v3/branch-${id}.preview.png`);
+ const report={file:out,source:src,sourceSize:[W,H],sourceBounds:[x0,y0,x1,y1],placement:[minx,miny,2880,maxy],components,matte:'sky-drift-corrected colour difference with edge decontamination'};
+ fs.writeFileSync(`.work-v3/branch-${id}.qa.json`,JSON.stringify(report,null,2));
+ fs.copyFileSync(src,`.work-v3/raw/branch-${id}.png`);
+ console.log(JSON.stringify(report));
+})();
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc 'mkdir -p .work-v4/prompts .work-v4/raw .work-v4/layers .work-v4/previews v4' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+hook: PostToolUse
+hook: PostToolUse Completed
+apply patch
+patch: completed
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-01.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-02.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-03.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-04.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-05.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-06.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-07.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-08.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-09.txt
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/prompts/branch-10.txt
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-01.txt b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea2af65860d3193720c4337eb60aa664b00f2e26
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++01 BALANCED: Heavy moss cushions and draping ivy over a weathered metal limb. Three differently sized half-hidden hubs at uneven positions, faint cyan channels visible along several main limbs. A thick main bough twists down-left then a smaller bough rises back-left; a short fork behind, a broken stub. Natural disorder, plentiful hanging moss.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-02.txt b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3767114d46e7371cc73421a2b9e4616125fefce8
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++02 MORE OVERGROWN: Nature has nearly swallowed this abandoned machine, roughly 80% nature. Huge deep moss cushions, profuse irregular ivy, ferns and especially long soft Spanish moss curtains. Only a few oxidized ring joints and ONE particularly long dim pale cyan channel curving along the underside remain visible, with a second tiny exposed stretch. Uneven broad downward-curving canopy, a single crooked upper twig.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-03.txt b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..6e57f6170fa01f3ff31f04fa2ea1f0aea03fc06d
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++03 MORE MACHINE VISIBLE: Roughly 55% nature, 45% machine. Larger stretches of bare aged dark plated metal and irregular segmented sleeves BETWEEN generous moss cushions and ivy, emphasizing scratched material and riveted construction. At least three uneven pale cyan channel stretches. Broad crooked fork and a smaller twisted secondary bough; no repeated fork topology.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-04.txt b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..69668d7c142bfd6c18b5505a6cf0cfc5675b93bf
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++04 SAGGING AND HEAVY: The major bough bows visibly down under the weight of decades of dense moss and ivy, then curves outward. A short upper fork, very long uneven curtains of Spanish moss and tangled loose cables hanging vertically into the LOWER RIGHT, ending near y=1580. Massive structure stays high at the right entry. Strong asymmetric droop, irregular hubs partly hidden, faint cyan channels follow the sagging metal.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-05.txt b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..615aa731c774fca979ac0801eaf1fd9a1c7088ac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++05 WILD AND SPRAWLING: Extra irregular canopy, long reaching angular and twisting limbs, one crooked bough crosses IN FRONT of another at an oblique angle, big uneven open windows of sky. One long thin upper limb, one short massive lower bough, one broken stub. Moss and ivy cling in wild scattered islands while hanging moss curtains connect the silhouette. Varied worn metal forks, dim continuous cyan channels.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-06.txt b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3fa57644d6ac9e0bfbaef594fdc96fa941683b7
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++06 CLOSE-UP: Camera close to the input limb at RIGHT edge. Show exceptionally tactile wet moss cushions, tiny fern fronds, scratched graphite and corroded rivets on a large irregular collar. One cracked partly overgrown sensor hub near the right foreground faintly emits pale cyan. Stronger perspective depth, blurred near right-edge leaves, distant tiny asymmetrical branching tips. Keep edge core 380–520px thick and overall canopy same scale; do not turn into a gigantic vertical trunk. Real detailed photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-07.txt b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..539dddd4f5aa56f8a1092f3fef0bf2c74e3d3a9b
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++07 RUIN CHARACTER: Distinct visibly abandoned and weather-damaged machine, rusty seams, some lifted/broken plates, one SNAPPED metal stub with a dark jagged opening, vines wound tightly around exposed conduits. Subdued rust is secondary to lush moss and ivy. A few faint cyan channel stretches survive. Uneven gnarled structure, one descending large bough and thinner rising fork, patches of empty sky.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-08.txt b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3853ecda7aee66ebbd9647d794a381cb4b78caac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++08 LUSH AND BRIGHT: Freshest bright translucent backlit lime greens, a profusion of small ferns in every irregular crook and moss along the tops. Lush ivy and vines falling at different lengths. Technology subtle but unmistakable at several aged collars, one half-hidden cracked sensor and three dim continuous pale-cyan glass grooves. Main bough turns upward in an irregular arc then its smaller branches sag. High-end bright natural botanical photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-09.txt b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..b8785b2418a728d7c3691fb9250bfacb2e053318
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++09 WARM HINT: Balanced like 01, but TWO OR THREE differently-sized half-covered sensor hubs glow faint warm orange (#ff7a2f) deep UNDER moss, not bright neon. The long glass channels are still subdued pale CYAN, with several visible continuous stretches. Heavy moss and ivy, irregular twisting metal limbs with asymmetric forks, long hanging moss. Slightly different silhouette with one low curved fork and short knuckled upper forks.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-10.txt b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..22129a9b8ab68d0d410954490a7e9a9bbcdc0faa
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++10 DEPTH: One large sharp overgrown machine limb in the foreground, plus a thinner, hazier secondary bough behind it HIGHER UP, both connected to the SAME input limb at right. Clear occlusion and atmospheric depth with uneven sky gaps, no two parallel repeated branches. Dense moss, ivy, ferns, draping Spanish moss. Weathered plating, dissimilar partially covered collars/hubs, visible dim cyan channels on foreground and subtle rear limb. Photographic depth, nearest right-edge leaves gently blurred.
++
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed
+codex
+The first result has the right balance: dense, irregular greenery with weathered metal and visible cyan channels. I found the v2 compositing script; I’m using the same foreground-over-original approach and checking the protected areas pixel by pixel.
+
+exec
+/bin/zsh -lc 'cp .work-v3/finish.cjs .work-v4/finish.cjs' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 0ms:
+hook: PostToolUse
+hook: PostToolUse Completed
+apply patch
+patch: completed
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/finish.cjs
+diff --git a/output/branch-concepts/.work-v4/finish.cjs b/output/branch-concepts/.work-v4/finish.cjs
+index aad33165c682f966ae84d8c598273319229c4259..70d2f5a4d5e83c0659ec1d0b5c49e898e522f804
+--- a/output/branch-concepts/.work-v4/finish.cjs
++++ b/output/branch-concepts/.work-v4/finish.cjs
+@@ -1,6 +1,6 @@
+ const sharp = require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+ const fs = require('fs');
+-const [src, number, minxArg='1270', minyArg='255', maxyArg='1570'] = process.argv.slice(2);
++const [src, number, minxArg='1280', minyArg='235', maxyArg='1570'] = process.argv.slice(2);
+ const id=String(number).padStart(2,'0');
+ const smooth=(a,b,v)=>{const t=Math.max(0,Math.min(1,(v-a)/(b-a)));return t*t*(3-2*t);};
+ const clamp=v=>Math.max(0,Math.min(255,Math.round(v)));
+@@ -73,12 +73,12 @@
+  const minx=+minxArg,miny=+minyArg,maxy=+maxyArg;
+  const tw=2880-minx,th=maxy-miny;
+  const layer=await sharp(rgba,{raw:{width:W,height:H,channels:4}}).extract({left:x0,top:y0,width:W-x0,height:y1-y0+1}).resize(tw,th,{fit:'fill',kernel:'lanczos3'}).png().toBuffer();
+- await sharp(layer).toFile(`.work-v3/layers/branch-${id}.png`);
+- const out=`v3/branch-${id}.png`;
++ await sharp(layer).toFile(`.work-v4/layers/branch-${id}.png`);
++ const out=`v4/branch-${id}.png`;
+  await sharp('refs/background.png').composite([{input:layer,left:minx,top:miny}]).png().toFile(out);
+- await sharp(out).resize(1440,900).png().toFile(`.work-v3/branch-${id}.preview.png`);
++ await sharp(out).resize(1440,900).png().toFile(`.work-v4/previews/branch-${id}.png`);
+  const report={file:out,source:src,sourceSize:[W,H],sourceBounds:[x0,y0,x1,y1],placement:[minx,miny,2880,maxy],components,matte:'sky-drift-corrected colour difference with edge decontamination'};
+- fs.writeFileSync(`.work-v3/branch-${id}.qa.json`,JSON.stringify(report,null,2));
+- fs.copyFileSync(src,`.work-v3/raw/branch-${id}.png`);
++ fs.writeFileSync(`.work-v4/branch-${id}.qa.json`,JSON.stringify(report,null,2));
++ fs.copyFileSync(src,`.work-v4/raw/branch-${id}.png`);
+  console.log(JSON.stringify(report));
+ })();
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-01.txt b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea2af65860d3193720c4337eb60aa664b00f2e26
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++01 BALANCED: Heavy moss cushions and draping ivy over a weathered metal limb. Three differently sized half-hidden hubs at uneven positions, faint cyan channels visible along several main limbs. A thick main bough twists down-left then a smaller bough rises back-left; a short fork behind, a broken stub. Natural disorder, plentiful hanging moss.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-02.txt b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3767114d46e7371cc73421a2b9e4616125fefce8
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++02 MORE OVERGROWN: Nature has nearly swallowed this abandoned machine, roughly 80% nature. Huge deep moss cushions, profuse irregular ivy, ferns and especially long soft Spanish moss curtains. Only a few oxidized ring joints and ONE particularly long dim pale cyan channel curving along the underside remain visible, with a second tiny exposed stretch. Uneven broad downward-curving canopy, a single crooked upper twig.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-03.txt b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..6e57f6170fa01f3ff31f04fa2ea1f0aea03fc06d
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++03 MORE MACHINE VISIBLE: Roughly 55% nature, 45% machine. Larger stretches of bare aged dark plated metal and irregular segmented sleeves BETWEEN generous moss cushions and ivy, emphasizing scratched material and riveted construction. At least three uneven pale cyan channel stretches. Broad crooked fork and a smaller twisted secondary bough; no repeated fork topology.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-04.txt b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..69668d7c142bfd6c18b5505a6cf0cfc5675b93bf
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++04 SAGGING AND HEAVY: The major bough bows visibly down under the weight of decades of dense moss and ivy, then curves outward. A short upper fork, very long uneven curtains of Spanish moss and tangled loose cables hanging vertically into the LOWER RIGHT, ending near y=1580. Massive structure stays high at the right entry. Strong asymmetric droop, irregular hubs partly hidden, faint cyan channels follow the sagging metal.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-05.txt b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..615aa731c774fca979ac0801eaf1fd9a1c7088ac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++05 WILD AND SPRAWLING: Extra irregular canopy, long reaching angular and twisting limbs, one crooked bough crosses IN FRONT of another at an oblique angle, big uneven open windows of sky. One long thin upper limb, one short massive lower bough, one broken stub. Moss and ivy cling in wild scattered islands while hanging moss curtains connect the silhouette. Varied worn metal forks, dim continuous cyan channels.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-06.txt b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3fa57644d6ac9e0bfbaef594fdc96fa941683b7
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++06 CLOSE-UP: Camera close to the input limb at RIGHT edge. Show exceptionally tactile wet moss cushions, tiny fern fronds, scratched graphite and corroded rivets on a large irregular collar. One cracked partly overgrown sensor hub near the right foreground faintly emits pale cyan. Stronger perspective depth, blurred near right-edge leaves, distant tiny asymmetrical branching tips. Keep edge core 380–520px thick and overall canopy same scale; do not turn into a gigantic vertical trunk. Real detailed photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-07.txt b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..539dddd4f5aa56f8a1092f3fef0bf2c74e3d3a9b
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++07 RUIN CHARACTER: Distinct visibly abandoned and weather-damaged machine, rusty seams, some lifted/broken plates, one SNAPPED metal stub with a dark jagged opening, vines wound tightly around exposed conduits. Subdued rust is secondary to lush moss and ivy. A few faint cyan channel stretches survive. Uneven gnarled structure, one descending large bough and thinner rising fork, patches of empty sky.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-08.txt b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3853ecda7aee66ebbd9647d794a381cb4b78caac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++08 LUSH AND BRIGHT: Freshest bright translucent backlit lime greens, a profusion of small ferns in every irregular crook and moss along the tops. Lush ivy and vines falling at different lengths. Technology subtle but unmistakable at several aged collars, one half-hidden cracked sensor and three dim continuous pale-cyan glass grooves. Main bough turns upward in an irregular arc then its smaller branches sag. High-end bright natural botanical photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-09.txt b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..b8785b2418a728d7c3691fb9250bfacb2e053318
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++09 WARM HINT: Balanced like 01, but TWO OR THREE differently-sized half-covered sensor hubs glow faint warm orange (#ff7a2f) deep UNDER moss, not bright neon. The long glass channels are still subdued pale CYAN, with several visible continuous stretches. Heavy moss and ivy, irregular twisting metal limbs with asymmetric forks, long hanging moss. Slightly different silhouette with one low curved fork and short knuckled upper forks.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-10.txt b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..22129a9b8ab68d0d410954490a7e9a9bbcdc0faa
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++10 DEPTH: One large sharp overgrown machine limb in the foreground, plus a thinner, hazier secondary bough behind it HIGHER UP, both connected to the SAME input limb at right. Clear occlusion and atmospheric depth with uneven sky gaps, no two parallel repeated branches. Dense moss, ivy, ferns, draping Spanish moss. Weathered plating, dissimilar partially covered collars/hubs, visible dim cyan channels on foreground and subtle rear limb. Photographic depth, nearest right-edge leaves gently blurred.
++
+
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc 'node .work-v4/finish.cjs /Users/dixi/.codex/generated_images/01a1c1bb-92a2-7b81-8579-5040a0360585/exec-0a61fd10-e316-44e8-bf53-0e6a87a6b189.png 01' in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 1016ms:
+{"file":"v4/branch-01.png","source":"/Users/dixi/.codex/generated_images/01a1c1bb-92a2-7b81-8579-5040a0360585/exec-0a61fd10-e316-44e8-bf53-0e6a87a6b189.png","sourceSize":[1586,992],"sourceBounds":[557,118,1585,977],"placement":[1280,235,2880,1570],"components":1,"matte":"sky-drift-corrected colour difference with edge decontamination"}
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc "node - <<'JS'
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+(async()=>{ await sharp('v4/branch-01.png').extract({left:1500,top:400,width:600,height:500}).png().toFile('.work-v4/edge-check.png'); })();
+JS" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 45ms:
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc "node - <<'JS'
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+(async()=>{ await sharp('.work-v4/raw/branch-01.png').extract({left:697,top:223,width:387,height:322}).resize(600,500).png().toFile('.work-v4/edge-source.png'); })();
+JS" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 402ms:
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed
+codex
+The close inspection caught pale fringes introduced by the extraction step. I’m correcting that before continuing, so the fine moss keeps its natural edges against the original sky.
+
+apply patch
+patch: completed
+/Users/dixi/Desktop/Cernan/website/output/branch-concepts/.work-v4/finish.cjs
+diff --git a/output/branch-concepts/.work-v4/finish.cjs b/output/branch-concepts/.work-v4/finish.cjs
+index aad33165c682f966ae84d8c598273319229c4259..b5baa17d8e8d45bd0e9c80e4155562bcce590cab
+--- a/output/branch-concepts/.work-v4/finish.cjs
++++ b/output/branch-concepts/.work-v4/finish.cjs
+@@ -1,6 +1,6 @@
+ const sharp = require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+ const fs = require('fs');
+-const [src, number, minxArg='1270', minyArg='255', maxyArg='1570'] = process.argv.slice(2);
++const [src, number, minxArg='1280', minyArg='235', maxyArg='1570'] = process.argv.slice(2);
+ const id=String(number).padStart(2,'0');
+ const smooth=(a,b,v)=>{const t=Math.max(0,Math.min(1,(v-a)/(b-a)));return t*t*(3-2*t);};
+ const clamp=v=>Math.max(0,Math.min(255,Math.round(v)));
+@@ -65,7 +65,7 @@
+  for(let k=0;k<N;k++){
+   let a=keep[k]?matte[k]/255:0;
+   const i=k*3,j=k*4;
+-  for(let c=0;c<3;c++)rgba[j+c]=a>.02?clamp((data[i+c]-estimated[i+c]*(1-a))/a):0;
++  for(let c=0;c<3;c++)rgba[j+c]=a>.02?data[i+c]:0;
+   rgba[j+3]=clamp(a*255);
+   if(a>.1){const x=k%W,y=Math.floor(k/W);x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}
+  }
+@@ -73,12 +73,12 @@
+  const minx=+minxArg,miny=+minyArg,maxy=+maxyArg;
+  const tw=2880-minx,th=maxy-miny;
+  const layer=await sharp(rgba,{raw:{width:W,height:H,channels:4}}).extract({left:x0,top:y0,width:W-x0,height:y1-y0+1}).resize(tw,th,{fit:'fill',kernel:'lanczos3'}).png().toBuffer();
+- await sharp(layer).toFile(`.work-v3/layers/branch-${id}.png`);
+- const out=`v3/branch-${id}.png`;
++ await sharp(layer).toFile(`.work-v4/layers/branch-${id}.png`);
++ const out=`v4/branch-${id}.png`;
+  await sharp('refs/background.png').composite([{input:layer,left:minx,top:miny}]).png().toFile(out);
+- await sharp(out).resize(1440,900).png().toFile(`.work-v3/branch-${id}.preview.png`);
++ await sharp(out).resize(1440,900).png().toFile(`.work-v4/previews/branch-${id}.png`);
+  const report={file:out,source:src,sourceSize:[W,H],sourceBounds:[x0,y0,x1,y1],placement:[minx,miny,2880,maxy],components,matte:'sky-drift-corrected colour difference with edge decontamination'};
+- fs.writeFileSync(`.work-v3/branch-${id}.qa.json`,JSON.stringify(report,null,2));
+- fs.copyFileSync(src,`.work-v3/raw/branch-${id}.png`);
++ fs.writeFileSync(`.work-v4/branch-${id}.qa.json`,JSON.stringify(report,null,2));
++ fs.copyFileSync(src,`.work-v4/raw/branch-${id}.png`);
+  console.log(JSON.stringify(report));
+ })();
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-01.txt b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea2af65860d3193720c4337eb60aa664b00f2e26
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-01.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++01 BALANCED: Heavy moss cushions and draping ivy over a weathered metal limb. Three differently sized half-hidden hubs at uneven positions, faint cyan channels visible along several main limbs. A thick main bough twists down-left then a smaller bough rises back-left; a short fork behind, a broken stub. Natural disorder, plentiful hanging moss.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-02.txt b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3767114d46e7371cc73421a2b9e4616125fefce8
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-02.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++02 MORE OVERGROWN: Nature has nearly swallowed this abandoned machine, roughly 80% nature. Huge deep moss cushions, profuse irregular ivy, ferns and especially long soft Spanish moss curtains. Only a few oxidized ring joints and ONE particularly long dim pale cyan channel curving along the underside remain visible, with a second tiny exposed stretch. Uneven broad downward-curving canopy, a single crooked upper twig.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-03.txt b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..6e57f6170fa01f3ff31f04fa2ea1f0aea03fc06d
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-03.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++03 MORE MACHINE VISIBLE: Roughly 55% nature, 45% machine. Larger stretches of bare aged dark plated metal and irregular segmented sleeves BETWEEN generous moss cushions and ivy, emphasizing scratched material and riveted construction. At least three uneven pale cyan channel stretches. Broad crooked fork and a smaller twisted secondary bough; no repeated fork topology.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-04.txt b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..69668d7c142bfd6c18b5505a6cf0cfc5675b93bf
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-04.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++04 SAGGING AND HEAVY: The major bough bows visibly down under the weight of decades of dense moss and ivy, then curves outward. A short upper fork, very long uneven curtains of Spanish moss and tangled loose cables hanging vertically into the LOWER RIGHT, ending near y=1580. Massive structure stays high at the right entry. Strong asymmetric droop, irregular hubs partly hidden, faint cyan channels follow the sagging metal.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-05.txt b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..615aa731c774fca979ac0801eaf1fd9a1c7088ac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-05.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++05 WILD AND SPRAWLING: Extra irregular canopy, long reaching angular and twisting limbs, one crooked bough crosses IN FRONT of another at an oblique angle, big uneven open windows of sky. One long thin upper limb, one short massive lower bough, one broken stub. Moss and ivy cling in wild scattered islands while hanging moss curtains connect the silhouette. Varied worn metal forks, dim continuous cyan channels.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-06.txt b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..f3fa57644d6ac9e0bfbaef594fdc96fa941683b7
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-06.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++06 CLOSE-UP: Camera close to the input limb at RIGHT edge. Show exceptionally tactile wet moss cushions, tiny fern fronds, scratched graphite and corroded rivets on a large irregular collar. One cracked partly overgrown sensor hub near the right foreground faintly emits pale cyan. Stronger perspective depth, blurred near right-edge leaves, distant tiny asymmetrical branching tips. Keep edge core 380–520px thick and overall canopy same scale; do not turn into a gigantic vertical trunk. Real detailed photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-07.txt b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..539dddd4f5aa56f8a1092f3fef0bf2c74e3d3a9b
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-07.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++07 RUIN CHARACTER: Distinct visibly abandoned and weather-damaged machine, rusty seams, some lifted/broken plates, one SNAPPED metal stub with a dark jagged opening, vines wound tightly around exposed conduits. Subdued rust is secondary to lush moss and ivy. A few faint cyan channel stretches survive. Uneven gnarled structure, one descending large bough and thinner rising fork, patches of empty sky.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-08.txt b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..3853ecda7aee66ebbd9647d794a381cb4b78caac
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-08.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++08 LUSH AND BRIGHT: Freshest bright translucent backlit lime greens, a profusion of small ferns in every irregular crook and moss along the tops. Lush ivy and vines falling at different lengths. Technology subtle but unmistakable at several aged collars, one half-hidden cracked sensor and three dim continuous pale-cyan glass grooves. Main bough turns upward in an irregular arc then its smaller branches sag. High-end bright natural botanical photograph.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-09.txt b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..b8785b2418a728d7c3691fb9250bfacb2e053318
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-09.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++09 WARM HINT: Balanced like 01, but TWO OR THREE differently-sized half-covered sensor hubs glow faint warm orange (#ff7a2f) deep UNDER moss, not bright neon. The long glass channels are still subdued pale CYAN, with several visible continuous stretches. Heavy moss and ivy, irregular twisting metal limbs with asymmetric forks, long hanging moss. Slightly different silhouette with one low curved fork and short knuckled upper forks.
++
+diff --git a/output/branch-concepts/.work-v4/prompts/branch-10.txt b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+new file mode 100644
+index 0000000000000000000000000000000000000000..22129a9b8ab68d0d410954490a7e9a9bbcdc0faa
+--- /dev/null
++++ b/output/branch-concepts/.work-v4/prompts/branch-10.txt
+@@ -0,0 +1,14 @@
++Use case: compositing. Photorealistic website hero image EDIT, wide 8:5 landscape.
++INPUTS: Image 1 (refs/background.png) is the EDIT TARGET and original sky / navigation background. Image 2 (v2/branch-01.png) is scale, realism, generous foliage, and composition reference ONLY. Images 3–5 (refs/7.png, refs/8.png, refs/9.png) are botanical texture references only; do not copy any reference watermark or checkerboard.
++
++Add ONE abandoned futuristic machine sculpture shaped like an enormous irregular tree limb, reclaimed by decades of vegetation. Approx 65% nature, 35% weathered machine; overwhelmingly a high-end nature photograph of a real overgrown ruin, NOT a diagram or a sleek sci-fi rendering. The load-bearing limbs themselves are aged dark gunmetal/graphite, NOT wood with gadgets attached. Rough pitted plating, asymmetrical segmented sleeves, oxidized edges, patina and scratches show between thick cushions of vivid green moss, lush ivy, dangling vines, small ferns and epiphytes. A FEW varied-size riveted collars and round sensor hubs at irregular forks, mostly swallowed in moss, some cracked. Several long inlaid hairline pale-cyan (#bff0ff) glass/fiber channels still glow very faintly along main metal limbs, disappear beneath moss, then reappear. Keep several continuous readable stretches for later pulse animation. No neon or excessive glow. A few thin loose cables intertwine with hanging vegetation.
++
++COMPOSITION in final 2880x1800 coordinates: ONE HUGE connecting limb enters from OFFSCREEN RIGHT, edge centre y=500, its metal core 380–520 px thick at right edge. The limb extends left and spreads into a broad asymmetric, irregular canopy whose leftmost tips reach x=1250–1450. Botanical/structure silhouette occupies approximately the right 50–55% of width and y=245–1550, with gaps of sky. Tallest foliage y=245 or below. Main limbs fork at very different positions and angles, have dramatically different lengths and thicknesses; one bends up, another sags, some cross behind each other, one short broken stub. Dense growth in some areas and open gaps in others. NEVER evenly spaced branches, same-size nodes, mirrored forks, neat rows, or schematic repeated angles.
++Long Spanish moss and vines fall VERTICALLY downward at varied lengths, longest reaching y=1400–1580 on the right half. All foliage below y=700 must stay RIGHT of x=1270. No ground, trunk base, soil, other objects, floating isolated foliage, or roots reaching ground.
++Photorealistic botanical detail, translucent backlit lime green leaves and deep green shadow, bright natural daylight from upper RIGHT, cool sky fill on shaded metal, gentle rim highlights. Far tips slightly atmospheric, closest right-edge leaves can softly blur. Natural organic edges, no halos or white fringe.
++
++PRESERVE base sky gradient/clouds and all original navigation. ABSOLUTELY CLEAR: whole y<230 band, logo, Research / FAQs / Contact, meeting pill including the actual top-right position. Rectangle x=0–1250,y=700–1800 remains untouched pure sky. Entire left half mostly empty. No new text, labels, numbers, logos, watermarks, HUD, or UI. Render only one image, not a grid. Requested final size 2880 x 1800.
++
++VARIATION:
++10 DEPTH: One large sharp overgrown machine limb in the foreground, plus a thinner, hazier secondary bough behind it HIGHER UP, both connected to the SAME input limb at right. Clear occlusion and atmospheric depth with uneven sky gaps, no two parallel repeated branches. Dense moss, ivy, ferns, draping Spanish moss. Weathered plating, dissimilar partially covered collars/hubs, visible dim cyan channels on foreground and subtle rear limb. Photographic depth, nearest right-edge leaves gently blurred.
++
+
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc "node .work-v4/finish.cjs /Users/dixi/.codex/generated_images/01a1c1bb-92a2-7b81-8579-5040a0360585/exec-0a61fd10-e316-44e8-bf53-0e6a87a6b189.png 01 && node - <<'JS'
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+(async()=>{ await sharp('v4/branch-01.png').extract({left:1500,top:400,width:600,height:500}).png().toFile('.work-v4/edge-check.png'); })();
+JS" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 1099ms:
+{"file":"v4/branch-01.png","source":"/Users/dixi/.codex/generated_images/01a1c1bb-92a2-7b81-8579-5040a0360585/exec-0a61fd10-e316-44e8-bf53-0e6a87a6b189.png","sourceSize":[1586,992],"sourceBounds":[557,118,1585,977],"placement":[1280,235,2880,1570],"components":1,"matte":"sky-drift-corrected colour difference with edge decontamination"}
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed
+exec
+/bin/zsh -lc "node - <<'JS'
+const fs=require('fs');let s=fs.readFileSync('.work-v2/finish.cjs','utf8');s=s.replaceAll('.work-v2/','.work-v4/').replace(\"// Discard generated UI and preserve only botanical content.\",\"// Discard generated UI and preserve only foreground.\");fs.writeFileSync('.work-v4/finish-v2.cjs',s);
+JS
+node .work-v4/finish-v2.cjs /Users/dixi/.codex/generated_images/01a1c1bb-92a2-7b81-8579-5040a0360585/exec-0a61fd10-e316-44e8-bf53-0e6a87a6b189.png .work-v4/test-v2.png 1280 235 1570
+node - <<'JS'
+const sharp=require('/Users/dixi/Documents/Dix/dixii.dev/node_modules/sharp');
+(async()=>{ await sharp('.work-v4/test-v2.png').resize(1440,900).png().toFile('.work-v4/test-v2-small.png'); })();
+JS" in /Users/dixi/Desktop/Cernan/website/output/branch-concepts
+ succeeded in 668ms:
+{"file":".work-v4/test-v2.png","width":2880,"height":1800,"sourceWidth":1586,"sourceHeight":992,"sourceBounds":[559,123,1585,974],"finalBounds":[1280,235,2880,1570],"navigationChangedPixels":0,"textAreaChangedPixels":0}
+
+hook: PostToolUse
+hook: PostToolUse Completed
+hook: PostToolUse
+hook: PostToolUse Completed

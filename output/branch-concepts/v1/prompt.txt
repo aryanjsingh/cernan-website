@@ -1,0 +1,16 @@
+Generate 10 images using your image generation tool. Save them in this folder as branch-01.png through branch-10.png.
+
+Base: refs/background.png is the exact hero background of our website (1440x900 at 2x). It is a soft sky-blue gradient with blurred clouds, a top nav (CERNAN logo left, Research / FAQs / Contact centre, "Book a meeting" button right). Keep the sky, clouds, colours and nav exactly as they are. Only paint ON TOP of it. Output 16:10 landscape.
+
+What to add: a single large, realistic tree branch that stems in from the RIGHT EDGE of the page (not from the ground, no trunk, no roots in the soil). It enters from off-screen on the right, roughly in the upper-middle third of the page, and reaches leftward across the right half of the frame, widening and fanning out into smaller branches as it goes. Mossy bark, lush green leaves, hanging vines and trailing moss strands dropping down from it. Photoreal, natural daylight that matches the bright sky, soft depth of field so far leaves are slightly blurred. It must feel like it is hanging into our sky, not pasted on.
+
+References for the branch itself (style and material only, do not copy the white/grey backgrounds): refs/7.png (thick branch with ivy and hanging moss strands), refs/8.png (close-up mossy bark), refs/9.png (overhanging branch with dense vines).
+
+Composition rules:
+- The branch covers mainly the right half and the top, and must not cover the nav text or the "Book a meeting" button.
+- Leave the left half and the lower-left area clear and calm: a headline and text will go there later, below the branch.
+- No text, no logos, no watermarks, no extra UI.
+
+Make the 10 variations meaningfully different: vary branch thickness, how far it reaches left (from 35% to 65% of the width), density of leaves, amount of hanging vines vs moss, one with lighter airy foliage, one more dramatic and heavy, one slightly closer to the camera with stronger blur, one with a few leaves drifting off it, one where the branch dips lower so vines reach toward the bottom right.
+
+When done, list the files you created.

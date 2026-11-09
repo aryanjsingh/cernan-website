@@ -1,0 +1,48 @@
+You are generating hero design concepts for a website. Use your image generation tool (image edit with refs/background.png as the base). Create 10 images, saved as v5/branch-01.png ... v5/branch-10.png, each exactly 2880 x 1800 px. One at a time; check each against this spec; regenerate failures. Composite over the original background as you did for v2/ so the sky, clouds and nav stay pixel-identical.
+
+== WHAT THIS IS ==
+A still frame of an SVG ANIMATION of BACKPROPAGATION for an AI research studio. The motif is a tree limb that is also a neural network, overgrown with moss and greenery. It must look like a crisp VECTOR GRAPHIC (something a designer would build in Figma/Illustrator and animate as SVG), NOT a photograph.
+
+== WHAT WENT WRONG BEFORE (never repeat) ==
+- v2/, v4/: photoreal 4K renders of a mossy branch. Rejected: too photographic, too "nature photo", and nothing in them shows a neural network or backpropagation.
+- v3/: graphite futuristic network. Rejected: too sci-fi, and the branching was evenly spaced like a diagram.
+Keep from v4 only the overall idea and placement: a limb entering from the right edge, irregular natural branching, moss and leaves growing on it.
+
+== STYLE: VECTOR / SVG ==
+- Flat and semi-flat vector shapes, clean bezier outlines, consistent stroke weights (2-6 px at this resolution), rounded caps.
+- Limited palette, matched to the sky: deep navy ink #0b1a2b for the limb, white #ffffff, pale cyan #bff0ff, sky blues, two or three moss/leaf greens (#2f7d4f, #59a96a, #a9d18e), and orange #ff7a2f for error signals.
+- Shading only with flat tones, simple gradients or fine stipple dots. No photographic textures, no realistic bark, no depth-of-field blur, no noise, no 3D render look.
+- Clean, minimal, premium: it should look like a high-end motion-design frame, e.g. Stripe or Linear illustration quality.
+
+== THE SUBJECT ==
+One limb enters from OFF-SCREEN at the RIGHT EDGE (no ground, no trunk base), centre line between y=300 and y=650 at the edge, drawn about 220-320 px thick there. It branches leftward and widens into a canopy, tips reaching x = 1150-1500. Branching is irregular and natural: uneven angles, different lengths, one or two crossing or sagging, asymmetric. Never evenly spaced or mirrored.
+- NEURONS: round nodes at the forks (circles with a ring), different sizes, decreasing toward the tips. The branch tips end in small output nodes.
+- OVERGROWTH: stylised moss cushions along the tops of limbs (flat green blobs with stipple texture), simple vector leaves and ivy, a few small ferns, and stylised hanging moss / vines as fine vertical lines dropping down on the right half, longest to about y = 1500.
+- CHANNELS: every branch has a clean thin line running along it, node to node: the path the signals travel.
+
+== BACKPROPAGATION MUST BE VISIBLE ==
+The frame captures the network mid-training, so a viewer understands it at a glance:
+- FORWARD PASS: pale cyan/white glowing pulses (small capsules with soft glow and a short motion trail) travelling along the channels from the right-edge input toward the tips, on some branches.
+- LOSS: a few output nodes at the tips glow orange, with a soft orange halo.
+- BACKWARD PASS: orange pulses travelling back from those tips along the channels toward the right edge, the lit channel segments getting thicker and brighter where more error flows (thicker near the trunk).
+- Use small motion trails and direction cues (dashed segments, tiny arrow chevrons) so the direction of flow is obvious. No text, labels, numbers or formulas.
+
+== KEEP-OUT ZONES ==
+- y < 230 from x=0 to x=2360: nothing over the logo or nav.
+- The "Book a meeting" pill (about x 2060-2360, y 40-120) stays fully visible.
+- Rectangle x 0-1250, y 700-1800 stays plain background sky (text goes there).
+- No text, logos, watermarks, UI or HUD.
+
+== 10 VARIATIONS (different illustration treatments of the same idea) ==
+01  Clean flat vector: navy limb, flat moss shapes, cyan forward pulses, orange backward pulses. The reference.
+02  Monoline line-art: everything drawn in outline only (navy strokes), moss as scribbled contour lines, signals as glowing strokes.
+03  Duotone: navy + moss green only, with signals in cyan and orange as the only bright colours.
+04  Stipple / risograph: shapes built from fine dot stipple, slightly grainy print feel, signals crisp on top.
+05  Glass vector: limb and nodes semi-transparent with soft vector gradients, moss as flat shapes, glowing channels inside.
+06  Dense network: more nodes and fine connection lines between neighbouring branches (like a neural net), moss sparser.
+07  Heavy overgrowth: moss and ivy covering most of the limb, channels and pulses visible through gaps.
+08  Backward-pass focus: most of the frame shows the orange error wave flowing back to the trunk, bright and clear.
+09  Forward-pass focus: cyan light spreading out to all tips like a blooming canopy, a single tip turning orange.
+10  Layered depth (flat): a front limb in full colour plus a paler, simpler limb behind it, like layers in a vector illustration.
+
+When finished, print the saved files with a one-line note each, and save a contact sheet to .work-v5/contact-sheet.png.

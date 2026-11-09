@@ -1,0 +1,21 @@
+{
+  "file": "v2/branch-01.png",
+  "width": 2880,
+  "height": 1800,
+  "sourceWidth": 1586,
+  "sourceHeight": 992,
+  "sourceBounds": [
+    547,
+    68,
+    1585,
+    942
+  ],
+  "finalBounds": [
+    1350,
+    235,
+    2880,
+    1600
+  ],
+  "navigationChangedPixels": 0,
+  "textAreaChangedPixels": 0
+}
