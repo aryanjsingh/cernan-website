@@ -10,7 +10,7 @@
   const forewing = [[1,2],[2,-5],[5,-12],[10,-17],[16,-20],[19,-18],[20,-14],[18,-9],[15,-4],[10,1],[4,4]];
   const hindwing = [[2,0],[8,0],[13,3],[16,7],[16,10],[13,13],[12,16],[9,15],[8,13],[5,12],[3,8],[1,4]];
   const veins = [[4,-11],[10,-17],[18,-15],[15,-5],[11,2],[14,9],[11,14],[6,10]];
-  const colors = ['#062d16','#0d5427','#16863c','#2aac4b','#53d867','#9be99a','#5ddba0'];
+  const colors = ['#235482','#3989c6','#56b7e8','#38bd87','#72e8ab','#d0f4ff','#91d8ff'];
 
   function inside(x, y, polygon) {
     let hit = false;
@@ -58,7 +58,7 @@
     anatomy.push({x:side*(.5+3.5*t*t),y:-6-6*t,z:1.5,color:i===7?4:0,side:0});
   }
 
-  const ASH = ['#242424','#373737','#535353','#696969','#858585','#a1a1a1','#777777'];
+  const ASH = ['#40556b','#536f88','#6b8ba4','#85a7bc','#a6c3d3','#c5dae5','#96b4c7'];
   const crushColors = Array.from({length:17},(_,step) => colors.map((color,index) => {
     const from=parseInt(color.slice(1),16), to=parseInt(ASH[index].slice(1),16);
     const mix=step/16;
@@ -168,14 +168,14 @@
     const half=24*unit+3, left=origin[0]-half, right=origin[0]+half;
     const top=origin[1]-24*unit, bottom=origin[1]+21*unit, corner=5;
     // Four isolated camera corners; no strokes connect along the sides.
-    ctx.globalAlpha=alpha*.72;ctx.strokeStyle='#287844';ctx.lineWidth=.75;
+    ctx.globalAlpha=alpha*.9;ctx.strokeStyle='#86caff';ctx.lineWidth=.85;
     ctx.setLineDash([]);ctx.beginPath();
     ctx.moveTo(left,top+corner);ctx.lineTo(left,top);ctx.lineTo(left+corner,top);
     ctx.moveTo(right-corner,top);ctx.lineTo(right,top);ctx.lineTo(right,top+corner);
     ctx.moveTo(left,bottom-corner);ctx.lineTo(left,bottom);ctx.lineTo(left+corner,bottom);
     ctx.moveTo(right-corner,bottom);ctx.lineTo(right,bottom);ctx.lineTo(right,bottom-corner);ctx.stroke();
     const x=clamp(right+5,8,width-104);
-    ctx.globalAlpha=alpha*.48;ctx.font='6.5px "Geist Mono", monospace';ctx.fillStyle='#246a38';
+    ctx.globalAlpha=alpha*.9;ctx.font='7.5px "Geist Mono", monospace';ctx.fillStyle='#b9d4e8';
     ctx.fillText('LOSS / illustrative',x,top+5);
   }
 
@@ -205,7 +205,7 @@
       const screen=project(world);
       if(screen[0]<0||screen[0]>frame.width||screen[1]<0||screen[1]>frame.height)continue;
       ctx.globalAlpha=smooth(age/.22)*Math.pow(1-progress,1.65)*d.alpha;
-      ctx.fillStyle=i%6===0?'#52c467':i%3===0?'#268f40':'#17622e';
+      ctx.fillStyle=i%6===0?'#7cf0a6':i%3===0?'#81ceff':'#478ab8';
       const size=i%7===0?1.4:1;
       ctx.fillRect(Math.round(screen[0]),Math.round(screen[1]),size,size);
       counts.particles++;

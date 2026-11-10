@@ -119,28 +119,28 @@
       gl_PointSize=max(1.,floor(uGrid*(.65+clamp(p.z/700.+.12,.0,.16))*(1.+selected*aMeta.z*.2)+.5));
       float face=clamp(dot(normalize(aNormal),normalize(vec3(-.28,-.62,.84))),0.,1.);
       float hue=clamp(.42+p.z/430.+.14*sin(aPosition.y*.008),0.,1.);
-      vec3 forest=vec3(.012,.17,.035),jade=vec3(.025,.39,.085),lime=vec3(.13,.62,.15);
-      vec3 body=mix(vec3(.006,.065,.015),mix(forest,jade,hue),smoothstep(-210.,85.,p.z));
-      body=mix(body,lime,smoothstep(100.,260.,p.z)*.40);
-      float shade=.12+pow(face,1.7)*1.32+aMeta.y*.32;
+      vec3 blue=vec3(.10,.43,.76),teal=vec3(.10,.63,.55),mint=vec3(.49,.88,.72);
+      vec3 body=mix(vec3(.045,.18,.36),mix(blue,teal,hue),smoothstep(-210.,85.,p.z));
+      body=mix(body,mint,smoothstep(100.,260.,p.z)*.40);
+      float shade=.40+pow(face,1.7)*1.05+aMeta.y*.32;
       vec3 color=body*shade;
       float depth=clamp((-p.z+35.)/570.,0.,.42);
-      color=mix(color,vec3(.12,.30,.16),depth);
+      color=mix(color,vec3(.13,.32,.57),depth);
       float w=uWeights[int(aMeta.x)]/max(.001,uPeak);
       float wave=.72+.28*sin(aPosition.x*.024+aPosition.y*.018-uTime*1.4);
-      vec3 lit=mix(vec3(.025,.68,.13),vec3(.24,.94,.29),hue);
+      vec3 lit=mix(vec3(.16,.58,1.),vec3(.53,.84,1.),hue);
       float emphasis=pow(w,2.25)*uAttention*wave*aMeta.z;
       color=mix(color,lit*(.5+face*.65),emphasis*.96);
-      color=mix(color,vec3(.15,.88,.26)*(.65+face*.5),selected*aMeta.z*.76);
+      color=mix(color,vec3(.26,.96,.52)*(.75+face*.4),selected*aMeta.z*.90);
       float scan=pow(max(0.,cos(aPosition.x*.012+aPosition.y*.007-uTime*1.45)),19.);
-      color+=vec3(.035,.19,.045)*scan*(.28+face*.72);
-      color+=vec3(.08,.40,.12)*4.*vAppear*(1.-vAppear);
+      color+=vec3(.055,.14,.25)*scan*(.28+face*.72);
+      color+=vec3(.12,.44,.70)*4.*vAppear*(1.-vAppear);
       vColor=color;vIntensity=emphasis;
     }`;
   const fragmentSource = `precision mediump float;varying vec3 vColor;varying float vIntensity;varying float vCell;varying float vAppear;
     void main(){if(vCell<.115||vAppear<.30)discard;vec2 p=gl_PointCoord;float upper=step(p.y,.19)+step(p.x,.15);
       float lower=step(.84,p.x)+step(.83,p.y);
-      vec3 color=vColor+vec3(.018,.06,.022)*upper*(.6+vIntensity)-lower*.045;
+      vec3 color=vColor+vec3(.055,.085,.11)*upper*(.6+vIntensity)-lower*.045;
       gl_FragColor=vec4(color,1.);}`;
   let gl, program, buffer, uniforms, glReady=false;
   function initGL() {
@@ -171,9 +171,10 @@
   let elapsed=0,cycleStart=0,last=0,lastPaint=0,raf=0,paused=false,query=2,head=0,hover=-1;
   let holdUntil=0,manualHead=false,pointer=[0,0],angles=[0,0];
   let attention=model.attend(query,head), top=[];
-  const palette=['#087d2d','#219e35','#0c6832','#48a426'];
+  const palette=['#78c6ff','#8ed5ff','#65b4ff','#a5dcff'];
+  const queryColor='#7cf0a6';
   const matrices=Array.from({length:4},(_,h)=>Array.from({length:20},(_,q)=>model.attend(q,h).weights));
-  const matrixColors=matrices.map(matrix=>matrix.map(row=>row.map(w=>`rgba(4,108,35,${.08+clamp(w/.35,0,1)*.82})`)));
+  const matrixColors=matrices.map(matrix=>matrix.map(row=>row.map(w=>`rgba(93,181,255,${.14+clamp(w/.35,0,1)*.86})`)));
   const assemblyPixels=points.filter((_,i)=>i%251===0);
   let metrics={};
   function select(index, nextHead=head, manual=false) {
@@ -219,7 +220,7 @@
       ctx.moveTo(x+dx*s,y+dy*(s-k));ctx.lineTo(x+dx*s,y+dy*s);ctx.lineTo(x+dx*(s-k),y+dy*s);
     }ctx.stroke();ctx.globalAlpha=1;
   }
-  function label(text,p,color='#184d2b',background=true) {
+  function label(text,p,color='#d5e9f8',background=true) {
     ctx.font='9px "Geist Mono", monospace';const measure=ctx.measureText(text).width;
     const x=clamp(p[0],visibleLeft+6,visibleRight-measure-8);
     let y=clamp(p[1],14,height-8);
@@ -231,7 +232,7 @@
       }
       labelBounds.push({x,y:y-11,w:measure});
     }
-    if(background){ctx.fillStyle='rgba(219,242,227,.66)';ctx.fillRect(x-3,y-9,measure+6,13);}
+    if(background){ctx.fillStyle='rgba(6,16,26,.94)';ctx.fillRect(x-3,y-9,measure+6,13);}
     ctx.fillStyle=color;ctx.fillText(text,x,y);
   }
   function draw() {
@@ -258,7 +259,7 @@
       fallbackPoints.forEach(p=>{
         const xy=project(p.p),arrival=(1-clamp(xy[0]/width,0,1))*.84+p.grain*.10;
         if(intro<arrival+.02)return;
-        ctx.fillStyle=p.n[2]>.3?'#176d32':'#063415';ctx.fillRect(Math.round(xy[0]/3)*3,Math.round(xy[1]/3)*3,2.3,2.3);
+        ctx.fillStyle=p.token===query?queryColor:p.n[2]>.3?'#65b9e5':'#28638c';ctx.fillRect(Math.round(xy[0]/3)*3,Math.round(xy[1]/3)*3,2.3,2.3);
       });
     }
     if(intro<1) {
@@ -267,21 +268,21 @@
         const xy=project(p.p),arrival=(1-clamp(xy[0]/width,0,1))*.84+p.grain*.10;
         const phase=(intro-arrival)/.12;
         if(phase<0||phase>1)continue;
-        ctx.globalAlpha=(1-phase)*.7;ctx.fillStyle='#28a64a';
+        ctx.globalAlpha=(1-phase)*.7;ctx.fillStyle='#70c5ff';
         ctx.fillRect(Math.round(xy[0]+(1-phase)*(15+p.grain*38)),Math.round(xy[1]+(1-phase)*(p.grain-.5)*40),1.2,1.2);
       }
       ctx.globalAlpha=1;return;
     }
     // A sparse instrument grid, confined to the specimen's occupied area.
-    ctx.strokeStyle='rgba(15,100,44,.055)';ctx.lineWidth=.5;
+    ctx.strokeStyle='rgba(112,174,220,.12)';ctx.lineWidth=.5;
     const grid=64,left=Math.max(0,offsetX+120*scale),topY=offsetY+65*scale,bottom=offsetY+845*scale;
     ctx.beginPath();for(let x=Math.ceil(left/grid)*grid;x<width;x+=grid){ctx.moveTo(x,topY);ctx.lineTo(x,bottom);}
     for(let y=Math.ceil(topY/grid)*grid;y<bottom;y+=grid){ctx.moveTo(left,y);ctx.lineTo(width,y);}ctx.stroke();
     const positions=anchors.map(a=>project(a.p)),q=positions[query],accent=palette[head];
     // All tokens participate in softmax; only the strongest four links are drawn.
     top.forEach(({i,weight},rank)=>{
-      const p=positions[i], strength=weight/Math.max(...attention.weights),alpha=activity*(.34+strength*.40);
-      ctx.globalAlpha=alpha;ctx.strokeStyle='#07562a';ctx.lineWidth=.65+strength*.55;ctx.setLineDash([2,4]);
+      const p=positions[i], strength=weight/Math.max(...attention.weights),alpha=activity*(.55+strength*.35);
+      ctx.globalAlpha=alpha;ctx.strokeStyle=accent;ctx.lineWidth=.85+strength*.55;ctx.setLineDash([2,4]);
       ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.setLineDash([]);
       if(!reduced.matches&&age>1) {
         const progress=((age-1)*.42+rank*.21)%1, x=mix(p[0],q[0],progress), y=mix(p[1],q[1],progress);
@@ -289,16 +290,16 @@
       }
       ctx.globalAlpha=1;bracket(p,12+strength*9,accent,.45+strength*.5);
       if(i!==hover&&rank<(width<650?2:3))label(`K${String(i).padStart(2,'0')} α${weight.toFixed(3)}`,[p[0]+13,p[1]-13],accent);
-      if(i!==hover&&rank===0&&width>650)label(`s=${attention.keyScores[i].toFixed(2)}`,[p[0]+13,p[1]+3],'#27683c');
+      if(i!==hover&&rank===0&&width>650)label(`s=${attention.keyScores[i].toFixed(2)}`,[p[0]+13,p[1]+3],'#b9d4e8');
     });
     positions.forEach((p,i)=>{if(i===query||top.some(t=>t.i===i))return;
-      ctx.strokeStyle='rgba(15,85,39,.62)';ctx.lineWidth=.7;ctx.strokeRect(Math.round(p[0])-3.5,Math.round(p[1])-3.5,7,7);
-      ctx.fillStyle='rgba(14,105,44,.64)';ctx.fillRect(Math.round(p[0])-1,Math.round(p[1])-1,2,2);
+      ctx.strokeStyle='rgba(114,184,235,.85)';ctx.lineWidth=.85;ctx.strokeRect(Math.round(p[0])-3.5,Math.round(p[1])-3.5,7,7);
+      ctx.fillStyle='#9bd4ff';ctx.fillRect(Math.round(p[0])-1,Math.round(p[1])-1,2,2);
     });
-    bracket(q,30,'#094521');bracket(q,22,accent,.8);
+    bracket(q,30,queryColor);bracket(q,22,queryColor,.85);
     if(hover!==query) {
-      label(`Q${String(query).padStart(2,'0')} ${model.tokens[query].label.toUpperCase()}`,[q[0]+22,q[1]-18]);
-      label(age<1&&!paused&&!reduced.matches?'ACQUIRING':'CONTEXT',[q[0]+22,q[1]+1],accent);
+      label(`Q${String(query).padStart(2,'0')} ${model.tokens[query].label.toUpperCase()}`,[q[0]+22,q[1]-18],queryColor);
+      label(age<1&&!paused&&!reduced.matches?'ACQUIRING':'CONTEXT',[q[0]+22,q[1]+1],queryColor);
     }
     if(window.AttentionLife) {
       const life=AttentionLife.draw(ctx,{time:Math.max(0,time-.82),project,anchors,scale,width,height,reduced:reduced.matches,introProgress:intro});
@@ -312,10 +313,10 @@
   function drawTokenHint(positions,q) {
     const p=positions[hover],selected=hover===query;
     if(!selected&&!top.some(item=>item.i===hover)) {
-      ctx.strokeStyle='rgba(7,86,42,.64)';ctx.lineWidth=.85;ctx.setLineDash([2,4]);
+      ctx.strokeStyle='rgba(120,198,255,.88)';ctx.lineWidth=.95;ctx.setLineDash([2,4]);
       ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.setLineDash([]);
     }
-    bracket(p,24,'#07562a');
+    bracket(p,24,selected?queryColor:palette[head]);
     const lines=[`${selected?'QUERY':'TOKEN'} ${String(hover).padStart(2,'0')} / ${model.tokens[hover].label.toUpperCase()}`,
       `${(attention.weights[hover]*100).toFixed(2)}% attention${selected?' · selected':' · click to focus'}`];
     ctx.save();ctx.font='9px "Geist Mono", monospace';
@@ -323,16 +324,16 @@
     const x=clamp(p[0]+18,visibleLeft+8,visibleRight-boxWidth-8);
     let y=clamp(p[1]-46,12,height-48);
     if(labelBounds.some(b=>x<b.x+b.w&&x+boxWidth>b.x&&y<b.y+15&&y+37>b.y))y=clamp(p[1]+18,12,height-48);
-    ctx.fillStyle='rgba(227,246,231,.94)';ctx.fillRect(x,y,boxWidth,37);
-    ctx.fillStyle='#137339';ctx.fillRect(x,y,2,37);
-    ctx.fillStyle='#124a26';ctx.fillText(lines[0],x+8,y+13);
-    ctx.fillStyle='#2b6240';ctx.fillText(lines[1],x+8,y+27);ctx.restore();
+    ctx.fillStyle='rgba(6,16,26,.98)';ctx.fillRect(x,y,boxWidth,37);
+    ctx.fillStyle=selected?queryColor:palette[head];ctx.fillRect(x,y,2,37);
+    ctx.fillStyle='#e0effa';ctx.fillText(lines[0],x+8,y+13);
+    ctx.fillStyle='#b9d4e8';ctx.fillText(lines[1],x+8,y+27);ctx.restore();
   }
   function drawResearchHUD() {
-    const x=visibleLeft+16,topY=Math.max(24,offsetY-20),color='#27623b';
+    const x=visibleLeft+16,topY=Math.max(24,offsetY-20),color='#b9d4e8';
     ctx.save();ctx.font='8px "Geist Mono", monospace';ctx.fillStyle=color;
     ctx.fillText(`SELF-ATTN  /  H${String(head+1).padStart(2,'0')}  /  FIXED W`,x,topY);
-    ctx.globalAlpha=.74;
+    ctx.globalAlpha=.9;
     ctx.fillText('N20 · d_model12 · d_k6 · d_v6 · mask:none',x,topY+14);
     if(width>550)ctx.fillText('QKᵀ × 0.40825 → row-softmax → AV',x,topY+28);
     // One shared linear color scale; the bright outline identifies the query row.
@@ -342,13 +343,13 @@
       ctx.fillStyle=matrixColors[head][row][col];
       ctx.fillRect(hx+col*cell,hy+row*cell,cell-.55,cell-.55);
     }
-    ctx.strokeStyle='#11933b';ctx.lineWidth=.7;ctx.strokeRect(hx-2,hy+query*cell-1,size+4,cell+2);
+    ctx.strokeStyle=queryColor;ctx.lineWidth=1;ctx.strokeRect(hx-2,hy+query*cell-1,size+4,cell+2);
     ctx.fillStyle=color;ctx.fillText('A[Q,K]',hx,hy-7);
     const tx=hx+size+16;
     ctx.fillText(`H(Aᵢ) ${metrics.entropy.toFixed(3)}b`,tx,hy+4);
     ctx.fillText(`TOP3 ${(metrics.top3*100).toFixed(2)}%   Σα=1`,tx,hy+17);
     ctx.fillText(`‖q‖₂ ${metrics.qNorm.toFixed(3)}   ‖c‖₂ ${metrics.contextNorm.toFixed(3)}`,tx,hy+30);
-    ctx.globalAlpha=.7;
+    ctx.globalAlpha=.85;
     ctx.fillText(`Δlogit ${metrics.logitSpan.toFixed(3)} · toy / non-causal`,tx,hy+43);
     if(width>600) {
       const rx=Math.max(tx+258,width-188);

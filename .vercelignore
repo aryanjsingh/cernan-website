@@ -1,0 +1,7 @@
+.git/
+.vite/
+.env*
+output/
+versions/
+**/.DS_Store
+**/__pycache__/
