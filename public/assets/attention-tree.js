@@ -401,6 +401,6 @@
   new ResizeObserver(resize).observe(stage);
   select(query);resize();sync();
   document.fonts.ready.then(() => {
-    if (paused || reduced.matches || document.hidden) draw();
+    if (reduced.matches) draw();
   });
 })();
