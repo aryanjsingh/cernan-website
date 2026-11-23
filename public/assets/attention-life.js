@@ -59,12 +59,12 @@
   }
 
   function pose(age, vx, vy) {
-    const phase = age * 4.45 * TAU + Math.sin(age * 0.85) * 0.7;
-    const fold = 0.16 + (1 + Math.sin(phase)) * 0.58;
-    const bank = clamp(vx * 0.0022, -0.34, 0.34) + Math.sin(age * 1.45) * 0.12;
-    const yaw = 0.24 + clamp(vx * 0.0016, -0.22, 0.22) + Math.sin(age * 0.73) * 0.12;
-    const pitch = -0.11 + clamp(vy * 0.0018, -0.12, 0.12) + Math.sin(age * 1.05) * 0.04;
-    const asymmetry = 0.075 * Math.sin(phase + 0.5);
+    const phase = age * 2.85 * TAU + Math.sin(age * 0.55) * 0.5;
+    const fold = 0.22 + (1 + Math.sin(phase)) * 0.48;
+    const bank = clamp(vx * 0.002, -0.22, 0.22) + Math.sin(age * 0.85) * 0.08;
+    const yaw = 0.26 + clamp(vx * 0.0014, -0.16, 0.16) + Math.sin(age * 0.45) * 0.09;
+    const pitch = -0.1 + clamp(vy * 0.0015, -0.08, 0.08) + Math.sin(age * 0.65) * 0.03;
+    const asymmetry = 0.055 * Math.sin(phase + 0.5);
     return {
       phase,
       bankCos: Math.cos(bank), bankSin: Math.sin(bank),
@@ -76,9 +76,9 @@
   }
 
   function specimen(ctx, origin, age, vx, vy, unit) {
-    const opacity = smooth(age / 0.5), o = pose(age, vx, vy);
-    const bob = -Math.sin(o.phase) * 1.4 * unit;
-    const pixelSize = unit > 0.8 ? 1 : 0.8;
+    const opacity = smooth(age / 0.8), o = pose(age, vx, vy);
+    const bob = -Math.sin(o.phase) * 0.9 * unit;
+    const pixelSize = unit > 0.75 ? 1 : 0.8;
     for (let i = 0; i < anatomy.length; i++) {
       const p = anatomy[i];
       const x = p.side ? p.x * (p.side < 0 ? o.leftCos : o.rightCos) : p.x;
@@ -86,24 +86,10 @@
       const xx = x * o.yawCos + z * o.yawSin, zz = -x * o.yawSin + z * o.yawCos;
       const yy = p.y * o.pitchCos - zz * o.pitchSin;
       const bx = xx * o.bankCos - yy * o.bankSin, by = xx * o.bankSin + yy * o.bankCos;
-      ctx.globalAlpha = opacity * (p.side === -1 ? 0.71 : 0.95);
+      ctx.globalAlpha = opacity * (p.side === -1 ? 0.56 : 0.78);
       ctx.fillStyle = colors[p.color];
       ctx.fillRect(Math.round(origin[0] + bx * unit), Math.round(origin[1] + by * unit + bob), pixelSize, pixelSize);
     }
-  }
-
-  function tracking(ctx, origin, age, unit) {
-    const alpha = smooth(age / 0.5);
-    if (alpha <= 0) return;
-    const half = 24 * unit + 3, left = origin[0] - half, right = origin[0] + half;
-    const top = origin[1] - 24 * unit, bottom = origin[1] + 21 * unit, corner = 5;
-    // Four isolated camera corners; no strokes connect along the sides.
-    ctx.globalAlpha = alpha * 0.72; ctx.strokeStyle = '#287844'; ctx.lineWidth = 0.75;
-    ctx.setLineDash([]); ctx.beginPath();
-    ctx.moveTo(left, top + corner); ctx.lineTo(left, top); ctx.lineTo(left + corner, top);
-    ctx.moveTo(right - corner, top); ctx.lineTo(right, top); ctx.lineTo(right, top + corner);
-    ctx.moveTo(left, bottom - corner); ctx.lineTo(left, bottom); ctx.lineTo(left + corner, bottom);
-    ctx.moveTo(right - corner, bottom); ctx.lineTo(right, bottom); ctx.lineTo(right, bottom - corner); ctx.stroke();
   }
 
   const detritus=Array.from({length:23},(_,i) => {
@@ -114,10 +100,11 @@
   });
 
   function flightWorld(t) {
+    // Keep the butterfly in the open sky pocket above the right trunk, clear of the attention graph.
     return [
-      860 + Math.sin(t * 0.37) * 180 + Math.cos(t * 0.19) * 70,
-      230 + Math.sin(t * 0.61) * 55 + Math.cos(t * 0.29) * 35,
-      -45 + Math.sin(t * 0.23) * 50,
+      1315 + Math.sin(t * 0.21) * 52 + Math.cos(t * 0.11) * 24,
+      215 + Math.sin(t * 0.31) * 22 + Math.cos(t * 0.17) * 14,
+      -30 + Math.sin(t * 0.15) * 24,
     ];
   }
 
@@ -145,10 +132,10 @@
       counts.particles++;
     }
 
-    // Continuous gentle flight around the canopy.
+    // Calm, continuous hover in the upper-right sky pocket.
     const age = time - 0.7;
     if (age >= 0) {
-      const unit = clamp(scale * 2.05, 0.58, 1);
+      const unit = clamp(scale * 1.65, 0.5, 0.85);
       const curr = project(flightWorld(age));
       const prev = project(flightWorld(Math.max(0, age - 0.05)));
       const origin = [
@@ -158,7 +145,6 @@
       const vx = (curr[0] - prev[0]) / 0.05;
       const vy = (curr[1] - prev[1]) / 0.05;
       specimen(ctx, origin, age, vx, vy, unit);
-      tracking(ctx, origin, age, unit);
       counts.butterflies = 1;
       counts.phase = 'flight';
       counts.pattern = 'continuous';
