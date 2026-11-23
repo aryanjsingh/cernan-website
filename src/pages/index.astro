@@ -1,0 +1,25 @@
+---
+import Atmosphere from '../components/Atmosphere.astro';
+import Hero from '../components/Hero.astro';
+import Work from '../components/Work.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import clouds from '../scripts/clouds.js?raw';
+---
+
+<BaseLayout>
+  <Atmosphere />
+  <main>
+    <Hero />
+    <Work />
+  </main>
+
+  <!-- These classic scripts run after the canvases exist, in dependency order. -->
+  <script is:inline set:html={clouds}></script>
+  <script is:inline src="/assets/self-attention-model.js"></script>
+  <script is:inline src="/assets/attention-life.js"></script>
+  <script is:inline src="/assets/attention-tree.js"></script>
+</BaseLayout>
+
+<style>
+  main { position: relative; z-index: 1; }
+</style>

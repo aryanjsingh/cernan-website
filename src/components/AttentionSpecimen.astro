@@ -1,0 +1,47 @@
+<div class="attention-specimen" role="group" aria-label="Transformer self-attention illustration">
+  <div class="attention-stage" id="attention-stage" tabindex="0" role="group" aria-label="Pixel tree. Select a marked token to explore self-attention. Use arrow keys to change the query, or space to pause.">
+    <canvas class="attention-pixels" aria-hidden="true"></canvas>
+    <canvas class="attention-overlay" aria-hidden="true"></canvas>
+  </div>
+  <div class="attention-controls">
+    <span class="attention-hint">Select a marker to focus</span>
+    <div class="attention-heads" role="group" aria-label="Attention head">
+      <span>Head</span>
+      <button type="button" data-attention-head="0" aria-pressed="true" aria-label="Attention head 1">01</button>
+      <button type="button" data-attention-head="1" aria-pressed="false" aria-label="Attention head 2">02</button>
+      <button type="button" data-attention-head="2" aria-pressed="false" aria-label="Attention head 3">03</button>
+      <button type="button" data-attention-head="3" aria-pressed="false" aria-label="Attention head 4">04</button>
+    </div>
+    <button type="button" id="attention-pause" aria-pressed="false" aria-label="Pause self-attention animation">Pause</button>
+  </div>
+  <p class="attention-sr" id="attention-status" aria-live="polite"></p>
+  <p class="attention-sr">An illustrative model with hand-authored token embeddings. The tree is a spatial composition; each query attends to all 20 tokens using scaled dot-product attention.</p>
+</div>
+
+<style>
+  .attention-specimen { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .attention-stage { position: absolute; right: -1px; top: 9%; width: 55vw; height: 82%; pointer-events: auto; outline: none; overflow: hidden; }
+  .attention-stage:focus-visible { outline: 1px solid rgba(20,107,49,.45); outline-offset: -8px; }
+  .attention-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .attention-overlay { pointer-events: none; }
+  .attention-controls { position: absolute; right: 32px; bottom: 30px; display: flex; align-items: center; gap: 16px; color: #286440; font-size: 9px; pointer-events: auto; }
+  .attention-heads { display: flex; align-items: center; gap: 3px; }
+  .attention-heads span { margin-right: 6px; }
+  .attention-controls button { border: 0; background: transparent; font: inherit; color: inherit; min-width: 30px; min-height: 36px; cursor: pointer; }
+  .attention-heads button[aria-pressed="true"] { color: #075b25; text-decoration: underline; text-underline-offset: 5px; }
+  .attention-controls button:focus-visible { outline: 1px solid #075b25; outline-offset: 2px; }
+  .attention-hint { margin-right: 10px; opacity: .8; }
+  .attention-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  @media (max-width: 900px), (max-height: 600px) {
+    .attention-specimen { position: relative; inset: auto; height: clamp(420px, 58svh, 620px); margin-top: 28px; }
+    .attention-stage { width: 100%; right: 0; top: 0; height: calc(100% - 76px); }
+    .attention-controls { left: 40px; right: 40px; bottom: 20px; justify-content: space-between; gap: 8px; }
+    .attention-controls button { min-height: 44px; }
+  }
+  @media (max-width: 600px) {
+    .attention-specimen { height: clamp(360px, 53svh, 480px); margin-top: 20px; }
+    .attention-controls { left: 20px; right: 20px; }
+    .attention-hint { font-size: 9px; max-width: 105px; line-height: 1.6; margin-right: 0; }
+  }
+</style>
