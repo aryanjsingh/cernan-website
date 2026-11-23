@@ -1,4 +1,4 @@
-/* Illustrative loss specimen and detritus, driven by the attention scene's clock. */
+/* Living butterfly specimen and canopy detritus, driven by the attention scene's clock. */
 (() => {
   const TAU = Math.PI * 2;
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
@@ -58,125 +58,52 @@
     anatomy.push({x:side*(.5+3.5*t*t),y:-6-6*t,z:1.5,color:i===7?4:0,side:0});
   }
 
-  const ASH = ['#242424','#373737','#535353','#696969','#858585','#a1a1a1','#777777'];
-  const crushColors = Array.from({length:17},(_,step) => colors.map((color,index) => {
-    const from=parseInt(color.slice(1),16), to=parseInt(ASH[index].slice(1),16);
-    const mix=step/16;
-    const channels=[16,8,0].map(shift => Math.round(((from>>shift)&255)*(1-mix)+((to>>shift)&255)*mix));
-    return `rgb(${channels.join(',')})`;
-  }));
-  const MAX_DUST = 2400;
-  // Three reusable fields: no particle RNG, anatomy allocation or per-pixel trig in draw.
-  const presets=['curled-updraft','shearing-veil','low-eddy'].map((name,presetIndex) => {
-    const seed=presetIndex*7, frequency=[1.6,1.15,2.6][presetIndex];
-    const pile=anatomy.map((p,i) => {
-      const x=p.x*.68+(random(i*31+seed+40)-.5)*4;
-      const y=15.4-(1-Math.min(1,Math.abs(x)/17))*(1.2+random(i*43+seed+9)*4.2);
-      return {x,y};
-    });
-    const particles=Array.from({length:MAX_DUST},(_,i) => {
-      const id=seed*103+i*17, source=pile[Math.floor(i/MAX_DUST*anatomy.length)];
-      const release=random(id+1)*.50, curl=random(id+3)*TAU;
-      return {
-        x:source.x, y:source.y, release,
-        drift:(random(id+2)-.48)*17, lift:random(id+4), jitter:(random(id+5)-.5)*.8,
-        size:.25+random(id+6)*.55, alpha:.41+random(id+7)*.36,
-        color:ASH[1+Math.floor(random(id+8)*4)],
-        curlSin:Math.sin(curl), curlCos:Math.cos(curl),
-        flowSin:Math.sin(curl-release*frequency), flowCos:Math.cos(curl-release*frequency),
-        slowSin:Math.sin(curl-release), slowCos:Math.cos(curl-release),
-      };
-    });
-    return {name,index:presetIndex,seed,frequency,pile,particles,
-      flapRate:4.25+random(seed+1)*.9, flapPhase:random(seed+2)*TAU,
-      landOffset:random(seed+7)-.35, direction:presetIndex===1?-1:1};
-  });
-
-  function pose(age, preset) {
-    // The flap decelerates into contact instead of snapping to a landing pose.
-    const flight=Math.min(age,4), settle=smooth((flight-3.25)/.75);
-    const phase=(flight-.30*settle)*preset.flapRate*TAU+preset.flapPhase;
-    const fold=(.15+(1+Math.sin(phase))*.58)*(1-settle)+.22*settle;
-    const bank=(.17+Math.sin(flight*1.75+preset.seed)*.25)*(1-settle);
-    const yaw=.27+Math.sin(flight*.83+preset.seed)*.14, pitch=-.13+Math.sin(flight*1.1)*.05;
-    const asymmetry=.075*Math.sin(phase+.5);
+  function pose(age, vx, vy) {
+    const phase = age * 4.45 * TAU + Math.sin(age * 0.85) * 0.7;
+    const fold = 0.16 + (1 + Math.sin(phase)) * 0.58;
+    const bank = clamp(vx * 0.0022, -0.34, 0.34) + Math.sin(age * 1.45) * 0.12;
+    const yaw = 0.24 + clamp(vx * 0.0016, -0.22, 0.22) + Math.sin(age * 0.73) * 0.12;
+    const pitch = -0.11 + clamp(vy * 0.0018, -0.12, 0.12) + Math.sin(age * 1.05) * 0.04;
+    const asymmetry = 0.075 * Math.sin(phase + 0.5);
     return {
-      bankCos:Math.cos(bank), bankSin:Math.sin(bank),
-      yawCos:Math.cos(yaw), yawSin:Math.sin(yaw),
-      pitchCos:Math.cos(pitch), pitchSin:Math.sin(pitch),
-      leftCos:Math.cos(fold-asymmetry), leftSin:Math.sin(fold-asymmetry),
-      rightCos:Math.cos(fold+asymmetry), rightSin:Math.sin(fold+asymmetry),
+      phase,
+      bankCos: Math.cos(bank), bankSin: Math.sin(bank),
+      yawCos: Math.cos(yaw), yawSin: Math.sin(yaw),
+      pitchCos: Math.cos(pitch), pitchSin: Math.sin(pitch),
+      leftCos: Math.cos(fold - asymmetry), leftSin: Math.sin(fold - asymmetry),
+      rightCos: Math.cos(fold + asymmetry), rightSin: Math.sin(fold + asymmetry),
     };
   }
 
-  function specimen(ctx, origin, age, preset, unit, compression) {
-    const opacity=smooth(age/.34), o=pose(age,preset), palette=crushColors[Math.round(smooth(compression)*16)];
-    const pixelSize=unit>.8?1:.8;
-    for (let i=0;i<anatomy.length;i++) {
-      const p=anatomy[i], pile=preset.pile[i];
-      const x=p.side?p.x*(p.side<0?o.leftCos:o.rightCos):p.x;
-      const z=p.side?Math.abs(p.x)*(p.side<0?o.leftSin:o.rightSin):p.z;
-      const xx=x*o.yawCos+z*o.yawSin, zz=-x*o.yawSin+z*o.yawCos;
-      const yy=p.y*o.pitchCos-zz*o.pitchSin;
-      const bx=xx*o.bankCos-yy*o.bankSin, by=xx*o.bankSin+yy*o.bankCos;
-      const px=bx+(pile.x-bx)*compression, py=by+(pile.y-by)*compression;
-      ctx.globalAlpha=opacity*(p.side===-1?.71:.95);
-      ctx.fillStyle=palette[p.color];
-      ctx.fillRect(Math.round(origin[0]+px*unit),Math.round(origin[1]+py*unit),pixelSize,pixelSize);
+  function specimen(ctx, origin, age, vx, vy, unit) {
+    const opacity = smooth(age / 0.5), o = pose(age, vx, vy);
+    const bob = -Math.sin(o.phase) * 1.4 * unit;
+    const pixelSize = unit > 0.8 ? 1 : 0.8;
+    for (let i = 0; i < anatomy.length; i++) {
+      const p = anatomy[i];
+      const x = p.side ? p.x * (p.side < 0 ? o.leftCos : o.rightCos) : p.x;
+      const z = p.side ? Math.abs(p.x) * (p.side < 0 ? o.leftSin : o.rightSin) : p.z;
+      const xx = x * o.yawCos + z * o.yawSin, zz = -x * o.yawSin + z * o.yawCos;
+      const yy = p.y * o.pitchCos - zz * o.pitchSin;
+      const bx = xx * o.bankCos - yy * o.bankSin, by = xx * o.bankSin + yy * o.bankCos;
+      ctx.globalAlpha = opacity * (p.side === -1 ? 0.71 : 0.95);
+      ctx.fillStyle = colors[p.color];
+      ctx.fillRect(Math.round(origin[0] + bx * unit), Math.round(origin[1] + by * unit + bob), pixelSize, pixelSize);
     }
   }
 
-  function dust(ctx, origin, age, preset, unit, width, height) {
-    const density=Math.round(clamp(width*3-300,800,MAX_DUST));
-    const flowSin=Math.sin(age*preset.frequency), flowCos=Math.cos(age*preset.frequency);
-    const slowSin=Math.sin(age), slowCos=Math.cos(age);
-    let visible=0;
-    for (let i=0;i<density;i++) {
-      const p=preset.particles[Math.floor(i*MAX_DUST/density)];
-      const elapsed=Math.max(0,age-p.release), fade=1-smooth((elapsed-.47)/1.46);
-      if(fade<=0)continue;
-      const curl=elapsed>0?flowSin*p.flowCos+flowCos*p.flowSin-p.curlSin:0;
-      const curlCos=elapsed>0?flowCos*p.flowCos-flowSin*p.flowSin-p.curlCos:0;
-      const slow=elapsed>0?slowSin*p.slowCos+slowCos*p.slowSin:0;
-      let dx=0,dy=0;
-      if(preset.index===0) {
-        // A narrow column curls upwards and gently widens into suspended ash.
-        dx=p.drift*elapsed*elapsed*.55+curl*(1+elapsed*4.5);
-        dy=-elapsed*(8+p.lift*14)-elapsed*elapsed*3+slow*elapsed*1.3;
-      } else if(preset.index===1) {
-        // A low crosswind shears the pile into a fine, slightly lifting veil.
-        dx=preset.direction*elapsed*(11+p.lift*18)+p.drift*elapsed*.45+curl*elapsed*3;
-        dy=-elapsed*(4+p.lift*8)+curl*elapsed*2;
-      } else {
-        // A shallow eddy rolls close to contact before the last grains disappear.
-        dx=curl*(3+elapsed*8)+p.drift*elapsed*.3;
-        dy=-elapsed*(2+p.lift*5)-Math.abs(curlCos)*(3+elapsed*4);
-      }
-      const x=Math.round((origin[0]+p.x*unit+p.jitter+dx)*4)/4;
-      const y=Math.round((origin[1]+p.y*unit+dy)*4)/4;
-      if(x<0||x+p.size>width||y<0||y+p.size>height)continue;
-      ctx.globalAlpha=p.alpha*fade;ctx.fillStyle=p.color;
-      ctx.fillRect(x,y,p.size,p.size);
-      visible++;
-    }
-    return visible;
-  }
-
-  function tracking(ctx, origin, age, unit, width) {
-    const alpha=smooth(age/.34)*(1-smooth((age-4)/.35));
-    if(alpha<=0)return;
-    const half=24*unit+3, left=origin[0]-half, right=origin[0]+half;
-    const top=origin[1]-24*unit, bottom=origin[1]+21*unit, corner=5;
+  function tracking(ctx, origin, age, unit) {
+    const alpha = smooth(age / 0.5);
+    if (alpha <= 0) return;
+    const half = 24 * unit + 3, left = origin[0] - half, right = origin[0] + half;
+    const top = origin[1] - 24 * unit, bottom = origin[1] + 21 * unit, corner = 5;
     // Four isolated camera corners; no strokes connect along the sides.
-    ctx.globalAlpha=alpha*.72;ctx.strokeStyle='#287844';ctx.lineWidth=.75;
-    ctx.setLineDash([]);ctx.beginPath();
-    ctx.moveTo(left,top+corner);ctx.lineTo(left,top);ctx.lineTo(left+corner,top);
-    ctx.moveTo(right-corner,top);ctx.lineTo(right,top);ctx.lineTo(right,top+corner);
-    ctx.moveTo(left,bottom-corner);ctx.lineTo(left,bottom);ctx.lineTo(left+corner,bottom);
-    ctx.moveTo(right-corner,bottom);ctx.lineTo(right,bottom);ctx.lineTo(right,bottom-corner);ctx.stroke();
-    const x=clamp(right+5,8,width-104);
-    ctx.globalAlpha=alpha*.48;ctx.font='6.5px "JetBrains Mono", monospace';ctx.fillStyle='#246a38';
-    ctx.fillText('LOSS / illustrative',x,top+5);
+    ctx.globalAlpha = alpha * 0.72; ctx.strokeStyle = '#287844'; ctx.lineWidth = 0.75;
+    ctx.setLineDash([]); ctx.beginPath();
+    ctx.moveTo(left, top + corner); ctx.lineTo(left, top); ctx.lineTo(left + corner, top);
+    ctx.moveTo(right - corner, top); ctx.lineTo(right, top); ctx.lineTo(right, top + corner);
+    ctx.moveTo(left, bottom - corner); ctx.lineTo(left, bottom); ctx.lineTo(left + corner, bottom);
+    ctx.moveTo(right - corner, bottom); ctx.lineTo(right, bottom); ctx.lineTo(right, bottom - corner); ctx.stroke();
   }
 
   const detritus=Array.from({length:23},(_,i) => {
@@ -186,7 +113,14 @@
       fall:21+random(seed+5)*13,alpha:.29+random(seed+6)*.29};
   });
 
-  const starts = [[960,200,-70],[580,180,-90],[1080,270,20]];
+  function flightWorld(t) {
+    return [
+      860 + Math.sin(t * 0.37) * 180 + Math.cos(t * 0.19) * 70,
+      230 + Math.sin(t * 0.61) * 55 + Math.cos(t * 0.29) * 35,
+      -45 + Math.sin(t * 0.23) * 50,
+    ];
+  }
+
   function draw(ctx, frame) {
     const counts = {butterflies:0, particles:0, dust:0, phase:'quiet', pattern:null};
     if (frame.reduced || (frame.introProgress !== undefined && frame.introProgress < 1) || !Number.isFinite(frame.time) || frame.width<=0 || frame.height<=0) return counts;
@@ -211,30 +145,23 @@
       counts.particles++;
     }
 
-    // An illustrative loss motif, not a measurement of the attention model.
-    // One descent, contact and disintegration, followed by a long quiet interval.
-    const period=13.6, cycle=Math.floor(time/period), age=time-cycle*period-.7;
-    if(age>=0&&age<6.9) {
-      const preset=presets[cycle%presets.length], seed=preset.seed, unit=clamp(scale*2.05,.58,1);
-      counts.pattern=preset.name;
-      const projected=project(starts[cycle%starts.length]);
-      const start=[clamp(projected[0],26,frame.width-26),clamp(projected[1],30,frame.height-110)];
-      const ground=frame.height-26;
-      const landX=clamp(start[0]+preset.landOffset*frame.width*.14,35,frame.width-35);
-      const t=clamp(age/4,0,1), fall=smooth(t), sway=Math.sin(t*Math.PI);
-      const origin=[start[0]+(landX-start[0])*fall+
-        (Math.sin(age*2.05+seed)*11+Math.sin(age*.8)*9)*sway,
-        start[1]+(ground-16*unit-start[1])*fall+Math.sin(age*2.2)*2*sway];
-      if(age<4.55) {
-        const compression=smooth((age-4)/.55);
-        specimen(ctx,origin,age,preset,unit,compression);
-        counts.butterflies=1;
-        counts.phase=age<4?'descent':'compression';
-      } else {
-        counts.dust=dust(ctx,origin,age-4.55,preset,unit,frame.width,frame.height);
-        counts.phase='dissolve';
-      }
-      tracking(ctx,origin,age,unit,frame.width);
+    // Continuous gentle flight around the canopy.
+    const age = time - 0.7;
+    if (age >= 0) {
+      const unit = clamp(scale * 2.05, 0.58, 1);
+      const curr = project(flightWorld(age));
+      const prev = project(flightWorld(Math.max(0, age - 0.05)));
+      const origin = [
+        clamp(curr[0], 32, frame.width - 32),
+        clamp(curr[1], 32, frame.height - 64),
+      ];
+      const vx = (curr[0] - prev[0]) / 0.05;
+      const vy = (curr[1] - prev[1]) / 0.05;
+      specimen(ctx, origin, age, vx, vy, unit);
+      tracking(ctx, origin, age, unit);
+      counts.butterflies = 1;
+      counts.phase = 'flight';
+      counts.pattern = 'continuous';
     }
     ctx.restore();
     return counts;
