@@ -78,5 +78,8 @@
     .topbar { grid-template-columns: 1fr auto; padding: 20px; }
     .topbar nav { display: none; }
   }
-  @media (prefers-reduced-motion: reduce) { .topbar { animation: none; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .topbar { animation: none; opacity: 1; }
+    .menu a, .book, .book .label span, .book .chip svg { transition: none; }
+  }
 </style>

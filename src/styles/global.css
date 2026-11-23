@@ -9,8 +9,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; background: var(--sky-low); color: var(--ink); -webkit-font-smoothing: antialiased; }
 html { scroll-behavior: smooth; }
-body { overflow-x: hidden; }
-body { font-family: "JetBrains Mono", ui-monospace, monospace; }
+body { overflow-x: hidden; font-family: "JetBrains Mono", ui-monospace, monospace; }
 
 a:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
 

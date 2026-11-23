@@ -400,4 +400,7 @@
   canvas.addEventListener('webglcontextrestored',()=>{try{initGL();draw();}catch(error){console.warn(error.message);}});
   new ResizeObserver(resize).observe(stage);
   select(query);resize();sync();
+  document.fonts.ready.then(() => {
+    if (paused || reduced.matches || document.hidden) draw();
+  });
 })();
