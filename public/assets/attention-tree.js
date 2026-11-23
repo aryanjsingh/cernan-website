@@ -172,9 +172,9 @@
   let stageRect={left:0,top:0,width:1,height:1};
   let labelBounds=[], lastPositions=[];
   let fallbackPoints;
-  let elapsed=0,cycleStart=0,selectTime=0,last=0,raf=0,paused=false,query=2,prevQuery=2,head=0,hover=-1,activeHover=-1;
+  let elapsed=0,cycleStart=0,selectTime=0,last=0,raf=0,paused=false,query=8,prevQuery=8,head=0,hover=-1,activeHover=-1;
   let holdUntil=0,manualHead=false,pointer=[0,0],targetPointer=[0,0],angles=[0,0];
-  let queryMix=1,hoverAlpha=0,displayQueryRow=2,focusPos=null,linkReveal=1;
+  let queryMix=1,hoverAlpha=0,displayQueryRow=8,focusPos=null,linkReveal=1;
   let attention=model.attend(query,head), top=[], peakWeight=1;
   const displayWeights=new Float32Array(attention.weights);
   const palette=['#087d2d','#219e35','#0c6832','#48a426'];
