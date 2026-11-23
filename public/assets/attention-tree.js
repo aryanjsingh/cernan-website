@@ -99,6 +99,7 @@
     attribute vec3 aPosition; attribute vec3 aNormal; attribute vec3 aMeta;
     uniform vec2 uViewport; uniform vec3 uFrame; uniform vec2 uAngles;
     uniform vec2 uBuffer; uniform float uGrid; uniform float uTime; uniform float uQuery;
+    uniform float uPrevQuery; uniform float uQueryMix;
     uniform float uWeights[20]; uniform float uPeak; uniform float uAttention; uniform float uIntro;
     varying vec3 vColor; varying float vIntensity; varying float vCell; varying float vAppear;
     vec3 turn(vec3 p){float flex=1.-clamp(p.x/1650.,0.,1.);
@@ -115,7 +116,9 @@
       vec2 cell=floor(px*pixelRatio/uGrid);vCell=fract(52.9829189*fract(dot(cell,vec2(.06711056,.00583715))));
       px=(cell+.5)*uGrid/pixelRatio;
       gl_Position=vec4(px.x/uViewport.x*2.-1.,1.-px.y/uViewport.y*2.,-p.z/900.,1.);
-      float selected=1.-step(.1,abs(aMeta.x-uQuery));
+      float currSel=1.-step(.1,abs(aMeta.x-uQuery));
+      float prevSel=1.-step(.1,abs(aMeta.x-uPrevQuery));
+      float selected=mix(prevSel,currSel,uQueryMix);
       gl_PointSize=max(1.,floor(uGrid*(.65+clamp(p.z/700.+.12,.0,.16))*(1.+selected*aMeta.z*.2)+.5));
       float face=clamp(dot(normalize(aNormal),normalize(vec3(-.28,-.62,.84))),0.,1.);
       float hue=clamp(.42+p.z/430.+.14*sin(aPosition.y*.008),0.,1.);
@@ -160,24 +163,82 @@
     for(const [name,size,offset] of [['aPosition',3,0],['aNormal',3,12],['aMeta',3,24]]) {
       const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,36,offset);
     }
-    uniforms=Object.fromEntries(['uViewport','uFrame','uAngles','uBuffer','uGrid','uTime','uQuery','uWeights[0]','uPeak','uAttention','uIntro'].map(name=>[name,gl.getUniformLocation(program,name)]));
+    uniforms=Object.fromEntries(['uViewport','uFrame','uAngles','uBuffer','uGrid','uTime','uQuery','uPrevQuery','uQueryMix','uWeights[0]','uPeak','uAttention','uIntro'].map(name=>[name,gl.getUniformLocation(program,name)]));
     gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);glReady=true;stage.dataset.renderer='webgl';
   }
   try { initGL(); } catch(error) { console.warn('Using the static pixel fallback:',error.message); }
   if(!glReady)stage.dataset.renderer='canvas';
-  let width=1,height=1,dpr=1,scale=1,offsetX=0,offsetY=0,visibleLeft=0,visibleRight=1;
-  let labelBounds=[];
+  let width=1,height=1,dpr=1,detailDpr=1,scale=1,offsetX=0,offsetY=0,visibleLeft=0,visibleRight=1;
+  let stageRect={left:0,top:0,width:1,height:1};
+  let labelBounds=[], lastPositions=[];
   let fallbackPoints;
-  let elapsed=0,cycleStart=0,last=0,lastPaint=0,raf=0,paused=false,query=2,head=0,hover=-1;
-  let holdUntil=0,manualHead=false,pointer=[0,0],angles=[0,0];
-  let attention=model.attend(query,head), top=[];
+  let elapsed=0,cycleStart=0,selectTime=0,last=0,raf=0,paused=false,query=2,prevQuery=2,head=0,hover=-1,activeHover=-1;
+  let holdUntil=0,manualHead=false,pointer=[0,0],targetPointer=[0,0],angles=[0,0];
+  let queryMix=1,hoverAlpha=0,displayQueryRow=2,focusPos=null,linkReveal=1;
+  let attention=model.attend(query,head), top=[], peakWeight=1;
+  const displayWeights=new Float32Array(attention.weights);
   const palette=['#087d2d','#219e35','#0c6832','#48a426'];
+  const headNames=['SEMANTIC','ROLE','LOCAL','BRIDGE'];
   const matrices=Array.from({length:4},(_,h)=>Array.from({length:20},(_,q)=>model.attend(q,h).weights));
   const matrixColors=matrices.map(matrix=>matrix.map(row=>row.map(w=>`rgba(4,108,35,${.08+clamp(w/.35,0,1)*.82})`)));
   const assemblyPixels=points.filter((_,i)=>i%251===0);
+  const datasetCache=Object.create(null);
+  let matrixCanvases=[], matrixCacheKey='';
   let metrics={};
+  function setData(key, value) {
+    if (datasetCache[key] !== value) {
+      datasetCache[key] = value;
+      stage.dataset[key] = value;
+    }
+  }
+  function updateMatrixCache(cell) {
+    const key = `${cell}:${detailDpr}`;
+    if (matrixCacheKey === key) return;
+    matrixCacheKey = key;
+    const size = Math.ceil(cell * 20);
+    matrixCanvases = matrixColors.map(matrix => {
+      const off = document.createElement('canvas');
+      off.width = Math.max(1, Math.ceil(size * detailDpr));
+      off.height = Math.max(1, Math.ceil(size * detailDpr));
+      const octx = off.getContext('2d');
+      octx.setTransform(detailDpr, 0, 0, detailDpr, 0, 0);
+      for (let row = 0; row < 20; row++) {
+        for (let col = 0; col < 20; col++) {
+          octx.fillStyle = matrix[row][col];
+          octx.fillRect(col * cell, row * cell, cell - 0.55, cell - 0.55);
+        }
+      }
+      return off;
+    });
+  }
+  function ensureLoop() {
+    if (!raf && !document.hidden) {
+      last = 0;
+      raf = requestAnimationFrame(tick);
+    }
+  }
+  function isSettling() {
+    if (Math.abs(targetPointer[0] - pointer[0]) > 0.0008 || Math.abs(targetPointer[1] - pointer[1]) > 0.0008) return true;
+    if (queryMix < 0.999 || linkReveal < 0.999) return true;
+    if (Math.abs(displayQueryRow - query) > 0.005) return true;
+    if (Math.abs((hover >= 0 ? 1 : 0) - hoverAlpha) > 0.005) return true;
+    for (let i = 0; i < 20; i++) {
+      if (Math.abs(attention.weights[i] - displayWeights[i]) > 0.0005) return true;
+    }
+    if (focusPos && lastPositions[query]) {
+      const q = lastPositions[query];
+      if (Math.hypot(q[0] - focusPos[0], q[1] - focusPos[1]) > 0.25) return true;
+    }
+    return false;
+  }
   function select(index, nextHead=head, manual=false) {
-    query=(index+20)%20;head=nextHead;attention=model.attend(query,head);
+    const nextQuery=(index+20)%20;
+    const changed = nextQuery !== query || nextHead !== head;
+    prevQuery = query;
+    query = nextQuery;
+    head = nextHead;
+    attention=model.attend(query,head);
+    peakWeight = Math.max(...attention.weights);
     top=attention.weights.map((weight,i)=>({weight,i})).filter(item=>item.i!==query).sort((a,b)=>b.weight-a.weight).slice(0,4);
     metrics={
       entropy:-attention.weights.reduce((sum,w)=>sum+w*Math.log2(w),0),
@@ -185,13 +246,23 @@
       qNorm:Math.hypot(...attention.query),contextNorm:Math.hypot(...attention.context),
       logitSpan:Math.max(...attention.keyScores)-Math.min(...attention.keyScores)
     };
-    stage.dataset.query=String(query);stage.dataset.head=String(head);
-    stage.dataset.weightSum=attention.weights.reduce((sum,n)=>sum+n,0).toFixed(6);
-    stage.dataset.context=attention.context.map(n=>n.toFixed(4)).join(',');
+    setData('query',String(query));setData('head',String(head));
+    setData('weightSum',attention.weights.reduce((sum,n)=>sum+n,0).toFixed(6));
+    setData('context',attention.context.map(n=>n.toFixed(4)).join(','));
     headButtons.forEach((button,i)=>button.setAttribute('aria-pressed',String(head===i)));
     status.textContent=`Query “${model.tokens[query].label}” · head ${String(head+1).padStart(2,'0')} · strongest other key “${model.tokens[top[0].i].label}” ${attention.weights[top[0].i].toFixed(2)}`;
-    cycleStart=elapsed;if(manual)holdUntil=elapsed+12;
-    draw();
+    cycleStart=elapsed;
+    selectTime=performance.now();
+    if(manual)holdUntil=elapsed+12;
+    if (reduced.matches) {
+      queryMix = 1; linkReveal = 1; displayQueryRow = query;
+      displayWeights.set(attention.weights);
+      focusPos = null;
+      draw();
+    } else {
+      if (changed) { queryMix = 0; linkReveal = 0; }
+      ensureLoop();
+    }
   }
   function project(p) {
     const time=reduced.matches?0:elapsed,flex=1-clamp(p[0]/1650,0,1);
@@ -201,15 +272,22 @@
     const xx=x*Math.cos(a)+z*Math.sin(a),zz=-x*Math.sin(a)+z*Math.cos(a);
     return [(xx+1000)*scale+offsetX,(y*Math.cos(b)-zz*Math.sin(b)+460)*scale+offsetY];
   }
+  function updateRect() {
+    stageRect = stage.getBoundingClientRect();
+  }
   function resize() {
-    const bounds=stage.getBoundingClientRect();width=bounds.width;height=bounds.height;dpr=Math.min(devicePixelRatio||1,1.7);
-    visibleLeft=Math.max(0,-bounds.left);visibleRight=Math.min(width,innerWidth-bounds.left);
+    updateRect();
+    width=stageRect.width;height=stageRect.height;dpr=Math.min(devicePixelRatio||1,1.7);
+    visibleLeft=Math.max(0,-stageRect.left);visibleRight=Math.min(width,innerWidth-stageRect.left);
     scale=Math.min(width/1600,height/960);offsetX=width-1600*scale;offsetY=(height-960*scale)/2;
     canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);
     // Fine dust and type use the display's resolution; the tree keeps its pixel grid.
-    const detailDpr=Math.min(devicePixelRatio||1,3);
+    detailDpr=Math.min(devicePixelRatio||1,3);
     overlay.width=Math.round(width*detailDpr);overlay.height=Math.round(height*detailDpr);
-    ctx.setTransform(detailDpr,0,0,detailDpr,0,0);draw();
+    ctx.setTransform(detailDpr,0,0,detailDpr,0,0);
+    matrixCacheKey='';
+    focusPos=null;
+    draw();
   }
   function bracket(p,size,color,alpha=1) {
     ctx.globalAlpha=alpha;ctx.strokeStyle=color;ctx.lineWidth=.8;
@@ -231,25 +309,66 @@
       }
       labelBounds.push({x,y:y-11,w:measure});
     }
-    if(background){ctx.fillStyle='rgba(219,242,227,.66)';ctx.fillRect(x-3,y-9,measure+6,13);}
+    if(background){ctx.fillStyle='rgba(232,248,236,.84)';ctx.fillRect(x-3,y-9,measure+6,13);}
     ctx.fillStyle=color;ctx.fillText(text,x,y);
   }
-  function draw() {
+  function stepTransitions(uiDt) {
+    if (reduced.matches) {
+      pointer[0] = 0; pointer[1] = 0;
+      queryMix = 1; linkReveal = 1; displayQueryRow = query;
+      hoverAlpha = hover >= 0 ? 1 : 0;
+      if (hover >= 0) activeHover = hover;
+      displayWeights.set(attention.weights);
+      return;
+    }
+    const pLerp = 1 - Math.exp(-uiDt * 7.5);
+    pointer[0] += (targetPointer[0] - pointer[0]) * pLerp;
+    pointer[1] += (targetPointer[1] - pointer[1]) * pLerp;
+
+    const wLerp = 1 - Math.exp(-uiDt * 9.5);
+    for (let i = 0; i < 20; i++) {
+      displayWeights[i] += (attention.weights[i] - displayWeights[i]) * wLerp;
+    }
+
+    const qLerp = 1 - Math.exp(-uiDt * 12);
+    queryMix += (1 - queryMix) * qLerp;
+    if (queryMix > 0.999) queryMix = 1;
+
+    const rLerp = 1 - Math.exp(-uiDt * 14);
+    displayQueryRow += (query - displayQueryRow) * rLerp;
+    if (Math.abs(displayQueryRow - query) < 0.002) displayQueryRow = query;
+
+    const revealElapsed = (performance.now() - selectTime) / 1000;
+    const t = clamp(revealElapsed / 0.45, 0, 1);
+    linkReveal = 1 - Math.pow(1 - t, 3);
+
+    const hTarget = hover >= 0 ? 1 : 0;
+    const hLerp = 1 - Math.exp(-uiDt * (hover >= 0 ? 18 : 13));
+    hoverAlpha += (hTarget - hoverAlpha) * hLerp;
+    if (hover >= 0) activeHover = hover;
+    else if (hoverAlpha < 0.01) { hoverAlpha = 0; activeHover = -1; }
+  }
+  function draw(uiDt = 0) {
     if(!width||!height)return;
+    if (uiDt > 0) stepTransitions(uiDt);
     const time=reduced.matches?0:elapsed;
     const intro=reduced.matches?1:clamp(elapsed/.82,0,1);
-    stage.dataset.intro=intro<1?'assembling':'ready';
+    setData('intro',intro<1?'assembling':'ready');
     angles=[pointer[0]*.07+Math.sin(time*.34)*.055,pointer[1]*.035+Math.cos(time*.28)*.033];
-    const age=elapsed-cycleStart, activity=(paused||reduced.matches)?1:clamp(age/1.1,0,1);
+    const age=elapsed-cycleStart;
+    const activity=reduced.matches?1:linkReveal;
+    let displayPeak = 0.001;
+    for (let i = 0; i < 20; i++) if (displayWeights[i] > displayPeak) displayPeak = displayWeights[i];
     if(glReady) {
       gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
       gl.useProgram(program);gl.uniform2f(uniforms.uViewport,width,height);gl.uniform3f(uniforms.uFrame,scale,offsetX,offsetY);
       gl.uniform2f(uniforms.uAngles,...angles);gl.uniform2f(uniforms.uBuffer,canvas.width,canvas.height);
       gl.uniform1f(uniforms.uGrid,Math.round((width<650?2.1:2.9)*dpr));
       gl.uniform1f(uniforms.uTime,time);gl.uniform1f(uniforms.uQuery,query);
+      gl.uniform1f(uniforms.uPrevQuery,prevQuery);gl.uniform1f(uniforms.uQueryMix,queryMix);
       gl.uniform1f(uniforms.uIntro,intro);
-      gl.uniform1fv(uniforms['uWeights[0]'],attention.weights);gl.uniform1f(uniforms.uPeak,Math.max(...attention.weights));
-      gl.uniform1f(uniforms.uAttention,activity);gl.drawArrays(gl.POINTS,0,data.length/9);
+      gl.uniform1fv(uniforms['uWeights[0]'],displayWeights);gl.uniform1f(uniforms.uPeak,displayPeak);
+      gl.uniform1f(uniforms.uAttention,intro);gl.drawArrays(gl.POINTS,0,data.length/9);
     }
     ctx.clearRect(0,0,width,height);
     labelBounds=[];
@@ -262,7 +381,7 @@
       });
     }
     if(intro<1) {
-      stage.dataset.butterflies='0';stage.dataset.particles='0';stage.dataset.dust='0';stage.dataset.lossPhase='quiet';
+      setData('butterflies','0');setData('particles','0');setData('dust','0');setData('lossPhase','quiet');
       for(const p of assemblyPixels) {
         const xy=project(p.p),arrival=(1-clamp(xy[0]/width,0,1))*.84+p.grain*.10;
         const phase=(intro-arrival)/.12;
@@ -277,118 +396,162 @@
     const grid=64,left=Math.max(0,offsetX+120*scale),topY=offsetY+65*scale,bottom=offsetY+845*scale;
     ctx.beginPath();for(let x=Math.ceil(left/grid)*grid;x<width;x+=grid){ctx.moveTo(x,topY);ctx.lineTo(x,bottom);}
     for(let y=Math.ceil(topY/grid)*grid;y<bottom;y+=grid){ctx.moveTo(left,y);ctx.lineTo(width,y);}ctx.stroke();
-    const positions=anchors.map(a=>project(a.p)),q=positions[query],accent=palette[head];
+    const positions=anchors.map(a=>project(a.p));
+    lastPositions=positions;
+    const q=positions[query],accent=palette[head];
+    if (!focusPos || reduced.matches) {
+      focusPos = [q[0], q[1]];
+    } else if (uiDt > 0) {
+      const fLerp = 1 - Math.exp(-uiDt * 14);
+      focusPos[0] += (q[0] - focusPos[0]) * fLerp;
+      focusPos[1] += (q[1] - focusPos[1]) * fLerp;
+    }
     // All tokens participate in softmax; only the strongest four links are drawn.
     top.forEach(({i,weight},rank)=>{
-      const p=positions[i], strength=weight/Math.max(...attention.weights),alpha=activity*(.34+strength*.40);
+      const p=positions[i], strength=weight/peakWeight, alpha=activity*(.34+strength*.40);
+      const tx = mix(q[0], p[0], activity), ty = mix(q[1], p[1], activity);
       ctx.globalAlpha=alpha;ctx.strokeStyle='#07562a';ctx.lineWidth=.65+strength*.55;ctx.setLineDash([2,4]);
-      ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.setLineDash([]);
-      if(!reduced.matches&&age>1) {
-        const progress=((age-1)*.42+rank*.21)%1, x=mix(p[0],q[0],progress), y=mix(p[1],q[1],progress);
-        ctx.globalAlpha=.9;ctx.fillStyle=accent;ctx.fillRect(Math.round(x)-1.5,Math.round(y)-1.5,3,3);
+      ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(tx,ty);ctx.stroke();ctx.setLineDash([]);
+      if(!reduced.matches&&activity>.85) {
+        const progress=((age-.35)*.42+rank*.21)%1;
+        if (progress >= 0) {
+          const x=mix(p[0],q[0],progress), y=mix(p[1],q[1],progress);
+          ctx.globalAlpha=.9*clamp((activity-.85)/.15,0,1);ctx.fillStyle=accent;ctx.fillRect(Math.round(x)-1.5,Math.round(y)-1.5,3,3);
+        }
       }
-      ctx.globalAlpha=1;bracket(p,12+strength*9,accent,.45+strength*.5);
-      if(i!==hover&&rank<(width<650?2:3))label(`K${String(i).padStart(2,'0')} α${weight.toFixed(3)}`,[p[0]+13,p[1]-13],accent);
+      ctx.globalAlpha=1;bracket(p,12+strength*9,accent,(.45+strength*.5)*activity);
+      if(i!==hover&&rank<(width<650?2:3))label(`K${String(i).padStart(2,'0')} ${model.tokens[i].label.toUpperCase()} · ${weight.toFixed(2)}`,[p[0]+13,p[1]-13],accent);
       if(i!==hover&&rank===0&&width>650)label(`s=${attention.keyScores[i].toFixed(2)}`,[p[0]+13,p[1]+3],'#27683c');
     });
     positions.forEach((p,i)=>{if(i===query||top.some(t=>t.i===i))return;
       ctx.strokeStyle='rgba(15,85,39,.62)';ctx.lineWidth=.7;ctx.strokeRect(Math.round(p[0])-3.5,Math.round(p[1])-3.5,7,7);
       ctx.fillStyle='rgba(14,105,44,.64)';ctx.fillRect(Math.round(p[0])-1,Math.round(p[1])-1,2,2);
     });
-    bracket(q,30,'#094521');bracket(q,22,accent,.8);
+    bracket(focusPos,30,'#094521');bracket(focusPos,22,accent,.8);
     if(hover!==query) {
       label(`Q${String(query).padStart(2,'0')} ${model.tokens[query].label.toUpperCase()}`,[q[0]+22,q[1]-18]);
-      label(age<1&&!paused&&!reduced.matches?'ACQUIRING':'CONTEXT',[q[0]+22,q[1]+1],accent);
+      label(activity<.95&&!paused&&!reduced.matches?'ACQUIRING':'CONTEXT',[q[0]+22,q[1]+1],accent);
     }
     if(window.AttentionLife) {
       const life=AttentionLife.draw(ctx,{time:Math.max(0,time-.82),project,anchors,scale,width,height,reduced:reduced.matches,introProgress:intro});
-      stage.dataset.butterflies=String(life.butterflies);stage.dataset.particles=String(life.particles);
-      stage.dataset.lossPhase=life.phase||'idle';stage.dataset.dust=String(life.dust||0);
-      stage.dataset.lossPattern=life.pattern||'quiet';
+      setData('butterflies',String(life.butterflies));setData('particles',String(life.particles));
+      setData('lossPhase',life.phase||'idle');setData('dust',String(life.dust||0));
+      setData('lossPattern',life.pattern||'quiet');
     }
     drawResearchHUD();
-    if(hover>=0)drawTokenHint(positions,q);
+    if(activeHover>=0&&hoverAlpha>0.01)drawTokenHint(positions,q,activeHover,hoverAlpha);
   }
-  function drawTokenHint(positions,q) {
-    const p=positions[hover],selected=hover===query;
-    if(!selected&&!top.some(item=>item.i===hover)) {
+  function drawTokenHint(positions,q,index,alpha) {
+    const p=positions[index],selected=index===query;
+    if(!p)return;
+    ctx.save();
+    if(!selected&&!top.some(item=>item.i===index)) {
+      ctx.globalAlpha=alpha;
       ctx.strokeStyle='rgba(7,86,42,.64)';ctx.lineWidth=.85;ctx.setLineDash([2,4]);
       ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();ctx.setLineDash([]);
     }
-    bracket(p,24,'#07562a');
-    const lines=[`${selected?'QUERY':'TOKEN'} ${String(hover).padStart(2,'0')} / ${model.tokens[hover].label.toUpperCase()}`,
-      `${(attention.weights[hover]*100).toFixed(2)}% attention${selected?' · selected':' · click to focus'}`];
-    ctx.save();ctx.font='9px "JetBrains Mono", monospace';
+    bracket(p,24,'#07562a',alpha);
+    const lines=[`${selected?'QUERY':'TOKEN'} ${String(index).padStart(2,'0')} / ${model.tokens[index].label.toUpperCase()}`,
+      `${(attention.weights[index]*100).toFixed(2)}% attention${selected?' · selected':' · click to focus'}`];
+    ctx.font='9px "JetBrains Mono", monospace';
     const boxWidth=Math.max(...lines.map(text=>ctx.measureText(text).width))+16;
     const x=clamp(p[0]+18,visibleLeft+8,visibleRight-boxWidth-8);
     let y=clamp(p[1]-46,12,height-48);
     if(labelBounds.some(b=>x<b.x+b.w&&x+boxWidth>b.x&&y<b.y+15&&y+37>b.y))y=clamp(p[1]+18,12,height-48);
-    ctx.fillStyle='rgba(227,246,231,.94)';ctx.fillRect(x,y,boxWidth,37);
-    ctx.fillStyle='#137339';ctx.fillRect(x,y,2,37);
-    ctx.fillStyle='#124a26';ctx.fillText(lines[0],x+8,y+13);
-    ctx.fillStyle='#2b6240';ctx.fillText(lines[1],x+8,y+27);ctx.restore();
+    const floatY = y + (1 - alpha) * 4;
+    ctx.globalAlpha=alpha;
+    ctx.fillStyle='rgba(227,246,231,.94)';ctx.fillRect(x,floatY,boxWidth,37);
+    ctx.fillStyle='#137339';ctx.fillRect(x,floatY,2,37);
+    ctx.fillStyle='#124a26';ctx.fillText(lines[0],x+8,floatY+13);
+    ctx.fillStyle='#2b6240';ctx.fillText(lines[1],x+8,floatY+27);
+    ctx.restore();
   }
   function drawResearchHUD() {
     const x=visibleLeft+16,topY=Math.max(24,offsetY-20),color='#27623b';
     ctx.save();ctx.font='8px "JetBrains Mono", monospace';ctx.fillStyle=color;
-    ctx.fillText(`SELF-ATTN  /  H${String(head+1).padStart(2,'0')}  /  FIXED W`,x,topY);
+    ctx.fillText(`SELF-ATTN  /  H${String(head+1).padStart(2,'0')} · ${headNames[head]}`,x,topY);
     ctx.globalAlpha=.74;
-    ctx.fillText('N20 · d_model12 · d_k6 · d_v6 · mask:none',x,topY+14);
-    if(width>550)ctx.fillText('QKᵀ × 0.40825 → row-softmax → AV',x,topY+28);
+    ctx.fillText('N20 · d_model12 · d_k6 · d_v6',x,topY+14);
+    if(width>550)ctx.fillText('QKᵀ / √6 → softmax → AV',x,topY+28);
     // One shared linear color scale; the bright outline identifies the query row.
     const cell=width<500?2.2:2.65,size=cell*20,hx=x,hy=Math.min(height-93,offsetY+855*scale);
+    updateMatrixCache(cell);
     ctx.globalAlpha=1;
-    for(let row=0;row<20;row++)for(let col=0;col<20;col++) {
-      ctx.fillStyle=matrixColors[head][row][col];
-      ctx.fillRect(hx+col*cell,hy+row*cell,cell-.55,cell-.55);
-    }
-    ctx.strokeStyle='#11933b';ctx.lineWidth=.7;ctx.strokeRect(hx-2,hy+query*cell-1,size+4,cell+2);
+    const cachedMatrix = matrixCanvases[head];
+    if (cachedMatrix) ctx.drawImage(cachedMatrix, hx, hy, Math.ceil(size), Math.ceil(size));
+    ctx.strokeStyle='#11933b';ctx.lineWidth=.7;ctx.strokeRect(hx-2,hy+displayQueryRow*cell-1,size+4,cell+2);
     ctx.fillStyle=color;ctx.fillText('A[Q,K]',hx,hy-7);
     const tx=hx+size+16;
     ctx.fillText(`H(Aᵢ) ${metrics.entropy.toFixed(3)}b`,tx,hy+4);
     ctx.fillText(`TOP3 ${(metrics.top3*100).toFixed(2)}%   Σα=1`,tx,hy+17);
     ctx.fillText(`‖q‖₂ ${metrics.qNorm.toFixed(3)}   ‖c‖₂ ${metrics.contextNorm.toFixed(3)}`,tx,hy+30);
     ctx.globalAlpha=.7;
-    ctx.fillText(`Δlogit ${metrics.logitSpan.toFixed(3)} · toy / non-causal`,tx,hy+43);
-    if(width>600) {
-      const rx=Math.max(tx+258,width-188);
-      ctx.fillText('X[20×12]  Wq[12×6]',rx,hy+4);
-      ctx.fillText('Q,K,V[20×6]  A[20×20]',rx,hy+17);
-      ctx.fillText('sin/cos position features',rx,hy+30);
-      ctx.fillText(`αself=${attention.weights[query].toFixed(4)}  h∈{1…4}`,rx,hy+43);
-    }
+    ctx.fillText(`Δlogit ${metrics.logitSpan.toFixed(3)}   αself ${attention.weights[query].toFixed(3)}`,tx,hy+43);
     ctx.restore();
   }
   function tick(time) {
-    if(last)elapsed+=Math.min((time-last)/1000,.06);last=time;
-    // High-refresh displays keep the same motion clock without redundant painting.
-    if(!lastPaint||time-lastPaint>=1000/60-.5) {
-      lastPaint=lastPaint?lastPaint+(1000/60)*Math.max(1,Math.floor((time-lastPaint+.5)/(1000/60))):time;
-      if(elapsed-cycleStart>7.5&&elapsed>holdUntil)select((query+7)%20,manualHead?head:(head+1)%4);
-      else draw();
+    const uiDt = last ? Math.min((time - last) / 1000, 0.05) : 1 / 60;
+    last = time;
+    if (!paused && !reduced.matches) {
+      elapsed += uiDt;
+      if (elapsed - cycleStart > 7.5 && elapsed > holdUntil) {
+        select((query + 7) % 20, manualHead ? head : (head + 1) % 4);
+      }
     }
-    raf=requestAnimationFrame(tick);
+    draw(uiDt);
+    if ((!paused && !reduced.matches && !document.hidden) || (!document.hidden && isSettling())) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      raf = 0;
+      last = 0;
+    }
   }
   function sync() {
-    cancelAnimationFrame(raf);last=0;lastPaint=0;
+    cancelAnimationFrame(raf);raf=0;last=0;
     pauseButton.textContent=paused?'Play':'Pause';pauseButton.setAttribute('aria-pressed',String(paused));
     pauseButton.setAttribute('aria-label',paused?'Play self-attention animation':'Pause self-attention animation');
-    pauseButton.hidden=reduced.matches;stage.dataset.paused=String(paused||reduced.matches);
-    draw();if(!paused&&!reduced.matches&&!document.hidden)raf=requestAnimationFrame(tick);
+    pauseButton.hidden=reduced.matches;setData('paused',String(paused||reduced.matches));
+    draw();
+    if((!paused&&!reduced.matches&&!document.hidden)||(!document.hidden&&isSettling()))raf=requestAnimationFrame(tick);
   }
   function nearestAt(clientX,clientY) {
-    const box=stage.getBoundingClientRect(),x=clientX-box.left,y=clientY-box.top;
-    let index=-1,best=36;
-    anchors.forEach((a,i)=>{const p=project(a.p),d=Math.hypot(p[0]-x,p[1]-y);if(d<best){best=d;index=i;}});
+    const x=clientX-stageRect.left,y=clientY-stageRect.top;
+    const pts=lastPositions.length===anchors.length?lastPositions:anchors.map(a=>project(a.p));
+    let index=-1,best=38;
+    for (let i=0;i<pts.length;i++) {
+      const p=pts[i],d=Math.hypot(p[0]-x,p[1]-y);
+      const limit = i===hover ? 48 : best;
+      if(d<limit && (index<0 || d<best)){best=d;index=i;}
+    }
     return index;
   }
+  function setHover(nextHover) {
+    if (nextHover === hover) return;
+    hover = nextHover;
+    if (hover >= 0) activeHover = hover;
+    setData('hover', String(hover));
+    stage.style.cursor = hover >= 0 ? 'pointer' : 'default';
+    if (reduced.matches) draw();
+    else ensureLoop();
+  }
   stage.addEventListener('pointermove',event=>{
-    const box=stage.getBoundingClientRect();
-    if(!reduced.matches)pointer=[clamp((event.clientX-box.left)/width*2-1,-1,1),clamp((event.clientY-box.top)/height*2-1,-1,1)];
-    hover=nearestAt(event.clientX,event.clientY);stage.dataset.hover=String(hover);stage.style.cursor=hover>=0?'pointer':'default';if(paused||reduced.matches)draw();
-  });
-  stage.addEventListener('pointerleave',()=>{pointer=[0,0];hover=-1;stage.dataset.hover='-1';if(paused||reduced.matches)draw();});
-  stage.addEventListener('click',event=>{const index=nearestAt(event.clientX,event.clientY);if(index>=0)select(index,head,true);});
+    if(!reduced.matches){
+      targetPointer=[clamp((event.clientX-stageRect.left)/width*2-1,-1,1),clamp((event.clientY-stageRect.top)/height*2-1,-1,1)];
+      ensureLoop();
+    }
+    setHover(nearestAt(event.clientX,event.clientY));
+  },{passive:true});
+  stage.addEventListener('pointerleave',()=>{
+    targetPointer=[0,0];
+    setHover(-1);
+    if(!reduced.matches)ensureLoop();
+  },{passive:true});
+  stage.addEventListener('pointercancel',()=>{
+    targetPointer=[0,0];
+    setHover(-1);
+    if(!reduced.matches)ensureLoop();
+  },{passive:true});
+  stage.addEventListener('click',event=>{updateRect();const index=nearestAt(event.clientX,event.clientY);if(index>=0)select(index,head,true);});
   stage.addEventListener('keydown',event=>{
     if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(event.key)){event.preventDefault();select(query+(['ArrowRight','ArrowDown'].includes(event.key)?1:-1),head,true);}
     if(event.code==='Space'){event.preventDefault();paused=!paused;sync();}
@@ -396,7 +559,8 @@
   pauseButton.addEventListener('click',()=>{paused=!paused;sync();});
   headButtons.forEach((button,i)=>button.addEventListener('click',()=>{manualHead=true;select(query,i,true);}));
   reduced.addEventListener('change',sync);document.addEventListener('visibilitychange',sync);
-  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();glReady=false;stage.dataset.renderer='canvas';draw();});
+  window.addEventListener('scroll',updateRect,{passive:true});
+  canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();glReady=false;setData('renderer','canvas');draw();});
   canvas.addEventListener('webglcontextrestored',()=>{try{initGL();draw();}catch(error){console.warn(error.message);}});
   new ResizeObserver(resize).observe(stage);
   select(query);resize();sync();
