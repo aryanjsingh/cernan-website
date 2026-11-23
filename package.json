@@ -1,0 +1,11 @@
+{
+  "name": "cernan-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "8.3.7"
+  }
+}
