@@ -1,0 +1,580 @@
+---
+const email = 'admin@cernan.co';
+const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'Advisory'];
+---
+
+<section class="contact" id="contact" aria-labelledby="contact-title" tabindex="-1">
+  <span class="contact-anchor" id="book" aria-hidden="true"></span>
+  <div class="contact-inner">
+    <div class="contact-intro">
+      <p class="contact-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Talk to us</span>
+      </p>
+      <h2 id="contact-title">Tell us what you are building.</h2>
+      <p class="contact-lead">
+        Share a bit about your team, what you need help with, and any relevant links. You will hear
+        back directly from our engineers within 24 hours.
+      </p>
+
+      <div class="contact-direct">
+        <span class="direct-label">Direct</span>
+        <button
+          type="button"
+          class="direct-email"
+          data-copy-email={email}
+          aria-label={`Copy ${email} to clipboard`}
+        >
+          <span data-copy-label>{email}</span>
+          <span class="copy-badge" data-copy-badge>Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <form class="contact-form" method="post" action="/api/inquiry" data-contact-form>
+      <div class="hp-field" aria-hidden="true">
+        <label for="c-website">Website</label>
+        <input id="c-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="c-name">Your name</label>
+          <input id="c-name" name="name" type="text" required maxlength="120" autocomplete="name" placeholder="Ada Lovelace" />
+        </div>
+        <div class="field">
+          <label for="c-company">Company or team</label>
+          <input id="c-company" name="company" type="text" required maxlength="140" autocomplete="organization" placeholder="Acme Corp" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="c-email">Work email</label>
+        <input id="c-email" name="email" type="email" required maxlength="160" autocomplete="email" placeholder="ada@company.com" />
+      </div>
+
+      <fieldset class="scope-group">
+        <legend>What do you need?</legend>
+        <div class="scope-pills">
+          {scopes.map((scope, i) => (
+            <label class="scope-pill">
+              <input type="checkbox" name="scope" value={scope} checked={i === 0} />
+              <span>{scope}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="c-details">Project details</label>
+        <textarea
+          id="c-details"
+          name="details"
+          rows="3"
+          required
+          maxlength="4000"
+          placeholder="What problem are you solving, timeline, or current stack?"
+        ></textarea>
+      </div>
+
+      <div class="field">
+        <label for="c-links">External links or context <span class="optional">(optional)</span></label>
+        <input
+          id="c-links"
+          name="links"
+          type="text"
+          maxlength="1000"
+          placeholder="Website, repo, deck, paper, or brief URL"
+        />
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="contact-submit">
+          <span class="btn-label">
+            <span>Send inquiry</span>
+            <span aria-hidden="true">Send inquiry</span>
+          </span>
+          <span class="btn-chip" aria-hidden="true">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        <a class="contact-mailto" href={`mailto:${email}`}>
+          <span>Or email us directly</span>
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const copyBtn = document.querySelector('[data-copy-email]');
+    if (copyBtn) {
+      const label = copyBtn.querySelector('[data-copy-label]');
+      const badge = copyBtn.querySelector('[data-copy-badge]');
+      const addr = copyBtn.getAttribute('data-copy-email');
+      let timer = 0;
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(addr);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = addr;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+        }
+        copyBtn.dataset.copied = 'true';
+        if (badge) badge.textContent = 'Copied';
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          copyBtn.dataset.copied = 'false';
+          if (badge) badge.textContent = 'Copy';
+          if (label) label.textContent = addr;
+        }, 2000);
+      });
+    }
+
+    const form = document.querySelector('[data-contact-form]');
+    const status = document.querySelector('[data-form-status]');
+    const submitBtn = form?.querySelector('.contact-submit');
+    if (!form) return;
+
+    function showMailtoFallback(name, company, senderEmail, selectedScopes, details, links) {
+      const subject = `Cernan inquiry: ${company || name}`;
+      const bodyLines = [
+        `Name: ${name}`,
+        `Company: ${company}`,
+        `Email: ${senderEmail}`,
+        `Needs: ${selectedScopes.length ? selectedScopes.join(', ') : 'General'}`,
+        '',
+        'Details:',
+        details,
+      ];
+      if (links) bodyLines.push('', `Links / Context: ${links}`);
+      const mailto = `mailto:admin@cernan.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+      if (status) {
+        status.textContent = '';
+        status.dataset.state = 'ok';
+        const note = document.createTextNode('Direct delivery unavailable right now. ');
+        const link = document.createElement('a');
+        link.href = mailto;
+        link.textContent = 'Open pre-filled email draft';
+        link.className = 'status-fallback-link';
+        status.append(note, link);
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const company = String(fd.get('company') || '').trim();
+      const senderEmail = String(fd.get('email') || '').trim();
+      const selectedScopes = fd.getAll('scope').map(String);
+      const details = String(fd.get('details') || '').trim();
+      const links = String(fd.get('links') || '').trim();
+      const website = String(fd.get('website') || '').trim();
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) {
+        status.textContent = 'Sending inquiry...';
+        status.dataset.state = 'pending';
+      }
+
+      try {
+        const resp = await fetch('/api/inquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, company, email: senderEmail, scopes: selectedScopes, details, links, website }),
+        });
+        const data = await resp.json().catch(() => ({}));
+
+        if (resp.ok && data.ok) {
+          form.reset();
+          if (status) {
+            status.textContent = 'Inquiry sent. We will reply within 24 hours.';
+            status.dataset.state = 'ok';
+          }
+          return;
+        }
+        if (resp.status === 404 || resp.status === 503) {
+          showMailtoFallback(name, company, senderEmail, selectedScopes, details, links);
+          return;
+        }
+        if (status) {
+          status.textContent = data.error || 'Could not send inquiry. Please email admin@cernan.co directly.';
+          status.dataset.state = 'error';
+        }
+      } catch {
+        showMailtoFallback(name, company, senderEmail, selectedScopes, details, links);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .contact {
+    position: relative;
+    padding: clamp(120px, 16vh, 196px) clamp(24px, 4.25vw, 72px) clamp(112px, 15vh, 180px);
+  }
+  .contact:focus { outline: none; }
+  .contact-anchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.12fr);
+    align-items: start;
+    gap: clamp(44px, 6vw, 108px);
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .contact-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.68;
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0b6e44;
+    box-shadow: 0 0 0 3px rgba(11, 110, 68, 0.18);
+  }
+
+  .contact-intro h2 {
+    margin-top: 14px;
+    margin-left: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(30px, 3vw, 44px);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+
+  .contact-lead {
+    margin-top: 16px;
+    max-width: 38ch;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.62;
+    letter-spacing: -0.008em;
+    color: rgba(11, 26, 43, 0.74);
+  }
+
+  .contact-direct {
+    display: grid;
+    gap: 8px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(11, 26, 43, 0.12);
+    justify-items: start;
+  }
+  .direct-label {
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.48;
+  }
+  .direct-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--ink);
+    font: 500 13px/1.2 "JetBrains Mono", ui-monospace, monospace;
+    cursor: pointer;
+  }
+  .copy-badge {
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 26, 43, 0.16);
+    background: rgba(255, 255, 255, 0.48);
+    font-size: 9.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .direct-email:hover .copy-badge {
+    opacity: 1;
+    border-color: rgba(11, 26, 43, 0.34);
+  }
+  .direct-email[data-copied="true"] .copy-badge {
+    opacity: 1;
+    color: #0b6e44;
+    border-color: rgba(11, 110, 68, 0.4);
+  }
+
+  /* Minimal hairline intake form */
+  .contact-form {
+    display: grid;
+    gap: 24px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+  .field {
+    display: grid;
+    gap: 8px;
+  }
+  .field label,
+  .scope-group legend {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(11, 26, 43, 0.62);
+  }
+  .optional {
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0.7;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 10px 0 11px;
+    border: 0;
+    border-bottom: 1px solid rgba(11, 26, 43, 0.2);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: -0.008em;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 76px;
+  }
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(11, 26, 43, 0.36);
+  }
+  .field input:focus,
+  .field textarea:focus {
+    border-bottom-color: #0b6e44;
+  }
+
+  .scope-group {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .scope-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .scope-pill {
+    position: relative;
+    cursor: pointer;
+  }
+  .scope-pill input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .scope-pill span {
+    display: inline-flex;
+    align-items: center;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 26, 43, 0.16);
+    background: rgba(255, 255, 255, 0.4);
+    color: rgba(11, 26, 43, 0.78);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.01em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .scope-pill:hover span {
+    border-color: rgba(11, 26, 43, 0.34);
+    background: rgba(255, 255, 255, 0.72);
+  }
+  .scope-pill input:checked + span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+  }
+  .scope-pill input:focus-visible + span {
+    outline: 1.5px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  .form-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    margin-top: 4px;
+  }
+
+  .contact-submit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 46px;
+    padding: 0 8px 0 22px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--white);
+    font: 500 12.5px/1 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+  }
+  .contact-submit:hover { background: #17354d; }
+  .contact-submit:active { transform: translateY(1px); }
+  .contact-submit:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+  .btn-label {
+    position: relative;
+    display: block;
+    height: 16px;
+    overflow: hidden;
+    line-height: 16px;
+  }
+  .btn-label span {
+    display: block;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .btn-label span + span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(100%);
+  }
+  .btn-chip {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--ink);
+    overflow: hidden;
+  }
+  .btn-chip svg {
+    position: absolute;
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .btn-chip svg + svg { transform: translate(-150%, 150%); }
+  .contact-submit:hover .btn-label span:first-child { transform: translateY(-100%); }
+  .contact-submit:hover .btn-label span + span { transform: translateY(0); }
+  .contact-submit:hover .btn-chip svg:first-child { transform: translate(150%, -150%); }
+  .contact-submit:hover .btn-chip svg + svg { transform: translate(0, 0); }
+
+  .contact-mailto {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 26, 43, 0.18);
+    background: rgba(255, 255, 255, 0.44);
+    color: var(--ink);
+    text-decoration: none;
+    font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.01em;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .contact-mailto:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(11, 26, 43, 0.34);
+  }
+  .contact-mailto svg {
+    transition: transform 0.2s ease;
+  }
+  .contact-mailto:hover svg {
+    transform: translate(1.5px, -1.5px);
+  }
+
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .contact-submit:disabled {
+    opacity: 0.6;
+    cursor: progress;
+  }
+
+  .form-status {
+    font-size: 11px;
+    color: #0b6e44;
+    min-height: 16px;
+  }
+  .form-status[data-state="error"] {
+    color: #b02230;
+  }
+  .form-status[data-state="pending"] {
+    color: rgba(11, 26, 43, 0.64);
+  }
+  .form-status :global(.status-fallback-link) {
+    color: #0b6e44;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 860px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .field-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-submit, .btn-label span, .btn-chip svg, .scope-pill span, .field input, .field textarea {
+      transition: none;
+    }
+  }
+</style>

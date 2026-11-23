@@ -1,0 +1,282 @@
+---
+const year = 2026;
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-art">
+        <img
+          src="/assets/ermine.webp"
+          alt="Standing white ermine"
+          width="520"
+          height="623"
+          class="footer-ermine"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="footer-brand">
+        <a class="footer-logo" href="#" aria-label="Cernan home">
+          <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <defs>
+              <mask id="footer-needle-gap" maskUnits="userSpaceOnUse">
+                <rect width="100" height="100" fill="#fff" />
+                <path d="M81 8.4 L56.6 52.2 L22.7 86.5 L45.6 43.7 Z" fill="#000" stroke="#000" stroke-width="6" stroke-linejoin="round" />
+              </mask>
+            </defs>
+            <g mask="url(#footer-needle-gap)" stroke="currentColor">
+              <circle cx="50" cy="48" r="36.5" stroke-width="3.2" />
+              <path d="M50 11.7v7.4M50 77v7.4M15 48h7.6M78 48h7.4" stroke-width="3" />
+            </g>
+            <path d="M81 8.4 L56.6 52.2 L22.7 86.5 L45.6 43.7 Z" fill="currentColor" stroke="currentColor" stroke-width="0.6" stroke-linejoin="round" />
+            <circle cx="50.7" cy="47.8" r="5.4" fill="#f6f2ea" stroke="currentColor" stroke-width="2.4" />
+            <circle cx="50.7" cy="47.8" r="2.6" fill="currentColor" />
+          </svg>
+          <span>Cernan</span>
+        </a>
+        <p class="footer-tagline">
+          An independent engineering studio training models, hardening systems, and shipping
+          software that holds up.
+        </p>
+        <a class="footer-email" href="mailto:admin@cernan.co">admin@cernan.co</a>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col">
+          <p class="col-heading">Explore</p>
+          <nav aria-label="Footer navigation">
+            <a href="#research">Research</a>
+            <a href="#security">Security</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#contact">Talk to us</a>
+          </nav>
+        </div>
+
+        <div class="footer-col">
+          <p class="col-heading">Practice</p>
+          <div class="col-list">
+            <a href="#research">Machine Learning</a>
+            <a href="#security">Security Audits</a>
+            <a href="#contact">Software Systems</a>
+            <a href="#book">Advisory</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <p class="col-heading">Connect</p>
+          <div class="col-list">
+            <a href="#contact">Talk to us</a>
+            <a href="mailto:admin@cernan.co">Email us</a>
+            <a href="https://github.com/Dixith-dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© {year} Cernan. All rights reserved.</p>
+      <a class="footer-top-link" href="#" aria-label="Back to top">
+        <span>Back to top</span>
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M6 10V2M2.5 5.5L6 2L9.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: #f6f2ea;
+    border-top: 1px solid rgba(11, 26, 43, 0.1);
+    color: var(--ink);
+  }
+
+  .footer-inner {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: clamp(56px, 7vh, 88px) clamp(24px, 4.25vw, 72px) 36px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: minmax(180px, 240px) minmax(220px, 1fr) minmax(300px, 1.15fr);
+    align-items: start;
+    gap: clamp(32px, 4.5vw, 72px);
+  }
+
+  .footer-art {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    align-self: stretch;
+  }
+  .footer-ermine {
+    display: block;
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    max-height: 290px;
+    object-fit: contain;
+    object-position: bottom left;
+    user-select: none;
+    pointer-events: none;
+    filter: drop-shadow(0 12px 20px rgba(11, 26, 43, 0.1));
+  }
+
+  .footer-brand {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+    padding-top: 8px;
+  }
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+    text-decoration: none;
+    justify-self: start;
+  }
+  .footer-logo svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+  .footer-logo span {
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .footer-tagline {
+    max-width: 30ch;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.62;
+    letter-spacing: -0.008em;
+    color: rgba(11, 26, 43, 0.68);
+  }
+  .footer-email {
+    justify-self: start;
+    margin-top: 4px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    opacity: 0.8;
+    border-bottom: 1px solid rgba(11, 26, 43, 0.22);
+    padding-bottom: 2px;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+  }
+  .footer-email:hover {
+    opacity: 1;
+    border-bottom-color: var(--ink);
+  }
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    padding-top: 8px;
+  }
+  .footer-col {
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+  .col-heading {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(11, 26, 43, 0.68);
+  }
+  .footer-col nav,
+  .col-list {
+    display: grid;
+    gap: 10px;
+    justify-items: start;
+  }
+  .footer-col a {
+    color: var(--ink);
+    opacity: 0.72;
+    text-decoration: none;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13.5px;
+    letter-spacing: -0.006em;
+    transition: opacity 0.2s ease;
+  }
+  .footer-col a:hover {
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: clamp(44px, 6vh, 64px);
+    padding-top: 22px;
+    border-top: 1px solid rgba(11, 26, 43, 0.1);
+  }
+  .footer-copy {
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: rgba(11, 26, 43, 0.54);
+  }
+  .footer-top-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink);
+    opacity: 0.62;
+    text-decoration: none;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: opacity 0.2s ease;
+  }
+  .footer-top-link svg {
+    transition: transform 0.22s ease;
+  }
+  .footer-top-link:hover {
+    opacity: 1;
+  }
+  .footer-top-link:hover svg {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 980px) {
+    .footer-top {
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+    .footer-columns {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 600px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .footer-ermine {
+      max-width: 170px;
+      max-height: 210px;
+    }
+    .footer-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .footer-col a, .footer-email, .footer-top-link, .footer-top-link svg { transition: none; }
+  }
+</style>

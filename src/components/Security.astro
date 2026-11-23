@@ -1,0 +1,306 @@
+---
+const proofs = [
+  {
+    id: 'abliteration',
+    index: '01',
+    title: 'Uncensored AI models',
+    body: 'Researchers stripped safety refusals across 24 AI models up to trillion-parameter scale for offensive cyber workflows.',
+    source: 'arXiv',
+    venue: 'Jul 2026 · 2607.02714',
+    href: 'https://arxiv.org/abs/2607.02714',
+    logo: 'arxiv',
+  },
+  {
+    id: 'breakout',
+    index: '02',
+    title: '27-second breakout speed',
+    body: 'Fastest recorded eCrime breakout dropped to 27 seconds (29 minutes average), alongside an 89% surge in AI-enabled attacks.',
+    source: 'CrowdStrike',
+    venue: 'Global Threat Report 2026',
+    href: 'https://www.crowdstrike.com/en-us/global-threat-report/',
+    logo: 'crowdstrike',
+  },
+  {
+    id: 'containment',
+    index: '03',
+    title: 'AI-authored zero-day exploits',
+    body: 'Adversaries are actively using AI to automate vulnerability discovery, generate exploits, and accelerate initial access.',
+    source: 'Google Cloud',
+    venue: 'GTIG Threat Tracker 2026',
+    href: 'https://cloud.google.com/blog/topics/threat-intelligence/ai-vulnerability-exploitation-initial-access',
+    logo: 'google',
+  },
+  {
+    id: 'hardening',
+    index: '04',
+    title: 'Safety filters are removable',
+    body: 'Lightweight weight editing strips model refusals in minutes, meaning real defense must live inside your own infrastructure.',
+    source: 'arXiv',
+    venue: 'Aug 2026 · 2608.18093',
+    href: 'https://arxiv.org/abs/2608.18093',
+    logo: 'arxiv',
+  },
+];
+---
+
+<section class="security" id="security" aria-labelledby="security-title" tabindex="-1">
+  <div class="security-inner">
+    <div class="security-copy">
+      <p class="security-eyebrow">Cybersecurity</p>
+      <h2 id="security-title">Why security matters in the AI era.</h2>
+      <p class="security-lead">
+        AI models can be abliterated in minutes, letting attackers automate reconnaissance and
+        exploits faster than human teams can respond. Modern software needs defense built into the
+        stack.
+      </p>
+
+      <div class="sec-progress" aria-hidden="true">
+        {proofs.map((row) => (
+          <span class="sec-seg" data-sec-seg={row.id}>
+            <span class="sec-seg-fill" data-sec-seg-fill={row.id}></span>
+          </span>
+        ))}
+      </div>
+
+      <ol class="security-loop" aria-label="Evidence on AI-accelerated cyber threats">
+        {proofs.map((row, i) => (
+          <li class="sec-row" data-sec-phase={row.id} data-active={i === 0 ? 'true' : 'false'}>
+            <span class="sec-index">{row.index}</span>
+            <div class="sec-text">
+              <span class="sec-title">{row.title}</span>
+              <span class="sec-body">{row.body}</span>
+            </div>
+            <a
+              class="proof-link"
+              href={row.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read ${row.source} (${row.venue}) report`}
+              title={`${row.source} · ${row.venue}`}
+            >
+              <span class="proof-logo" aria-hidden="true">
+                {row.logo === 'arxiv' && (
+                  <svg viewBox="0 0 16 16" width="13" height="13" fill="none">
+                    <path d="M3 3l10 10" stroke="#B31B1B" stroke-width="2" stroke-linecap="round" />
+                    <path d="M13 3L3 13" stroke="#5E646C" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                )}
+                {row.logo === 'crowdstrike' && (
+                  <svg viewBox="0 0 18 14" width="15" height="12" fill="none">
+                    <path d="M1.5 3.2L9 11.5L16.5 3.2L12.5 4.8L9 2.2L5.5 4.8L1.5 3.2Z" fill="#E01F26" />
+                  </svg>
+                )}
+                {row.logo === 'google' && (
+                  <svg viewBox="0 0 18 14" width="15" height="12" fill="none">
+                    <path d="M5.5 11.5h7.2a3.3 3.3 0 0 0 .5-6.55A4.6 4.6 0 0 0 4.6 4.4a3.6 3.6 0 0 0 .9 7.1z" fill="#4285F4" fill-opacity="0.16" />
+                    <path d="M4.6 4.4A4.6 4.6 0 0 1 13.2 4.95" stroke="#EA4335" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M13.2 4.95a3.3 3.3 0 0 1-.5 6.55H9" stroke="#4285F4" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M9 11.5H5.5a3.6 3.6 0 0 1-3-1.6" stroke="#34A853" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M2.5 9.9a3.6 3.6 0 0 1 2.1-5.5" stroke="#FBBC05" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                )}
+              </span>
+              <span class="proof-name">{row.source}</span>
+              <span class="proof-arrow" aria-hidden="true">
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div
+      class="security-stage"
+      id="security-stage"
+      role="img"
+      aria-label="Live visualization of abliterated open-weight attack probes racing against Cernan autonomous defense across five production surfaces, with a breakout-time comparison."
+    >
+      <canvas class="security-canvas" aria-hidden="true"></canvas>
+    </div>
+  </div>
+</section>
+
+<style>
+  .security {
+    position: relative;
+    padding: clamp(120px, 17vh, 204px) clamp(24px, 4.25vw, 72px) clamp(112px, 16vh, 184px);
+  }
+  .security:focus { outline: none; }
+
+  .security-inner {
+    display: grid;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.38fr);
+    align-items: center;
+    gap: clamp(36px, 4.8vw, 80px);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .security-copy { max-width: 480px; }
+  .security-eyebrow {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.56;
+  }
+  .security-copy h2 {
+    margin-top: 10px;
+    margin-left: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(26px, 2.35vw, 36px);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+  .security-lead {
+    margin-top: 14px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.62;
+    letter-spacing: -0.008em;
+    color: rgba(11, 26, 43, 0.76);
+  }
+
+  /* Single top divider split into 4 gapped sub-dividers */
+  .sec-progress {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  .sec-seg {
+    position: relative;
+    height: 2px;
+    background: rgba(11, 26, 43, 0.16);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .sec-seg-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #0b6e44;
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+  }
+
+  .security-loop {
+    list-style: none;
+    display: grid;
+    gap: 4px;
+  }
+  .sec-row {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: start;
+    gap: 12px;
+    padding: 11px 0;
+    cursor: pointer;
+  }
+  .sec-index {
+    padding-top: 2px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    opacity: 0.42;
+    transition: opacity 0.25s ease, color 0.25s ease;
+  }
+  .sec-text {
+    display: grid;
+    gap: 3px;
+    opacity: 0.56;
+    transition: opacity 0.28s ease;
+  }
+  .sec-title {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .sec-body {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(11, 26, 43, 0.72);
+  }
+
+  .proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+    padding: 0 9px;
+    margin-top: 1px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 26, 43, 0.14);
+    background: rgba(255, 255, 255, 0.52);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    opacity: 0.68;
+    transition: opacity 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+  }
+  .proof-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .proof-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.55;
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+  }
+  .proof-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(11, 26, 43, 0.28);
+  }
+  .proof-link:hover .proof-arrow {
+    opacity: 1;
+    transform: translate(1.5px, -1.5px);
+  }
+
+  .sec-row[data-active="true"] .sec-text { opacity: 1; }
+  .sec-row[data-active="true"] .sec-index { opacity: 0.95; color: #0b6e44; }
+  .sec-row[data-active="true"] .proof-link {
+    opacity: 0.96;
+    border-color: rgba(11, 110, 68, 0.32);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  .security-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(500px, 66vh, 640px);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .security-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  @media (max-width: 1020px) {
+    .security-inner { grid-template-columns: 1fr; gap: 32px; }
+    .security-copy { max-width: 580px; }
+    .security-stage { height: clamp(440px, 64vh, 560px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sec-index, .sec-text, .proof-link, .proof-arrow { transition: none; }
+  }
+</style>

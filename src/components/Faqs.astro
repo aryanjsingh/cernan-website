@@ -1,0 +1,256 @@
+---
+const faqs = [
+  {
+    q: 'What kinds of projects does Cernan take on?',
+    a: 'We partner with teams on hard technical problems across three areas: training and deploying custom machine learning models, building and hardening cybersecurity systems, and shipping production software built to last.',
+  },
+  {
+    q: 'Do you train models from scratch, or fine-tune existing ones?',
+    a: 'Both. Depending on your data, latency, and cost constraints, we design custom architectures from scratch, fine-tune foundation models, or build lean task-specific models that run reliably in production.',
+  },
+  {
+    q: 'How do you approach security-critical engagements?',
+    a: 'Security is built into the architecture from day one: threat modeling, minimal attack surfaces, strict data isolation, and audited dependencies. We work comfortably under NDA, inside your VPC, or in restricted environments.',
+  },
+  {
+    q: 'How fast can we get started, and how do you work?',
+    a: 'Most engagements kick off within a week of scoping. You work directly with the senior engineers writing your code and training your models, structured as a focused sprint, a fixed-scope build, or an ongoing technical partnership.',
+  },
+  {
+    q: 'Who owns the code, model weights, and IP?',
+    a: 'You do, 100%. Every line of code, trained weight, data pipeline, and piece of documentation transfers directly to your organization with zero licensing lock-in.',
+  },
+];
+---
+
+<section class="faqs" id="faqs" aria-labelledby="faqs-title" tabindex="-1">
+  <div class="faqs-inner">
+    <div class="faqs-head">
+      <h2 id="faqs-title">Frequently asked questions</h2>
+      <p class="faqs-sub">Everything you might want to know before working with us.</p>
+    </div>
+
+    <div class="faqs-list" data-faq-list>
+      {faqs.map((item, i) => {
+        const panelId = `faq-panel-${i}`;
+        const buttonId = `faq-trigger-${i}`;
+        return (
+          <div class="faq-item" data-open="false">
+            <h3 class="faq-heading">
+              <button
+                type="button"
+                class="faq-trigger"
+                id={buttonId}
+                aria-expanded="false"
+                aria-controls={panelId}
+              >
+                <span class="faq-index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                <span class="faq-question">{item.q}</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="faq-panel" id={panelId} role="region" aria-labelledby={buttonId} inert>
+              <div class="faq-panel-inner">
+                <p class="faq-answer">{item.a}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const list = document.querySelector('[data-faq-list]');
+    if (!list) return;
+    list.addEventListener('click', (event) => {
+      const trigger = event.target.closest('.faq-trigger');
+      if (!trigger) return;
+      const item = trigger.closest('.faq-item');
+      if (!item) return;
+      const nextOpen = trigger.getAttribute('aria-expanded') !== 'true';
+      list.querySelectorAll('.faq-item[data-open="true"]').forEach((openItem) => {
+        if (openItem === item) return;
+        openItem.dataset.open = 'false';
+        openItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-panel')?.setAttribute('inert', '');
+      });
+      item.dataset.open = String(nextOpen);
+      trigger.setAttribute('aria-expanded', String(nextOpen));
+      const panel = item.querySelector('.faq-panel');
+      if (panel) {
+        if (nextOpen) panel.removeAttribute('inert');
+        else panel.setAttribute('inert', '');
+      }
+    });
+  })();
+</script>
+
+<style>
+  .faqs {
+    position: relative;
+    margin-top: clamp(56px, 9vh, 112px);
+    padding: clamp(104px, 15vh, 172px) clamp(24px, 4vw, 48px) clamp(112px, 16vh, 184px);
+  }
+  .faqs:focus { outline: none; }
+
+  .faqs-inner {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .faqs-head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .faqs-head h2 {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(30px, 2.8vw, 44px);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  .faqs-sub {
+    margin: 12px auto 0;
+    max-width: 44ch;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+
+  .faqs-list {
+    border-top: 1px solid rgba(11, 26, 43, 0.14);
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(11, 26, 43, 0.14);
+  }
+  .faq-heading {
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 28px 1fr 18px;
+    align-items: baseline;
+    gap: 14px;
+    padding: 18px 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    text-align: left;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .faq-trigger:hover .faq-question { opacity: 0.72; }
+  .faq-trigger:focus-visible {
+    outline: 1.5px solid var(--ink);
+    outline-offset: 6px;
+    border-radius: 4px;
+  }
+
+  .faq-index {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    opacity: 0.48;
+  }
+  .faq-question {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: clamp(15px, 1.15vw, 17px);
+    font-weight: 450;
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    transition: opacity 0.2s ease;
+  }
+
+  .faq-icon {
+    position: relative;
+    align-self: center;
+    justify-self: end;
+    width: 13px;
+    height: 13px;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+  }
+  .faq-trigger:hover .faq-icon { opacity: 1; }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1.25px;
+    background: currentColor;
+    border-radius: 1px;
+    transform: translateY(-50%);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+  }
+  .faq-icon::after {
+    transform: translateY(-50%) rotate(90deg);
+  }
+  .faq-item[data-open="true"] .faq-icon::after {
+    transform: translateY(-50%) rotate(0deg);
+    opacity: 0;
+  }
+
+  .faq-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .faq-item[data-open="true"] .faq-panel {
+    grid-template-rows: 1fr;
+  }
+  .faq-panel-inner {
+    overflow: hidden;
+  }
+
+  .faq-answer {
+    padding: 0 28px 20px 42px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.6;
+    letter-spacing: -0.008em;
+    color: rgba(11, 26, 43, 0.78);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.26s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .faq-item[data-open="true"] .faq-answer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .faq-trigger {
+      grid-template-columns: 24px 1fr 16px;
+      gap: 10px;
+      padding: 16px 0;
+    }
+    .faq-answer {
+      padding: 0 14px 18px 34px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-panel,
+    .faq-answer,
+    .faq-icon::before,
+    .faq-icon::after,
+    .faq-trigger,
+    .faq-question {
+      transition: none;
+    }
+  }
+</style>

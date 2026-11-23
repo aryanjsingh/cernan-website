@@ -1,0 +1,318 @@
+---
+const studies = [
+  {
+    id: 'forward',
+    index: '01',
+    title: 'Global enterprise standard',
+    body: '88% of organizations now use AI in at least one business function, with corporate investment more than doubling to $581.7B.',
+    source: 'Stanford',
+    venue: 'HAI AI Index 2026',
+    href: 'https://hai.stanford.edu/ai-index/2026/economy',
+    logo: 'stanford',
+  },
+  {
+    id: 'loss',
+    index: '02',
+    title: 'Measured return on investment',
+    body: '80% of enterprise leaders report positive ROI, and firms tracking growth metrics are nearly 3x more likely to see strong gains.',
+    source: 'Wharton',
+    venue: 'AI Adoption Report 2026',
+    href: 'https://knowledge.wharton.upenn.edu/special-report/2026-ai-adoption-report/',
+    logo: 'wharton',
+  },
+  {
+    id: 'backward',
+    index: '03',
+    title: 'Force multiplier for teams',
+    body: 'Across nearly 800 professionals, individuals with AI matched two-person teams, cut task time by 16.4%, and hit top-decile quality 3x as often.',
+    source: 'Harvard',
+    venue: 'Organization Science 2026',
+    href: 'https://www.nber.org/papers/w33641',
+    logo: 'harvard',
+  },
+  {
+    id: 'update',
+    index: '04',
+    title: 'Compounding productivity gains',
+    body: 'Evidence from nearly 750 corporate executives shows AI labor productivity gains materializing now and strengthening as workflows mature.',
+    source: 'NBER',
+    venue: 'Working Paper 34984 · 2026',
+    href: 'https://www.nber.org/papers/w34984',
+    logo: 'nber',
+  },
+];
+---
+
+<section class="research" id="research" aria-labelledby="research-title" tabindex="-1">
+  <span class="research-anchor" id="our-work" aria-hidden="true"></span>
+  <div class="research-inner">
+    <div
+      class="research-stage"
+      id="research-stage"
+      role="img"
+      aria-label="A small neural network training live with backpropagation: activations flow forward, the loss is measured, gradients flow backward and the weights update while the decision boundary forms."
+    >
+      <canvas class="research-canvas" aria-hidden="true"></canvas>
+    </div>
+
+    <div class="research-copy">
+      <p class="research-eyebrow">Research</p>
+      <h2 id="research-title">Why AI and ML are now essential.</h2>
+      <p class="research-lead">
+        Modern companies compete on speed, accuracy, and how quickly their systems adapt to real
+        data. Across peer-reviewed field studies, applied machine learning is no longer a side
+        experiment; it is the difference between compounding leverage and falling behind.
+      </p>
+
+      <div class="loop-progress" aria-hidden="true">
+        {studies.map((row) => (
+          <span class="loop-seg" data-seg={row.id}>
+            <span class="loop-seg-fill" data-seg-fill={row.id}></span>
+          </span>
+        ))}
+      </div>
+
+      <ol class="research-loop" aria-label="Research and industry evidence on applied AI and machine learning">
+        {studies.map((row, i) => (
+          <li class="loop-row" data-phase={row.id} data-active={i === 0 ? 'true' : 'false'}>
+            <span class="loop-index">{row.index}</span>
+            <div class="loop-text">
+              <div class="loop-head">
+                <span class="loop-title">{row.title}</span>
+              </div>
+              <span class="loop-body">{row.body}</span>
+            </div>
+            <a
+              class="study-link"
+              href={row.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read ${row.source} (${row.venue}) study`}
+              title={`${row.source} · ${row.venue}`}
+            >
+              <span class="study-logo" aria-hidden="true">
+                {row.logo === 'wharton' && (
+                  <svg viewBox="0 0 16 18" width="13" height="15">
+                    <path d="M2 2h12v7.2c0 3.7-2.6 5.9-6 7.3-3.4-1.4-6-3.6-6-7.3V2z" fill="#011F5B" />
+                    <path d="M2 2h12v4.8H2z" fill="#990000" />
+                    <path d="M4.6 8.4l1.5 4.4L8 9.2l1.9 3.6 1.5-4.4" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                )}
+                {row.logo === 'harvard' && (
+                  <svg viewBox="0 0 16 18" width="13" height="15">
+                    <path d="M2 2h12v7.2c0 3.7-2.6 5.9-6 7.3-3.4-1.4-6-3.6-6-7.3V2z" fill="#A51C30" />
+                    <path d="M5 5.8h6M5 8.8h6M6.2 11.8h3.6" stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="round" />
+                  </svg>
+                )}
+                {row.logo === 'stanford' && (
+                  <svg viewBox="0 0 16 18" width="13" height="15" fill="none">
+                    <path d="M8 2.6L4.2 7.4h7.6L8 2.6z" fill="#175E54" />
+                    <path d="M8 6.4L3.2 12.2h9.6L8 6.4z" fill="#175E54" />
+                    <path d="M8 2.6v13.6" stroke="#8C1515" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                )}
+                {row.logo === 'nber' && (
+                  <svg viewBox="0 0 18 16" width="15" height="13" fill="none">
+                    <path d="M2 6L9 1.8L16 6H2z" fill="#1C4E80" />
+                    <path d="M4.5 6.5v6.5M9 6.5v6.5M13.5 6.5v6.5" stroke="#1C4E80" stroke-width="1.5" stroke-linecap="round" />
+                    <path d="M2 14h14" stroke="#C69214" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                )}
+              </span>
+              <span class="study-name">{row.source}</span>
+              <span class="study-arrow" aria-hidden="true">
+                <svg width="9" height="9" viewBox="0 0 12 12" fill="none">
+                  <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .research {
+    position: relative;
+    padding: clamp(136px, 19vh, 224px) clamp(24px, 4.25vw, 72px) clamp(112px, 16vh, 184px);
+  }
+  .research:focus { outline: none; }
+  .research-anchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; }
+
+  .research-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.38fr) minmax(300px, 0.82fr);
+    align-items: center;
+    gap: clamp(36px, 4.8vw, 80px);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .research-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(520px, 68vh, 660px);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .research-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .research-copy { max-width: 480px; }
+  .research-eyebrow {
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.56;
+  }
+  .research-copy h2 {
+    margin-top: 10px;
+    margin-left: -0.02em;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(26px, 2.35vw, 36px);
+    font-optical-sizing: auto;
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  }
+  .research-lead {
+    margin-top: 14px;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    line-height: 1.62;
+    letter-spacing: -0.008em;
+    color: rgba(11, 26, 43, 0.76);
+  }
+
+  /* Single top divider split into 4 gapped sub-dividers that fill sequentially */
+  .loop-progress {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  .loop-seg {
+    position: relative;
+    height: 2px;
+    background: rgba(11, 26, 43, 0.16);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .loop-seg-fill {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #0b6e44;
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+  }
+
+  .research-loop {
+    list-style: none;
+    display: grid;
+    gap: 4px;
+  }
+  .loop-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    align-items: start;
+    gap: 12px;
+    padding: 11px 0;
+    cursor: pointer;
+  }
+
+  .loop-index {
+    padding-top: 2px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    opacity: 0.42;
+    transition: opacity 0.25s ease, color 0.25s ease;
+  }
+  .loop-text {
+    display: grid;
+    gap: 3px;
+    opacity: 0.56;
+    transition: opacity 0.28s ease;
+  }
+  .loop-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .loop-title {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .loop-body {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(11, 26, 43, 0.72);
+  }
+
+  .study-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+    padding: 0 9px;
+    margin-top: 1px;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 26, 43, 0.14);
+    background: rgba(255, 255, 255, 0.52);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    opacity: 0.68;
+    transition: opacity 0.22s ease, background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .study-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .study-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.55;
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+  }
+  .study-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(11, 26, 43, 0.28);
+  }
+  .study-link:hover .study-arrow {
+    opacity: 1;
+    transform: translate(1.5px, -1.5px);
+  }
+
+  .loop-row[data-active="true"] .loop-text { opacity: 1; }
+  .loop-row[data-active="true"] .loop-index { opacity: 0.95; color: #0b6e44; }
+  .loop-row[data-active="true"] .study-link {
+    opacity: 0.96;
+    border-color: rgba(11, 110, 68, 0.32);
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  @media (max-width: 1020px) {
+    .research-inner { grid-template-columns: 1fr; gap: 32px; }
+    .research-stage { height: clamp(520px, 76vh, 620px); }
+    .research-copy { max-width: 580px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .loop-index, .loop-text, .study-link, .study-arrow { transition: none; }
+  }
+</style>

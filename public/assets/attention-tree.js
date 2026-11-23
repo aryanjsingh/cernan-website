@@ -172,7 +172,7 @@
   let stageRect={left:0,top:0,width:1,height:1};
   let labelBounds=[], lastPositions=[];
   let fallbackPoints;
-  let elapsed=0,cycleStart=0,selectTime=0,last=0,raf=0,paused=false,query=8,prevQuery=8,head=0,hover=-1,activeHover=-1;
+  let elapsed=0,cycleStart=0,selectTime=0,last=0,raf=0,paused=false,inView=true,query=8,prevQuery=8,head=0,hover=-1,activeHover=-1;
   let holdUntil=0,manualHead=false,pointer=[0,0],targetPointer=[0,0],angles=[0,0];
   let queryMix=1,hoverAlpha=0,displayQueryRow=8,focusPos=null,linkReveal=1;
   let attention=model.attend(query,head), top=[], peakWeight=1;
@@ -212,7 +212,7 @@
     });
   }
   function ensureLoop() {
-    if (!raf && !document.hidden) {
+    if (!raf && inView && !document.hidden) {
       last = 0;
       raf = requestAnimationFrame(tick);
     }
@@ -499,7 +499,7 @@
       }
     }
     draw(uiDt);
-    if ((!paused && !reduced.matches && !document.hidden) || (!document.hidden && isSettling())) {
+    if (inView && ((!paused && !reduced.matches && !document.hidden) || (!document.hidden && isSettling()))) {
       raf = requestAnimationFrame(tick);
     } else {
       raf = 0;
@@ -512,7 +512,7 @@
     pauseButton.setAttribute('aria-label',paused?'Play self-attention animation':'Pause self-attention animation');
     pauseButton.hidden=reduced.matches;setData('paused',String(paused||reduced.matches));
     draw();
-    if((!paused&&!reduced.matches&&!document.hidden)||(!document.hidden&&isSettling()))raf=requestAnimationFrame(tick);
+    if(inView&&((!paused&&!reduced.matches&&!document.hidden)||(!document.hidden&&isSettling())))raf=requestAnimationFrame(tick);
   }
   function nearestAt(clientX,clientY) {
     const x=clientX-stageRect.left,y=clientY-stageRect.top;
@@ -563,6 +563,11 @@
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();glReady=false;setData('renderer','canvas');draw();});
   canvas.addEventListener('webglcontextrestored',()=>{try{initGL();draw();}catch(error){console.warn(error.message);}});
   new ResizeObserver(resize).observe(stage);
+  new IntersectionObserver(entries => {
+    inView = entries[0] ? entries[0].isIntersecting : true;
+    if (inView) { updateRect(); ensureLoop(); }
+    else if (raf) { cancelAnimationFrame(raf); raf = 0; last = 0; }
+  }, { threshold: 0.01 }).observe(stage);
   select(query);resize();sync();
   document.fonts.ready.then(() => {
     if (reduced.matches) draw();
