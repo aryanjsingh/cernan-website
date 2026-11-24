@@ -1,7 +1,7 @@
 <div class="page-atmosphere" aria-hidden="true">
   <div class="sky"></div>
   <canvas id="clouds"></canvas>
-  <div class="grain"></div>
+  <div class="horizon-blend"></div>
 </div>
 
 <style>
@@ -9,12 +9,16 @@
   .sky {
     position: absolute; inset: 0;
     background:
-      radial-gradient(120% 80% at 50% 112%, var(--white) 0%, rgba(255,255,255,0) 58%),
-      linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 40%, var(--sky-low) 74%, var(--sky-horizon) 100%);
+      radial-gradient(110% 65% at 50% 96%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 60%),
+      linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 38%, var(--sky-low) 72%, #eef7ff 100%);
   }
   #clouds { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-  .grain {
-    position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  .horizon-blend {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22%;
+    background: linear-gradient(180deg, rgba(238, 247, 255, 0) 0%, #eef7ff 100%);
   }
 </style>
