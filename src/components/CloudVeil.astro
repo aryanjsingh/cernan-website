@@ -25,6 +25,7 @@
       varying vec2 vUv;
       uniform vec2 uRes;
       uniform float uTime;
+      uniform float uScroll;
 
       float hash(vec2 p) {
         return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -56,33 +57,34 @@
         vec2 p = vUv * aspect;
 
         // Vertical envelope: dense bank in the middle, feathered cleanly to 0 at top & bottom
-        float env = smoothstep(0.02, 0.38, vUv.y) * smoothstep(0.98, 0.60, vUv.y);
+        float env = smoothstep(0.02, 0.36, vUv.y) * smoothstep(0.98, 0.58, vUv.y);
         if (env <= 0.001) {
           gl_FragColor = vec4(0.0);
           return;
         }
 
-        // Far bank: slow, broad cumulus billows
-        vec2 q1 = p * vec2(1.45, 2.1) + vec2(uTime * 0.022, 0.0);
-        float warp = fbm(q1 * 0.85 + vec2(-uTime * 0.012, 0.4));
-        float bank = fbm(q1 + warp * 0.65);
+        // Far bank: steady wind drift + rolling internal domain-warp billowing
+        vec2 q1 = p * vec2(1.45, 2.05) + vec2(uTime * 0.14 + uScroll * 0.18, sin(uTime * 0.22) * 0.06);
+        float warp1 = fbm(q1 * 0.85 + vec2(-uTime * 0.09, uTime * 0.04 + 0.4));
+        float warp2 = fbm(q1 * 1.15 + warp1 * 0.7 + vec2(uTime * 0.06, -uTime * 0.05));
+        float bank = fbm(q1 + warp2 * 0.72);
 
-        // Near mist: lighter drifting wisps
-        vec2 q2 = p * vec2(2.3, 3.1) + vec2(uTime * 0.042 + 4.2, -0.3);
-        float wisp = fbm(q2 + warp * 0.35);
+        // Near mist: faster drifting foreground wisps with parallax
+        vec2 q2 = p * vec2(2.35, 3.0) + vec2(uTime * 0.26 + uScroll * 0.36 + 4.2, -0.3 + cos(uTime * 0.28) * 0.05);
+        float wisp = fbm(q2 + warp1 * 0.45);
 
         // Soft upper-right sunlight shading for realistic cloud volume
-        float litSample = fbm(q1 + warp * 0.65 + vec2(0.08, 0.14));
-        float shade = clamp((bank - litSample) * 2.4 + 0.62, 0.0, 1.0);
+        float litSample = fbm(q1 + warp2 * 0.72 + vec2(0.08, 0.14));
+        float shade = clamp((bank - litSample) * 2.55 + 0.60, 0.0, 1.0);
 
-        float density = smoothstep(0.30, 0.78, bank * 0.72 + wisp * 0.42);
+        float density = smoothstep(0.28, 0.76, bank * 0.68 + wisp * 0.46);
         // Core mist haze so the cloudbank gently veils the transition
-        float haze = smoothstep(0.15, 0.50, vUv.y) * smoothstep(0.88, 0.52, vUv.y) * 0.58;
-        float alpha = clamp((density * 0.86 + haze) * env, 0.0, 0.96);
+        float haze = smoothstep(0.14, 0.50, vUv.y) * smoothstep(0.88, 0.52, vUv.y) * 0.56;
+        float alpha = clamp((density * 0.88 + haze) * env, 0.0, 0.96);
 
         vec3 shadowCol = vec3(0.76, 0.88, 0.98);
         vec3 sunCol = vec3(0.99, 1.0, 1.0);
-        vec3 col = mix(shadowCol, sunCol, smoothstep(0.15, 0.92, shade * 0.75 + vUv.y * 0.28));
+        vec3 col = mix(shadowCol, sunCol, smoothstep(0.14, 0.90, shade * 0.76 + vUv.y * 0.28));
 
         gl_FragColor = vec4(col * alpha, alpha);
       }
@@ -113,8 +115,17 @@
 
     const uRes = gl.getUniformLocation(prog, 'uRes');
     const uTime = gl.getUniformLocation(prog, 'uTime');
+    const uScroll = gl.getUniformLocation(prog, 'uScroll');
 
     let w = 1, h = 1, raf = 0, last = 0, elapsed = 0, visible = true;
+    let targetScroll = 0, smoothScroll = 0;
+
+    function updateScroll() {
+      targetScroll = Math.min(Math.max(window.scrollY / Math.max(window.innerHeight, 1), 0), 3);
+    }
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    updateScroll();
+    smoothScroll = targetScroll;
 
     function resize() {
       const rect = canvas.getBoundingClientRect();
@@ -129,11 +140,15 @@
     }
 
     function render(dt) {
-      if (!reduced.matches && dt > 0) elapsed += dt;
+      if (!reduced.matches && dt > 0) {
+        elapsed += dt;
+        smoothScroll += (targetScroll - smoothScroll) * Math.min(1, dt * 6);
+      }
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(uRes, w, h);
       gl.uniform1f(uTime, elapsed);
+      gl.uniform1f(uScroll, smoothScroll);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     }
 
@@ -184,8 +199,9 @@
     background: linear-gradient(
       180deg,
       rgba(234, 245, 255, 0) 0%,
-      rgba(244, 250, 255, 0.52) 48%,
-      rgba(234, 245, 255, 0) 100%
+      rgba(244, 250, 255, 0.56) 46%,
+      rgba(237, 246, 253, 0.88) 84%,
+      rgba(237, 246, 253, 0) 100%
     );
   }
   .cloud-veil-canvas {
