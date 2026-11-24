@@ -9,9 +9,25 @@ import Header from './Header.astro';
     <h1 id="hero-title"><span>Engineering for</span> <span>uncharted problems.</span></h1>
     <p>Cernan is an engineering agency. We train machine learning models of every type, build systems for cybersecurity, and develop software fast and built to last.</p>
     <div class="hero-actions">
-      <a class="hero-action hero-action-primary" href="#our-work">
-        See our work
-        <span class="hero-action-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <a class="hero-action hero-action-primary" href="#contact">
+        <span class="hero-label">
+          <span>Start a project</span>
+          <span aria-hidden="true">Start a project</span>
+        </span>
+        <span class="hero-action-icon" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+      <a class="hero-action hero-action-secondary" href="#research">
+        <span class="hero-label">
+          <span>Explore research</span>
+          <span aria-hidden="true">Explore research</span>
+        </span>
+        <span class="hero-action-icon hero-action-icon-down" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
       </a>
     </div>
   </div>
@@ -58,23 +74,52 @@ import Header from './Header.astro';
     margin-top: 28px;
   }
   .hero-action {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    min-height: 46px;
-    padding: 0 22px;
+    height: 46px;
+    padding: 0 8px 0 22px;
     border: 0;
     border-radius: 999px;
-    font: 500 12.5px/1.2 "JetBrains Mono", ui-monospace, monospace;
+    font: 500 12.5px/1 "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.01em;
     white-space: nowrap;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color .2s, transform .2s;
+    transition: background-color .22s ease, border-color .22s ease, transform .2s ease;
   }
-  .hero-action-primary { padding-right: 8px; background: var(--ink); color: var(--white); }
+  .hero-action-primary { background: var(--ink); color: var(--white); }
   .hero-action-primary:hover { background: #17354d; }
+  .hero-action-secondary {
+    border: 1px solid rgba(11, 26, 43, 0.18);
+    background: rgba(255, 255, 255, 0.56);
+    color: var(--ink);
+  }
+  .hero-action-secondary:hover {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(11, 26, 43, 0.34);
+  }
+  .hero-label {
+    position: relative;
+    display: block;
+    height: 16px;
+    overflow: hidden;
+    line-height: 16px;
+  }
+  .hero-label span {
+    display: block;
+    transition: transform .45s cubic-bezier(.65, 0, .35, 1);
+  }
+  .hero-label span + span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(100%);
+  }
   .hero-action-icon {
+    position: relative;
     display: grid;
     place-items: center;
     width: 30px;
@@ -82,9 +127,24 @@ import Header from './Header.astro';
     border-radius: 50%;
     background: var(--white);
     color: var(--ink);
+    overflow: hidden;
   }
-  .hero-action-icon svg { transition: transform .2s; }
-  .hero-action-primary:hover .hero-action-icon svg { transform: translateY(2px); }
+  .hero-action-secondary .hero-action-icon {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .hero-action-icon svg {
+    position: absolute;
+    transition: transform .45s cubic-bezier(.65, 0, .35, 1);
+  }
+  .hero-action-icon svg + svg { transform: translate(-150%, 150%); }
+  .hero-action-icon-down svg + svg { transform: translateY(-150%); }
+  .hero-action:hover .hero-label span:first-child { transform: translateY(-100%); }
+  .hero-action:hover .hero-label span + span { transform: translateY(0); }
+  .hero-action:hover .hero-action-icon svg:first-child { transform: translate(150%, -150%); }
+  .hero-action:hover .hero-action-icon svg + svg { transform: translate(0, 0); }
+  .hero-action:hover .hero-action-icon-down svg:first-child { transform: translateY(150%); }
+  .hero-action:hover .hero-action-icon-down svg + svg { transform: translateY(0); }
   .hero-action:active { transform: translateY(1px); }
   .hero-action:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
   @keyframes hero-arrive {
@@ -92,8 +152,8 @@ import Header from './Header.astro';
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-intro { opacity: 1; transform: translateY(-50%); animation: none; }
-    .hero-action, .hero-action-icon svg { transition: none; }
-    .hero-action:active, .hero-action-primary:hover .hero-action-icon svg { transform: none; }
+    .hero-action, .hero-label span, .hero-action-icon svg { transition: none; }
+    .hero-action:active { transform: none; }
   }
 
   @media (max-width: 900px), (max-height: 600px) {
