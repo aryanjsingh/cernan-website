@@ -231,12 +231,14 @@ export default async function handler(req, res) {
   }
 
   let scopes = [];
-  if (body.scopes !== undefined) {
-    if (!Array.isArray(body.scopes) || body.scopes.length > 10) {
+  const rawScopes = body.scopes !== undefined ? body.scopes : body.scope;
+  if (rawScopes !== undefined) {
+    const scopeList = typeof rawScopes === 'string' ? [rawScopes] : rawScopes;
+    if (!Array.isArray(scopeList) || scopeList.length > 10) {
       sendJson(res, 400, { ok: false, error: 'Invalid scope selection.' });
       return;
     }
-    scopes = body.scopes
+    scopes = scopeList
       .filter((s) => typeof s === 'string')
       .map((s) => s.trim())
       .filter((s) => ALLOWED_SCOPES.has(s));
