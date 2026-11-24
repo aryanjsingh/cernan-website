@@ -19,16 +19,6 @@ import Header from './Header.astro';
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
       </a>
-      <a class="hero-action hero-action-secondary" href="#research">
-        <span class="hero-label">
-          <span>Explore research</span>
-          <span aria-hidden="true">Explore research</span>
-        </span>
-        <span class="hero-action-icon hero-action-icon-down" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2.5 6.5L6 10L9.5 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-      </a>
     </div>
   </div>
   <AttentionSpecimen />
@@ -92,15 +82,6 @@ import Header from './Header.astro';
   }
   .hero-action-primary { background: var(--ink); color: var(--white); }
   .hero-action-primary:hover { background: #17354d; }
-  .hero-action-secondary {
-    border: 1px solid rgba(11, 26, 43, 0.18);
-    background: rgba(255, 255, 255, 0.56);
-    color: var(--ink);
-  }
-  .hero-action-secondary:hover {
-    background: rgba(255, 255, 255, 0.88);
-    border-color: rgba(11, 26, 43, 0.34);
-  }
   .hero-label {
     position: relative;
     display: block;
@@ -129,22 +110,15 @@ import Header from './Header.astro';
     color: var(--ink);
     overflow: hidden;
   }
-  .hero-action-secondary .hero-action-icon {
-    background: var(--ink);
-    color: var(--white);
-  }
   .hero-action-icon svg {
     position: absolute;
     transition: transform .45s cubic-bezier(.65, 0, .35, 1);
   }
   .hero-action-icon svg + svg { transform: translate(-150%, 150%); }
-  .hero-action-icon-down svg + svg { transform: translateY(-150%); }
   .hero-action:hover .hero-label span:first-child { transform: translateY(-100%); }
   .hero-action:hover .hero-label span + span { transform: translateY(0); }
   .hero-action:hover .hero-action-icon svg:first-child { transform: translate(150%, -150%); }
   .hero-action:hover .hero-action-icon svg + svg { transform: translate(0, 0); }
-  .hero-action:hover .hero-action-icon-down svg:first-child { transform: translateY(150%); }
-  .hero-action:hover .hero-action-icon-down svg + svg { transform: translateY(0); }
   .hero-action:active { transform: translateY(1px); }
   .hero-action:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
   @keyframes hero-arrive {
