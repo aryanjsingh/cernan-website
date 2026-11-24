@@ -7,10 +7,6 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
   <span class="contact-anchor" id="book" aria-hidden="true"></span>
   <div class="contact-inner">
     <div class="contact-intro">
-      <p class="contact-status">
-        <span class="status-dot" aria-hidden="true"></span>
-        <span>Talk to us</span>
-      </p>
       <h2 id="contact-title">Tell us what you are building.</h2>
       <p class="contact-lead">
         Share a bit about your team, what you need help with, and any relevant links. You will hear
@@ -24,9 +20,18 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
           class="direct-email"
           data-copy-email={email}
           aria-label={`Copy ${email} to clipboard`}
+          title={`Copy ${email}`}
         >
           <span data-copy-label>{email}</span>
-          <span class="copy-badge" data-copy-badge>Copy</span>
+          <span class="copy-icon-btn" aria-hidden="true">
+            <svg class="icon-copy" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+            <svg class="icon-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12.5l4.5 4.5L19 7.5" />
+            </svg>
+          </span>
         </button>
       </div>
     </div>
@@ -104,10 +109,18 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
         </button>
 
         <a class="contact-mailto" href={`mailto:${email}`}>
-          <span>Or email us directly</span>
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <span class="btn-label">
+            <span>Or email us directly</span>
+            <span aria-hidden="true">Or email us directly</span>
+          </span>
+          <span class="btn-chip btn-chip-dark" aria-hidden="true">
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+              <path d="M3 9L9 3M9 3H4M9 3V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </a>
 
         <p class="form-status" data-form-status role="status" aria-live="polite"></p>
@@ -120,8 +133,6 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
   (() => {
     const copyBtn = document.querySelector('[data-copy-email]');
     if (copyBtn) {
-      const label = copyBtn.querySelector('[data-copy-label]');
-      const badge = copyBtn.querySelector('[data-copy-badge]');
       const addr = copyBtn.getAttribute('data-copy-email');
       let timer = 0;
       copyBtn.addEventListener('click', async () => {
@@ -138,12 +149,9 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
           ta.remove();
         }
         copyBtn.dataset.copied = 'true';
-        if (badge) badge.textContent = 'Copied';
         clearTimeout(timer);
         timer = setTimeout(() => {
           copyBtn.dataset.copied = 'false';
-          if (badge) badge.textContent = 'Copy';
-          if (label) label.textContent = addr;
         }, 2000);
       });
     }
@@ -249,27 +257,7 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
     margin: 0 auto;
   }
 
-  .contact-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink);
-    opacity: 0.68;
-  }
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #0b6e44;
-    box-shadow: 0 0 0 3px rgba(11, 110, 68, 0.18);
-  }
-
   .contact-intro h2 {
-    margin-top: 14px;
     margin-left: -0.02em;
     font-family: "Newsreader", Georgia, serif;
     font-size: clamp(30px, 3vw, 44px);
@@ -315,25 +303,45 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
     font: 500 13px/1.2 "JetBrains Mono", ui-monospace, monospace;
     cursor: pointer;
   }
-  .copy-badge {
-    padding: 3px 8px;
-    border-radius: 999px;
+  .copy-icon-btn {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     border: 1px solid rgba(11, 26, 43, 0.16);
     background: rgba(255, 255, 255, 0.48);
-    font-size: 9.5px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    color: var(--ink);
+    opacity: 0.74;
+    transition: opacity 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
   }
-  .direct-email:hover .copy-badge {
+  .copy-icon-btn svg {
+    position: absolute;
+    transition: opacity 0.2s ease, transform 0.22s ease;
+  }
+  .copy-icon-btn .icon-check {
+    opacity: 0;
+    transform: scale(0.7);
+    color: #0b6e44;
+  }
+  .direct-email:hover .copy-icon-btn {
     opacity: 1;
     border-color: rgba(11, 26, 43, 0.34);
+    background: rgba(255, 255, 255, 0.82);
   }
-  .direct-email[data-copied="true"] .copy-badge {
+  .direct-email[data-copied="true"] .copy-icon-btn {
     opacity: 1;
-    color: #0b6e44;
-    border-color: rgba(11, 110, 68, 0.4);
+    border-color: rgba(11, 110, 68, 0.42);
+    background: rgba(255, 255, 255, 0.86);
+  }
+  .direct-email[data-copied="true"] .icon-copy {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  .direct-email[data-copied="true"] .icon-check {
+    opacity: 1;
+    transform: scale(1);
   }
 
   /* Minimal hairline intake form */
@@ -508,30 +516,34 @@ const scopes = ['Machine Learning', 'Security Audit', 'Software Engineering', 'A
   .contact-submit:hover .btn-chip svg + svg { transform: translate(0, 0); }
 
   .contact-mailto {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 12px;
     height: 46px;
-    padding: 0 18px;
+    padding: 0 8px 0 20px;
     border-radius: 999px;
     border: 1px solid rgba(11, 26, 43, 0.18);
-    background: rgba(255, 255, 255, 0.44);
+    background: rgba(255, 255, 255, 0.56);
     color: var(--ink);
     text-decoration: none;
-    font: 500 12px/1 "JetBrains Mono", ui-monospace, monospace;
+    font: 500 12.5px/1 "JetBrains Mono", ui-monospace, monospace;
     letter-spacing: 0.01em;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.2s ease;
+  }
+  .btn-chip-dark {
+    background: var(--ink);
+    color: var(--white);
   }
   .contact-mailto:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.88);
     border-color: rgba(11, 26, 43, 0.34);
   }
-  .contact-mailto svg {
-    transition: transform 0.2s ease;
-  }
-  .contact-mailto:hover svg {
-    transform: translate(1.5px, -1.5px);
-  }
+  .contact-mailto:active { transform: translateY(1px); }
+  .contact-mailto:hover .btn-label span:first-child { transform: translateY(-100%); }
+  .contact-mailto:hover .btn-label span + span { transform: translateY(0); }
+  .contact-mailto:hover .btn-chip svg:first-child { transform: translate(150%, -150%); }
+  .contact-mailto:hover .btn-chip svg + svg { transform: translate(0, 0); }
 
   .hp-field {
     position: absolute;

@@ -38,18 +38,18 @@
   .topbar {
     position: absolute; top: 0; left: 0; right: 0; z-index: 10;
     display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-    padding: 28px 40px;
+    padding: 28px clamp(32px, 4.25vw, 72px);
     opacity: 0; animation: fadein 1s ease .1s forwards;
   }
   @keyframes fadein { to { opacity: 1; } }
 
-  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; justify-self: start; }
-  .brand svg { width: 22px; height: 22px; display: block; }
-  .brand span { font-size: 15px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; }
+  .brand { display: flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; justify-self: start; }
+  .brand svg { width: 28px; height: 28px; display: block; }
+  .brand span { font-size: 16.5px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
 
   .menu { display: flex; align-items: center; gap: 36px; list-style: none; }
   .menu a {
-    color: var(--ink); opacity: .62; text-decoration: none;
+    color: var(--ink); opacity: .64; text-decoration: none;
     font-size: 13px; font-weight: 400; letter-spacing: 0.01em;
     transition: opacity .2s;
   }
@@ -57,17 +57,17 @@
 
   .book {
     justify-self: end; position: relative; display: inline-flex; align-items: center; gap: 10px;
-    height: 40px; padding: 0 8px 0 18px; border-radius: 999px;
+    height: 38px; padding: 0 7px 0 16px; border-radius: 999px;
     background: rgba(255, 255, 255, 0.92); color: var(--ink); text-decoration: none;
-    font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(11, 26, 43, 0.06), 0 8px 24px rgba(30, 90, 150, 0.18);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.01em;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(11, 26, 43, 0.06), 0 8px 24px rgba(30, 90, 150, 0.16);
     transition: background .25s, box-shadow .25s;
   }
   .book .label { position: relative; display: block; height: 16px; overflow: hidden; line-height: 16px; }
   .book .label span { display: block; transition: transform .45s cubic-bezier(.65, 0, .35, 1); }
   .book .label span + span { position: absolute; left: 0; top: 0; transform: translateY(100%); }
   .book .chip {
-    width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+    width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center;
     background: var(--ink); color: var(--white); overflow: hidden; position: relative;
   }
   .book .chip svg { position: absolute; transition: transform .45s cubic-bezier(.65, 0, .35, 1); }
