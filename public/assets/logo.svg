@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <mask id="cernan-eyelet-mask" maskUnits="userSpaceOnUse">
+      <rect width="24" height="24" fill="#fff" />
+      <circle cx="13.8" cy="3.6" r="1.35" fill="#000" />
+      <circle cx="20.4" cy="10.2" r="1.35" fill="#000" />
+    </mask>
+  </defs>
+  <g mask="url(#cernan-eyelet-mask)" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.4 10.2 A8.6 8.6 0 1 1 13.8 3.6" stroke-width="1.75" />
+    <path d="M13.8 3.6 Q11.2 7.8 12 12 Q16.2 12.8 20.4 10.2" stroke-width="1.15" />
+  </g>
+  <circle cx="13.8" cy="3.6" r="1.15" stroke="currentColor" stroke-width="1.15" />
+  <circle cx="20.4" cy="10.2" r="1.15" stroke="currentColor" stroke-width="1.15" />
+  <line x1="9.9" y1="14.1" x2="7.3" y2="16.7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+  <circle cx="12" cy="12" r="1.4" fill="currentColor" />
+  <path d="M19.6 4.4 L17.3 8.9 L13.4 10.6 L15.1 6.7 Z" fill="currentColor" />
+</svg>
