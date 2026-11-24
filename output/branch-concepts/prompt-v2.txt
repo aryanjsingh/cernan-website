@@ -1,0 +1,43 @@
+You are generating hero images for a website. Use your image generation tool (image edit, with refs/background.png as the base image). Create 10 images and save them in THIS folder as v2/branch-01.png ... v2/branch-10.png. Each must be exactly 2880 x 1800 px (16:10). Generate them one at a time, check each against the spec below, and regenerate any that fail before moving on.
+
+== BASE (do not change) ==
+refs/background.png is a pixel-accurate screenshot of the live site at 2880x1800. Keep everything in it unchanged: the sky-blue gradient (top #3d97e0 fading to near-white #eaf5ff at the bottom), the soft blurred clouds, and the top navigation (CERNAN logo + text at top-left, "Research  FAQs  Contact" at top-centre, the white "Book a meeting" pill button at top-right). The nav text and button must stay fully visible, crisp and unobstructed.
+
+== WHAT WAS WRONG LAST TIME (do NOT repeat) ==
+The previous batch produced a thin, small branch that looked like a cut-out sticker pasted on the sky: one skinny limb, a few leaves, lots of empty sky around it, flat lighting, hard edges. That is rejected. We need a MASSIVE, WIDE, close-up overhanging limb of an old tree that dominates the right side of the page.
+
+== THE SUBJECT ==
+One huge, old tree limb entering from OFF-SCREEN on the RIGHT EDGE. It is NOT a tree on the ground: no trunk base, no ground, no roots in soil.
+- Entry: the limb is cut by the right edge of the frame. At the edge it is THICK: 380-520 px in diameter. Its centre line at the right edge sits between y = 300 and y = 650.
+- Widening: within the first ~500 px it splits into 3 to 6 major limbs that fan out leftward, some arching up toward the top edge, some sweeping down, so the structure gets WIDER as it travels left (like an open hand / a canopy seen from below). Those split again into many smaller branches and twigs.
+- Reach: the outermost twigs and leaves reach left to between x = 1150 and x = 1500 (depending on variation). The foliage mass should cover roughly 40-55% of the frame area, concentrated in the right half and the upper part.
+- Foliage: dense, layered, lush canopy — clusters of real leaves, not scattered single leaves. Mix of large ivy/vine leaves and smaller tree leaves. Thick moss on the bark (see refs/8.png), epiphytes, ferns in the crooks.
+- Hanging growth: many long vines and strands of hanging moss (Spanish-moss style, see refs/7.png and refs/9.png) falling straight down from the limbs, different lengths, the longest reaching y = 1300-1650 in the right half.
+- Scale and camera: we are standing UNDER and slightly to the left of the limb, looking up. Near-edge leaves are big (80-160 px), further leaves get smaller. A few foreground leaves at the right edge are close to the camera and softly out of focus.
+
+== REALISM / INTEGRATION (most important) ==
+- Photoreal, like a high-end nature photograph, not an illustration and not a 3D render look.
+- Backlit by the bright sky: sun high and to the upper-right. Leaves facing the light glow translucent lime-green; the undersides of the limbs and inner foliage are deep green/near-black blue-green (like refs/4-style canopy against blue: dark inner mass, glowing rims).
+- The bark's shadow side picks up cool blue ambient light from the sky. Rim light along the top edges of the limbs.
+- Atmospheric depth: the farthest twigs on the left are softer, slightly hazy and lighter, blending into the sky. No hard cut-out edges, no halos, no white fringing.
+- Subtle motion in the hanging strands and outer leaves (a hint of wind), very slight.
+
+== KEEP-OUT ZONES (must stay pure background) ==
+- Navigation band: y < 230 from x = 0 to x = 2360. No branch, leaf or vine over the logo or the nav links.
+- Button: the "Book a meeting" pill (around x 2060-2360, y 40-120) stays fully visible; foliage may sit around and behind it (above the pill and to its right is fine) but never over it.
+- Text area: the rectangle x 0-1250, y 700-1800 stays clean sky (a headline and paragraph will be placed there). The left third of the image should feel calm and open.
+- No text, no logos, no watermarks, no frames, no extra UI.
+
+== 10 VARIATIONS (each meaningfully different) ==
+01  Classic: thick mossy limb, 4 major forks, dense ivy canopy, reach to x~1350, long moss curtains.
+02  Wide & heavy: thickest limb (~520 px), 6 forks fanning very wide, canopy almost to the top edge on the right, darkest inner mass, dramatic.
+03  Airy: same massive limb but lighter, more open foliage with sky showing through gaps, reach to x~1500, delicate hanging strands.
+04  Low dip: limb enters at y~650 and sags, vines and moss pour down to y~1650 on the right side.
+05  Upswept: main forks arch upward toward the top-right corner, canopy frames the top-right, fewer hanging strands, reach x~1200.
+06  Close-up: camera closer, limb fills more of the right side, bark texture and moss very detailed, strong foreground blur on the nearest leaves.
+07  Drifting leaves: like 01, plus 6-10 individual leaves gently falling/drifting across the middle of the page (not in the text area).
+08  Old giant: gnarled, twisting, very old bark with deep fissures and hanging roots/lianas (refs/9.png), thick rope-like vines.
+09  Spring light: fresher, brighter yellow-green leaves, strongest backlight glow, softest haze, most optimistic.
+10  Layered depth: two limbs at different depths: a big sharp one in front from the right edge and a second, hazier one behind it higher up, giving strong parallax depth.
+
+When finished, print the list of saved files with a one-line note on each.

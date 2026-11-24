@@ -1,0 +1,54 @@
+You are generating hero images for a website. Use your image generation tool (image edit, with refs/background.png as the base). Create 10 images and save them as v3/branch-01.png ... v3/branch-10.png, each exactly 2880 x 1800 px. Generate one at a time, check each against the spec, regenerate any that fail. Composite the result over the original background so the sky, clouds and nav stay pixel-identical (same method you used for the v2 batch in v2/).
+
+== CONTEXT: WHY THIS IMAGE EXISTS ==
+This is the hero of an AI research studio. The branch IS a neural network. In a later step we will overlay an animated SVG of BACKPROPAGATION on top of this image: light pulses travelling along channels inside the branch (forward pass from the right edge out to the tips, then error signals flowing back from the tips to the right edge). So the image must provide a clear, readable network STRUCTURE with clean CHANNELS that an SVG can trace. The image itself should show the network mostly at REST (channels dim/unlit), with only a faint ambient glow, so the animation has room to light it up.
+
+v2/ (previous batch) had the right size and placement but was a purely natural, mossy, organic tree. That is rejected: too natural, no structure, nothing to animate. Keep the scale and placement of v2, change the material and the structure.
+
+== BASE (do not change) ==
+refs/background.png: the live site at 2880x1800. Sky-blue gradient (#3d97e0 top to #eaf5ff bottom), soft clouds, top nav (CERNAN logo top-left, "Research FAQs Contact" top-centre, white "Book a meeting" pill top-right). Keep all of it unchanged and unobstructed.
+
+== AESTHETIC ==
+Futuristic / cyberpunk, but bright and clean, living in this daylight sky (not a dark neon night scene). Think: a bio-mechanical tree limb grown and engineered at the same time. Premium, photoreal, high-end product-render / sci-fi concept-art quality, sharp detail, believable materials. Not cartoon, not illustration, not generic stock "digital tree" with random glowing dots.
+Materials: dark graphite / gunmetal / carbon-fibre bark with smooth machined surfaces fused into organic wood grain; brushed metal ring joints; translucent glass or resin sections; thin fiber-optic filaments. Colour palette: deep navy-graphite (#0b1a2b-ish) body, cool white and pale cyan (#bff0ff) accents, with very small touches of warm orange (#ff7a2f) only at a few junctions. The sky stays the dominant colour.
+
+== STRUCTURE (most important — it must read as a network) ==
+One huge limb enters from OFF-SCREEN at the RIGHT EDGE (no ground, no trunk base, no roots), centre line at the edge between y=300 and y=650, 380-520 px thick at the edge. This is the INPUT.
+It branches LEFTWARD in clear, discrete LAYERS, like a network diagram grown into a tree:
+- Layer 1: the main limb ends in a large JUNCTION NODE (a round neuron-like hub: glass/metal sphere or ring, 90-140 px) and splits into 3 limbs.
+- Layer 2: each of those ends in a smaller junction node and splits into 3-4.
+- Layer 3: splits again into many thinner branches, each ending in a small node.
+- Layer 4 (outputs): fine branch tips at the far left of the structure, each ending in a tiny bright node / bud (the outputs), reaching left to x = 1150-1500.
+Junction nodes must be clearly visible, round, evenly readable, sitting exactly at the forks. Branches between nodes are smooth, gently curved, roughly constant thickness per layer, getting thinner each layer. The overall shape still fans out and WIDENS toward the left like a canopy seen from below.
+Between neighbouring branches of the same layer and the next layer, add some very fine taut filaments / fiber-optic threads (like dense connections between layers of a neural net), thin and elegant, not messy.
+
+== CHANNELS (for the SVG animation) ==
+Every branch carries a clean inlaid CHANNEL running along its centre line from node to node: a recessed groove with a glass/fiber-optic core, continuous, unbroken, uniform width per layer (about 12-20% of the branch thickness), clearly visible from the camera. At rest the channels are dark/dim with only a faint pale-cyan inner glow. The nodes are dim at rest too, with a faint glow ring. Do NOT light the whole thing up: this is the idle state.
+
+== FOLIAGE & HANGING ELEMENTS ==
+Replace moss and ivy with futuristic equivalents, used sparingly so the structure stays readable:
+- small clusters of thin translucent leaf-like plates (frosted glass / holographic film) near the outer tips, catching light;
+- some hanging fiber-optic strands and thin cables dropping straight down from the limbs (like the hanging moss in v2, but as fine glowing filaments), various lengths, longest reaching y = 1300-1600 on the right half.
+
+== LIGHT & INTEGRATION ==
+Bright daylight from the upper right. Metal and glass pick up sky reflections and cool blue ambient light; rim light on top edges. Far tips slightly hazy, blending into the sky. Soft, believable edges, no cut-out halos, no white fringes. Nearest parts at the right edge can be slightly out of focus for depth.
+
+== KEEP-OUT ZONES ==
+- y < 230 from x=0 to x=2360: nothing over the logo or nav links.
+- The "Book a meeting" pill (about x 2060-2360, y 40-120) stays fully visible.
+- Rectangle x 0-1250, y 700-1800 stays pure background sky (text goes there).
+- No text, labels, numbers, logos, watermarks, UI or HUD elements in the image.
+
+== 10 VARIATIONS ==
+01  Reference build: graphite + carbon limb, glass sphere nodes, 3-3-4 branching, faint cyan channels, a few hanging filaments.
+02  Wider & denser: more layer-3/4 branches, denser fan, more inter-layer threads, still readable.
+03  Minimal: fewest elements, very clean, wide spacing, strongest sense of a diagram, almost no leaves.
+04  Organic-machine fusion: real old wood grain visibly fused with machined metal sleeves and joints, channels cut into the wood.
+05  Glass: branches partly translucent, channels visible inside them like veins in glass.
+06  Hanging: limb dips lower, many fiber-optic strands falling down the right side to the bottom.
+07  Close-up: camera closer to the right-edge input limb, big detailed first junction node, strong foreground depth of field.
+08  Holographic foliage: more translucent iridescent leaf-plates at the tips, subtle prismatic edges.
+09  Warm accents: like 01 but with a few junction nodes faintly glowing orange (#ff7a2f), suggesting stored error.
+10  Layered depth: a big sharp network limb in front plus a second, hazier, smaller network limb behind it higher up.
+
+When finished, print the saved files with a one-line note each, and save a contact sheet to .work-v3/contact-sheet.png.

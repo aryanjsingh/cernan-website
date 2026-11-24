@@ -1,0 +1,135 @@
+{
+  "allPassed": true,
+  "images": [
+    {
+      "file": "v2/branch-01.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7753358,
+      "sha256": "35a1ff850203d431df4a5f69956aad00316a07fdd4f65c0e42f535b75c5b9a5e",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-02.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7898440,
+      "sha256": "ee407dbfee648423e3a19414cf001b0e7e957f3b806e497ae106a37458dc931d",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-03.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 6912912,
+      "sha256": "ad5d560584f192fe8baebed5bd8f3076732a94f53559241913b502df21d01685",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-04.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7698907,
+      "sha256": "570ce9dd4b860e587a6c0fbb58b9e50f4012cbfc9b6adbc8bf06d0d8ed43800d",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-05.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 6405161,
+      "sha256": "13805a1f27539c1fb40a9506cdd9682f70c5ac8ea64ca02c0602f71dcfff5aac",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-06.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 8528822,
+      "sha256": "c17fe8074b6302a1d2787ab5f7b96804d1a77874bb4525ce8102ebb1b3adef0a",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-07.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7624680,
+      "sha256": "cba0064949a1df14768364408c48ae1ab8e124ee23a76e51c8f972a3111adb60",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-08.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7526030,
+      "sha256": "711747443a977b7cff81b48be2949953bc926793a6a606cd3f2d8005b8cf713e",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-09.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7992007,
+      "sha256": "4654b9d307ded43dcf8d72237a1cc2822913117b8e61f6921184f6174ec1cec8",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    },
+    {
+      "file": "v2/branch-10.png",
+      "width": 2880,
+      "height": 1800,
+      "bytes": 7576153,
+      "sha256": "d8f5b6fa8bb98befbcf01c809f6a787deb6b97975356b65a6cae54a4bd6bfc3c",
+      "changedPixels": {
+        "navBand": 0,
+        "meetingButton": 0,
+        "textArea": 0
+      },
+      "passed": true
+    }
+  ]
+}

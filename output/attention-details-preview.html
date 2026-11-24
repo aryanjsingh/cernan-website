@@ -1,0 +1,2877 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Attention Details</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Attention Details" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Attention Details&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 16px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans:
+    -apple-system-body, ui-sans-serif, -apple-system, system-ui, &quot;Segoe UI&quot;,
+    Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;,
+    &quot;Segoe UI Symbol&quot;;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 8px);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-weight: var(--font-weight-normal);
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+  text-underline-offset: 2px;
+  font-weight: inherit;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+.table {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: calc(var(--font-size-base) * 1.5);
+  line-height: 1.3333333333;
+}
+
+h2 {
+  font-size: calc(var(--font-size-base) * 1.25);
+  line-height: 1.4;
+}
+h3 {
+  font-size: calc(var(--font-size-base) * 1.125);
+  line-height: 1.5555555556;
+}
+h4 {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+h5,
+h6 {
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+  font-weight: 600;
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+pre,
+pre code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: calc(var(--font-size-base) * 0.875);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-family: var(--font-sans);
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+.table :is(th, td):not(:last-child) {
+  padding-inline-end: calc(var(--font-size-base) * 1.5);
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead :is(th, td) {
+  border-bottom-color: var(--border-strong, var(--input));
+  padding-block: calc(var(--font-size-base) / 2);
+  line-height: var(--font-size-base);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+.table tbody :is(th, td) {
+  padding-block: calc(var(--font-size-base) * 0.625);
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 8px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+.widget {
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+#widget &gt; :not(.card, .widget, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  border: 1px solid var(--border);
+  corner-shape: var(--corner-shape);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-sans);
+  padding: 5px 12px;
+  border-color: color-mix(
+    in oklab,
+    light-dark(var(--primary-foreground), var(--foreground)) 5%,
+    transparent
+  );
+  border-radius: var(--radius-2xl);
+  color: light-dark(var(--primary-foreground), var(--foreground));
+  background: light-dark(var(--foreground), var(--popover));
+  box-shadow: 0 8px 18px rgb(15 23 42 / 20%);
+  letter-spacing: -0.15px;
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--foreground) 40%, var(--muted-foreground));
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-family: var(--font-sans);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+/* Match inline alignment without overriding a containing flex or grid layout. */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.form-range,
+.form-check {
+  vertical-align: middle;
+}
+
+.btn,
+.nav-link {
+  --btn-size: calc(12px + 2 * var(--control-spacing, 12px));
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: inherit;
+  font-family: var(--font-sans);
+  height: fit-content;
+  min-height: var(--btn-size);
+  padding-inline: var(--control-spacing, 12px);
+  border-color: transparent;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.btn {
+  border-color: var(--border);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+}
+
+/* Codex Button size=&quot;compact&quot;; appearance stays with the button variant. */
+.btn-sm {
+  --btn-size: 24px;
+  padding-inline: 8px;
+  font-size: calc(var(--font-size-base) * 12 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 12 / 16), 1px);
+  line-height: 16px;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.btn-primary {
+  border-color: var(--border);
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: border-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: border-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--muted-foreground);
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Shared preview chrome; product styles stay inside each variant. */
+.viz-dotted-background {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,
+    transparent 0.8px
+  );
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.viz-carousel {
+  position: relative;
+  min-width: 0;
+}
+
+.viz-carousel:has(&gt; .viz-carousel-controls) {
+  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));
+  padding-bottom: 60px;
+}
+
+.viz-carousel &gt; [data-variant][hidden] {
+  display: none !important;
+}
+
+.viz-carousel &gt; [data-variant] {
+  isolation: isolate;
+}
+
+.viz-carousel-controls {
+  --viz-carousel-hover: light-dark(
+    color-mix(in srgb, var(--foreground) 5.4%, transparent),
+    color-mix(in srgb, var(--foreground) 7.8%, transparent)
+  );
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  /* Leave room for the host&#x27;s design-controls launcher at the trailing edge. */
+  max-width: calc(100% - 96px);
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  /* Match the settings dropdown chrome independently of the content font size. */
+  font-size: 13px;
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+/* Keep authored mockup button styles out of the shared carousel chrome. */
+.viz-carousel-controls button,
+.viz-carousel-picker &gt; summary {
+  display: flex !important;
+  height: auto !important;
+  min-height: 30px;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  padding: 0 6px !important;
+  -webkit-app-region: no-drag;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: inherit !important;
+  background: transparent !important;
+  font: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-picker &gt; summary {
+  position: relative;
+  isolation: isolate;
+}
+
+.viz-carousel-controls &gt; button {
+  --icon-size: 16px;
+  width: 30px !important;
+  padding: 0 !important;
+}
+
+.viz-carousel-picker &gt; summary {
+  padding-inline: 12px !important;
+}
+
+.viz-carousel-controls .viz-carousel-caret {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin: 0;
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.viz-carousel-controls &gt; button &gt; svg,
+.viz-carousel-controls .viz-carousel-caret,
+.viz-carousel-count {
+  opacity: 0.5;
+}
+
+.viz-carousel-controls &gt; button::before,
+.viz-carousel-picker &gt; summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  content: &quot;&quot;;
+  pointer-events: none;
+}
+
+.viz-carousel-controls &gt; button:hover::before,
+.viz-carousel-picker &gt; summary:hover::before {
+  background: var(--viz-carousel-hover);
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-controls [data-lucide],
+.viz-carousel-controls .lucide {
+  flex-shrink: 0;
+}
+
+.viz-carousel-picker {
+  min-width: 0;
+}
+
+.viz-carousel-picker &gt; summary {
+  min-width: 0;
+  list-style: none;
+}
+
+.viz-carousel-picker &gt; summary::-webkit-details-marker {
+  display: none;
+}
+
+.viz-carousel-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viz-carousel-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-carousel-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  max-height: 240px;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));
+}
+
+.viz-carousel-options &gt; button {
+  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;
+  width: 100% !important;
+  min-height: 28px;
+  justify-content: flex-start !important;
+  padding: 4px 8px !important;
+  font-size: var(--font-size-small) !important;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.viz-carousel-options &gt; [aria-current=&quot;true&quot;],
+.viz-carousel-options &gt; button:hover {
+  background: var(--viz-carousel-hover) !important;
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding-inline: calc(4px + var(--control-spacing, 12px) / 2);
+  border-color: var(--input);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--popover) 96%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4285714286;
+}
+.form-control:is(
+  [type=&quot;file&quot;],
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;],
+  [type=&quot;color&quot;]
+) {
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  line-height: 18px;
+}
+.form-control:is(
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;]
+) {
+  padding-inline: var(--control-spacing, 12px);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+  padding: 0;
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+  min-height: calc(10px + 2 * var(--control-spacing, 12px));
+  padding-inline: var(--control-spacing, 12px);
+  margin-inline-end: var(--control-spacing, 12px);
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+  min-height: 96px;
+  padding: 8px 10px;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: none;
+}
+.form-control:disabled {
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  opacity: 1;
+}
+.form-control[aria-invalid=&quot;true&quot;] {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--red) 20%, transparent);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  margin: 0;
+  /* The secondary icon role is 14px at compact density and 16px at web density. */
+  --icon-size: calc(10px + var(--control-spacing, 12px) / 2);
+  /* Settings dropdowns retain a 12px inset and a 4px text-to-chevron gap. */
+  padding: 0 calc(16px + var(--icon-size)) 0 12px;
+  outline: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    ),
+    linear-gradient(
+      135deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    );
+  background-position:
+    calc(100% - 12px - var(--icon-size) / 2) 50%,
+    calc(100% - 12px - var(--icon-size) * 0.18) 50%;
+  background-repeat: no-repeat;
+  background-size: calc(var(--icon-size) * 0.32) calc(var(--icon-size) * 0.32);
+  cursor: var(--cursor-interaction, default);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.form-select :is(option, optgroup) {
+  color: var(--popover-foreground);
+  background-color: var(--popover);
+}
+
+.form-select :is(option, optgroup):disabled {
+  color: var(--muted-foreground);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.form-select:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.form-select:disabled {
+  opacity: 0.4;
+}
+
+.form-check {
+  display: flex;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  corner-shape: round;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: calc(10px + var(--control-spacing, 12px) / 2);
+  height: calc(10px + var(--control-spacing, 12px) / 2);
+  border-color: var(--border-strong, var(--input));
+  border-radius: calc(var(--radius-sm) / 2);
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:is(:checked, :indeterminate) {
+  border-color: var(--border-strong, var(--input));
+  background-color: color-mix(in srgb, var(--popover) 96%, transparent);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+  background-color: var(--foreground);
+}
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:indeterminate::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 65%;
+  height: 6.65%;
+  margin: auto;
+  border-radius: var(--radius-full);
+  background: var(--foreground);
+  mask: none;
+  content: &quot;&quot;;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  border-radius: var(--radius-full);
+  width: 16px;
+  height: 16px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--input);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 0;
+  background: radial-gradient(
+    circle,
+    var(--primary-foreground) 0 3px,
+    var(--foreground) 3px
+  );
+  box-shadow: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:focus-visible {
+  border-color: var(--ring);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;radio&quot;]:disabled,
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;radio&quot;]:disabled
+  + .form-check-label {
+  opacity: 0.5;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  border-color: #fff;
+  background: #fff;
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--blue);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+  outline: none;
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  accent-color: var(--primary);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  outline: none;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  margin-top: -9px;
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline the native track and thumb, preserving the larger input hit area. */
+.form-range:focus-visible::-webkit-slider-runnable-track {
+  outline: 2px auto Highlight;
+  outline-color: -webkit-focus-ring-color;
+}
+
+.form-range::-moz-range-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid Highlight;
+  outline-offset: 2px;
+}
+
+.form-range:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--blue);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.viz-carousel-controls :is(button, summary):focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Web recipes are the default, including on renderers without inline style queries. */
+@supports (border-radius: if(style(--corner-shape: round): 1px; else: 2px)) {
+  /* Match the host&#x27;s proportional text-sm scale at every text preference. */
+  .tooltip,
+  .viz-badge,
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 14 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 13 / 14), 1px)
+    );
+  }
+
+  .btn-sm {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 12 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 12 / 14), 1px)
+    );
+  }
+
+  .btn,
+  .nav-link,
+  .form-select {
+    border-radius: if(
+      style(--corner-shape: round): var(--radius-full); else: var(--radius-lg)
+    );
+  }
+
+  .form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+    border-radius: if(
+      style(--corner-shape: round): calc(var(--radius-sm) / 2);
+        else: calc(var(--radius-lg) * 0.4)
+    );
+  }
+
+  .tooltip {
+    font-weight: if(
+      style(--corner-shape: round): 600; else: var(--font-weight-normal)
+    );
+  }
+}
+
+@media (pointer: coarse) {
+  .viz-carousel:has(&gt; .viz-carousel-controls) {
+    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));
+    padding-bottom: 76px;
+  }
+
+  .btn,
+  .nav-link,
+  .viz-carousel-controls button,
+  .viz-carousel-picker &gt; summary,
+  .form-control,
+  .form-select {
+    --btn-size: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+  .form-control:is(
+    [type=&quot;file&quot;],
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;week&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;color&quot;]
+  ) {
+    height: 44px;
+    min-height: 44px;
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    &quot;codex-visualization-widget-state&quot;,
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? &quot;{}&quot;);
+  initialStateElement?.remove();
+  /** @type {Record&lt;string, unknown&gt; | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? &quot;none&quot;;
+  let nextStateRequestId = 0;
+  /** @type {Map&lt;number, { resolve: () =&gt; void; reject: (error: Error) =&gt; void; timeout: ReturnType&lt;typeof globalThis.setTimeout&gt;; serializedState: string }&gt;} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =&gt;
+    Object.assign(
+      new Error(&quot;The host could not persist the widget state update&quot;),
+      {
+        code: -32000,
+        data: { code: &quot;widget_state_persistence_failed&quot;, retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record&lt;string, unknown&gt; | ((previous: Record&lt;string, unknown&gt; | null) =&gt; Record&lt;string, unknown&gt;)} next
+   * @returns {Promise&lt;void&gt;}
+   */
+  const setWidgetState = async (next) =&gt; {
+    const nextState = typeof next === &quot;function&quot; ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== &quot;object&quot; ||
+      isArray(nextState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) =&gt; {
+        if (
+          typeof value === &quot;undefined&quot; ||
+          typeof value === &quot;function&quot; ||
+          typeof value === &quot;symbol&quot; ||
+          (typeof value === &quot;number&quot; &amp;&amp; !Number.isFinite(value))
+        ) {
+          throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== &quot;object&quot; ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length &gt; 16 * 1024) {
+      throw new TypeError(
+        &quot;Widget state must be a JSON object of at most 16 KiB&quot;,
+      );
+    }
+    if (
+      hasOwn(storedState, &quot;imageIds&quot;) &amp;&amp;
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) =&gt; typeof id !== &quot;string&quot;,
+        ))
+    ) {
+      throw new TypeError(&quot;Widget state imageIds must be an array of strings&quot;);
+    }
+    if (storedState.imageIds?.length &gt; 0) {
+      throw Object.assign(
+        new TypeError(&quot;Visualization state does not support image attachments&quot;),
+        { code: -32602, data: { code: &quot;images_unsupported&quot; } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === &quot;none&quot;) {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) =&gt; {
+      const timeout = globalThis.setTimeout(() =&gt; {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+    });
+  };
+  const mockElement = document.getElementById(&quot;codex-connector-mocks&quot;);
+  const connectorGlobals = {};
+  if (mockElement != null) {
+    const values = new Map(Object.entries(parse(mockElement.textContent)));
+    mockElement.remove();
+    connectorGlobals.visualizationData = {
+      updates: Array.from(values, ([name, value]) =&gt; ({
+        name,
+        revision: 1,
+        state: &quot;ready&quot;,
+        value: { type: &quot;json&quot;, value },
+      })),
+    };
+    connectorGlobals.visualization = {
+      /** @param {string} name @param {(value: unknown) =&gt; void} callback */
+      onData(name, callback) {
+        if (typeof callback !== &quot;function&quot;) {
+          throw new TypeError(&quot;onData requires a callback&quot;);
+        }
+        try {
+          callback(values.get(name));
+        } catch (error) {
+          // oxlint-disable-next-line no-console -- Keep authored callback failures local.
+          console.error(&quot;Live visualization data callback failed&quot;, error);
+        }
+        // A static preview delivers the current fixture once per subscription.
+        return () =&gt; {};
+      },
+    };
+  }
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      ...connectorGlobals,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: &quot;none&quot;,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            } else if (
+              typeof data === &quot;object&quot; &amp;&amp;
+              data?.type === &quot;widget-state-result&quot;
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== &quot;number&quot;) {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;section id=&quot;cernan-attention-details&quot;&gt;
+  &lt;style&gt;
+    #cernan-attention-details { display: grid; gap: calc(var(--font-size-base) * .75); color: var(--foreground); }
+    #cernan-attention-details .attention-options { padding-right: 96px; }
+    #cernan-attention-details .attention-scene { width: 100%; display: block; }
+    #cernan-attention-details .attention-scene text { font-family: ui-monospace, monospace; fill: var(--foreground); }
+    #cernan-attention-details .attention-scene .secondary { fill: var(--muted-foreground); }
+    #cernan-attention-details .attention-scene .branch { fill: none; stroke: var(--border); stroke-width: 1.5; }
+    #cernan-attention-details .attention-scene .link { fill: none; stroke: var(--viz-series-1); }
+    #cernan-attention-details .attention-scene .token { fill: var(--muted-foreground); }
+    #cernan-attention-details .attention-scene .key { fill: color-mix(in srgb, var(--viz-series-1) 50%, var(--background)); }
+    #cernan-attention-details .attention-scene .query { fill: var(--viz-series-1); }
+    #cernan-attention-details .attention-scene .value { fill: color-mix(in srgb, var(--viz-series-2) 18%, var(--background)); }
+    #cernan-attention-details .attention-detail { min-height: calc(var(--font-size-base) * 3); }
+    #cernan-attention-details [hidden] { display: none; }
+    @media (max-width: 480px) { #cernan-attention-details .attention-options { padding-right: 0; } }
+  &lt;/style&gt;
+  &lt;h2&gt;Inside the attention tree&lt;/h2&gt;
+  &lt;div class=&quot;viz-controls attention-options&quot;&gt;
+    &lt;label class=&quot;form-label&quot;&gt;Query &lt;select class=&quot;form-select&quot; data-query aria-label=&quot;Query token&quot;&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot;&gt;Head &lt;select class=&quot;form-select&quot; data-head aria-label=&quot;Attention head&quot;&gt;&lt;option value=&quot;0&quot;&gt;01 · meaning&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;02 · roles&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;03 · nearby context&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;04 · wider context&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;viz-row&quot; aria-label=&quot;Attention details&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;query&quot; aria-pressed=&quot;true&quot;&gt;Q · query&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;keys&quot; aria-pressed=&quot;false&quot;&gt;K · keys&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;values&quot; aria-pressed=&quot;false&quot;&gt;V · values&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;matrix&quot; aria-pressed=&quot;false&quot;&gt;A · all pairs&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;metrics&quot; aria-pressed=&quot;false&quot;&gt;Diagnostics&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;btn&quot; data-part=&quot;life&quot; aria-pressed=&quot;false&quot;&gt;Butterfly&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div data-network&gt;
+    &lt;svg class=&quot;attention-scene text-small&quot; role=&quot;img&quot; aria-label=&quot;One query connects across the tree to the strongest keys; the six-dimensional vector changes with the selected detail.&quot;&gt;&lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;section data-matrix hidden data-viz-composition&gt;
+    &lt;div data-viz-container&gt;&lt;/div&gt;
+    &lt;script type=&quot;application/json&quot; data-viz-chart&gt;{&quot;id&quot;:&quot;cernan-attention-matrix&quot;,&quot;title&quot;:&quot;Attention A · queries down, keys across&quot;,&quot;height&quot;:340,&quot;spec&quot;:{&quot;type&quot;:&quot;heatmap&quot;,&quot;x&quot;:&quot;Key&quot;,&quot;y&quot;:&quot;Query&quot;,&quot;value&quot;:&quot;Weight&quot;,&quot;xLabel&quot;:&quot;Key token&quot;,&quot;yLabel&quot;:&quot;Query token&quot;,&quot;colorDomain&quot;:[0,0.35],&quot;valueFormat&quot;:{&quot;style&quot;:&quot;percent&quot;,&quot;maximumFractionDigits&quot;:2}},&quot;columns&quot;:[&quot;Key&quot;,&quot;Query&quot;,&quot;Weight&quot;],&quot;rows&quot;:[]}&lt;/script&gt;
+  &lt;/section&gt;
+  &lt;div class=&quot;attention-detail tabular-nums&quot; data-detail aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;text-small text-muted&quot;&gt;20 tokens · 4 heads · fixed toy projections · no causal mask&lt;/div&gt;
+  &lt;script type=&quot;application/json&quot; data-attention-data&gt;{&quot;tokens&quot;:[{&quot;id&quot;:&quot;t00&quot;,&quot;label&quot;:&quot;a&quot;,&quot;group&quot;:3},{&quot;id&quot;:&quot;t01&quot;,&quot;label&quot;:&quot;single&quot;,&quot;group&quot;:3},{&quot;id&quot;:&quot;t02&quot;,&quot;label&quot;:&quot;thought&quot;,&quot;group&quot;:0},{&quot;id&quot;:&quot;t03&quot;,&quot;label&quot;:&quot;becomes&quot;,&quot;group&quot;:1},{&quot;id&quot;:&quot;t04&quot;,&quot;label&quot;:&quot;clear&quot;,&quot;group&quot;:3},{&quot;id&quot;:&quot;t05&quot;,&quot;label&quot;:&quot;when&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t06&quot;,&quot;label&quot;:&quot;every&quot;,&quot;group&quot;:3},{&quot;id&quot;:&quot;t07&quot;,&quot;label&quot;:&quot;word&quot;,&quot;group&quot;:0},{&quot;id&quot;:&quot;t08&quot;,&quot;label&quot;:&quot;finds&quot;,&quot;group&quot;:1},{&quot;id&quot;:&quot;t09&quot;,&quot;label&quot;:&quot;its&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t10&quot;,&quot;label&quot;:&quot;place&quot;,&quot;group&quot;:0},{&quot;id&quot;:&quot;t11&quot;,&quot;label&quot;:&quot;among&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t12&quot;,&quot;label&quot;:&quot;the&quot;,&quot;group&quot;:3},{&quot;id&quot;:&quot;t13&quot;,&quot;label&quot;:&quot;ideas&quot;,&quot;group&quot;:0},{&quot;id&quot;:&quot;t14&quot;,&quot;label&quot;:&quot;that&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t15&quot;,&quot;label&quot;:&quot;came&quot;,&quot;group&quot;:1},{&quot;id&quot;:&quot;t16&quot;,&quot;label&quot;:&quot;before&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t17&quot;,&quot;label&quot;:&quot;and&quot;,&quot;group&quot;:2},{&quot;id&quot;:&quot;t18&quot;,&quot;label&quot;:&quot;come&quot;,&quot;group&quot;:1},{&quot;id&quot;:&quot;t19&quot;,&quot;label&quot;:&quot;next&quot;,&quot;group&quot;:2}],&quot;heads&quot;:[{&quot;queries&quot;:[[0.26,0.52,0,0,0,0.65],[0.65,0.26,0.13,0.39,0.09713478610783949,0.6427012006584275],[2.6,2.21,0.52,0.26,0.1920881343298707,0.6209687179316439],[0.65,0.39,2.6,0.65,0.2827275971722996,0.5852906165292401],[2.4699999999999998,1.1700000000000002,0.78,0.26,0.367017607706773,0.536468149691291],[0.26,0.9099999999999999,0.65,2.3400000000000003,0.4430651940151672,0.4755977647679836],[0.39,2.21,0.26,0.78,0.5091624912578642,0.40404647937593197],[2.3400000000000003,1.9500000000000002,0.26,0.9099999999999999,0.563825096636111,0.32342118112962254],[1.6900000000000002,1.8199999999999998,2.21,0.52,0.6058254058786972,0.23553254040983787],[0.52,2.3400000000000003,0.13,0.26,0.6342201825873284,0.14235434661047713],[1.4300000000000002,2.6,0.39,0.78,0.6483717412926354,0.04597918108400689],[0.65,2.6,0.26,0.65,0.6479622684950473,-0.05142857772437701],[0.26,0.9099999999999999,0,0.13,0.633000960070827,-0.14768136155050648],[2.6,2.08,0.9099999999999999,0.52,0.6038238147525151,-0.24061754037833646],[0.52,1.8199999999999998,0.26,1.3,0.561086088321768,-0.3281499679899074],[0.26,0.78,2.4699999999999998,2.08,0.5057475779771488,-0.40831285476978046],[0.26,1.04,1.04,2.6,0.4390510673582481,-0.47930591510180953],[0.52,1.8199999999999998,0.9099999999999999,1.6900000000000002,0.36249441630442103,-0.5395347979028944],[0.39,0.9099999999999999,2.6,1.9500000000000002,0.27779692215198964,-0.5876468923110897],[0.52,1.1700000000000002,1.4300000000000002,2.6,0.18686070802265387,-0.6225617044095088]],&quot;keys&quot;:[[0.26,0.52,0,0,0,0.65],[0.65,0.26,0.13,0.39,0.09713478610783949,0.6427012006584275],[2.6,2.21,0.52,0.26,0.1920881343298707,0.6209687179316439],[0.65,0.39,2.6,0.65,0.2827275971722996,0.5852906165292401],[2.4699999999999998,1.1700000000000002,0.78,0.26,0.367017607706773,0.536468149691291],[0.26,0.9099999999999999,0.65,2.3400000000000003,0.4430651940151672,0.4755977647679836],[0.39,2.21,0.26,0.78,0.5091624912578642,0.40404647937593197],[2.3400000000000003,1.9500000000000002,0.26,0.9099999999999999,0.563825096636111,0.32342118112962254],[1.6900000000000002,1.8199999999999998,2.21,0.52,0.6058254058786972,0.23553254040983787],[0.52,2.3400000000000003,0.13,0.26,0.6342201825873284,0.14235434661047713],[1.4300000000000002,2.6,0.39,0.78,0.6483717412926354,0.04597918108400689],[0.65,2.6,0.26,0.65,0.6479622684950473,-0.05142857772437701],[0.26,0.9099999999999999,0,0.13,0.633000960070827,-0.14768136155050648],[2.6,2.08,0.9099999999999999,0.52,0.6038238147525151,-0.24061754037833646],[0.52,1.8199999999999998,0.26,1.3,0.561086088321768,-0.3281499679899074],[0.26,0.78,2.4699999999999998,2.08,0.5057475779771488,-0.40831285476978046],[0.26,1.04,1.04,2.6,0.4390510673582481,-0.47930591510180953],[0.52,1.8199999999999998,0.9099999999999999,1.6900000000000002,0.36249441630442103,-0.5395347979028944],[0.39,0.9099999999999999,2.6,1.9500000000000002,0.27779692215198964,-0.5876468923110897],[0.52,1.1700000000000002,1.4300000000000002,2.6,0.18686070802265387,-0.6225617044095088]],&quot;values&quot;:[[-0.09065940212706924,0.05680546859532977,-0.49160980616006955,-0.6069135378856554,-0.035461533973412576,-0.2765797738440096],[-0.21205396628087564,0.10839588272188345,-0.4510514691153163,-0.4386918240933982,0.0861075253261748,-0.14655360142044627],[0.4804602025118764,-0.008278324901555086,-0.0021269316936393667,-0.10876546650683702,-0.1878569129400434,0.20034700369004355],[0.42819003225546426,-0.13295995968498497,-0.6393346089421703,0.1123322395633587,0.5640979856954895,0.3881019970935077],[-0.09123868449683903,0.2429603923226677,-0.13344558991479255,0.16644651213286585,0.5437533470005109,0.33917893313490505],[0.08280015657878431,0.08091735139146482,0.5622134559356556,0.19462194492026258,-0.005490006621145686,0.6914020342359715],[0.2103338448179785,0.37112678397104215,0.38092981127796605,0.07581336681630077,0.6469556157791376,0.37817260173737044],[0.8196454057016903,0.6253833109403281,0.6372230224582653,0.288802242130223,0.039346015911206955,0.4385024961011267],[1.0118527951019873,0.30006387455740174,-0.03205852585478408,0.2788218988776363,0.46699736234029554,0.4981287396099597],[0.6306349346641721,0.1006860636516769,0.7965640779858755,0.11301878720907785,-0.24696475270464405,0.3363045955033555],[1.034542080960451,0.6229403665062043,0.6936937108197458,-0.01982221088734747,-0.3408095843720177,-0.10949159589397273],[0.5439584844675733,0.02865752471993458,0.7423143626359202,-0.06774555803009397,-0.5462667905399278,0.019846679077976742],[0.10415709702025788,0.49357440988428847,0.196586015236323,-0.16603309706011676,0.001087288463569416,-0.5485689099863734],[0.6122608962529732,0.40183131717243137,0.3989751334960878,0.0803920519920098,-0.48874624517402354,-0.43806612631458886],[-0.05290323332462031,-0.17854402905935754,0.6432769748142327,0.03417834010931339,-0.5273700478700852,-0.13003727509946394],[0.17997717994073303,0.03193391353255331,-0.13716477722464865,0.16685298067336995,0.20412452637525766,-0.17940497021615603],[-0.3860774437868645,-0.10223879698793072,0.6681022113651063,0.29013898812120276,-0.29720065106237403,-0.02429537684819852],[-0.3553907627072998,-0.2822273588049398,0.7539460578403792,0.4439377717842311,-0.09013226545804626,0.12954201594249198],[0.027088060161963107,-0.019465652518400524,0.03829927905917202,0.5397186404307125,0.6075716732621357,0.1492689278347673],[-0.3487689356672289,-0.01405347020615434,0.8117719963336265,0.5637572278673921,-0.03529647112049504,0.22739626900816645]],&quot;weights&quot;:[[0.042954532659077546,0.0422839070005676,0.07822468420209124,0.04280990909075008,0.06049632362476773,0.04455192265418294,0.058407423607093195,0.06654210276405255,0.059022638535968404,0.05679205204661221,0.06443190011080137,0.057798790065720834,0.037760406086746294,0.06054312626912735,0.044887186305980466,0.03427793923282465,0.03554709112403415,0.04243862858609459,0.03406634761625525,0.03616308841725145],[0.03360300052757334,0.03891732414332649,0.08015315757594131,0.04652637777896797,0.06924259415284031,0.05115631583607871,0.04570198654115614,0.07471718578387387,0.06327105580540043,0.04114248756049495,0.05785752060420712,0.04460427611824956,0.029740646743341235,0.06820364658997836,0.04077133395257435,0.04238718490273861,0.042951471957846925,0.0421498911578185,0.04148158866626287,0.045420953601328785],[0.003663868177312904,0.004724041532355888,0.23340153840173616,0.009224897812515658,0.08342482322459881,0.007593459323830767,0.021689725401621684,0.13560200640720335,0.08614873408821798,0.02435626553393295,0.08826574882240946,0.03610034175446302,0.004534013094192644,0.19242930768168973,0.015434506577375679,0.00776481001711081,0.007482563677963889,0.017233039690941924,0.00953853356583738,0.011387775214689045],[0.007120670889970615,0.00973807019828842,0.03275986857670012,0.14770387407352656,0.03534290286137256,0.028373322732379493,0.01563533009902039,0.025716500224315854,0.14902662303219658,0.011949115179528248,0.023478882449030014,0.0156945318238502,0.006973068061365693,0.044394553932016294,0.01474586569437217,0.14600167171822678,0.03735525333280831,0.030294377422254805,0.15967534295307947,0.05802017474569749],[0.0063316744373899305,0.00911926787870052,0.18641843888155413,0.022238997291778348,0.10892344620946909,0.012371540493777781,0.01952881936747519,0.12376210978961262,0.1064225758843914,0.020695307801242648,0.06607013203544132,0.027871247950940335,0.007140555119708251,0.17959066780802618,0.016765299909162954,0.01679465355591857,0.012422917822916062,0.0199182784384247,0.019460953978538392,0.018153115345531472],[0.007319564890025789,0.010575846154953428,0.026635598761178558,0.02802543771436154,0.019420168888798207,0.09845573581385877,0.032807799072938335,0.04124289145809031,0.0419974441785109,0.019951756376786926,0.04193404808853413,0.03231825653057098,0.009200386956141103,0.03288477419815204,0.041411620151483905,0.10104914232069186,0.12195351863700672,0.0661317877844138,0.09109998755634333,0.13558423446715953],[0.010177834433206407,0.010021193785482139,0.08069476565172248,0.016380146391663106,0.032514249025585924,0.034797305359606547,0.06714936063348192,0.07535967486066564,0.06526901568065545,0.06332952517934942,0.1108353683560311,0.09115022628304151,0.015081635914857536,0.0767872543971861,0.05097576043513591,0.030261244045808888,0.0378137136405068,0.05730483063036407,0.03128985359902357,0.04280704169662539],[0.004042659249985433,0.005711999650553187,0.17588982242931278,0.009393033537595148,0.07184039763513758,0.015251090808615057,0.026273764327738036,0.14469940846657248,0.07446875933486868,0.026669007242428523,0.09665239559800386,0.04256090246442981,0.00602581712667826,0.1786391451450705,0.024306545930523768,0.013673665455559793,0.01710078071756539,0.027966422072729535,0.015371366240316577,0.023463016566315404],[0.003171226822169935,0.004277704865070019,0.09882380347475636,0.04813887517655604,0.05463272455475781,0.013734496183394736,0.02012465374755522,0.06585855356747629,0.20457754481472754,0.019420247419143256,0.06196360421011038,0.031001617436467097,0.004717822863223266,0.1373865210569107,0.01736906381546167,0.05686557561668634,0.020712849671789303,0.03164211912943289,0.06961942407957958,0.03596157149473138],[0.010377105528107692,0.009459676151841814,0.09501744561980753,0.013126465802024223,0.03613025021454327,0.022189677526646055,0.06640603833704607,0.08020933306845944,0.06604420926728147,0.07389546892240627,0.12288758630036309,0.1014148315514668,0.017175884805242455,0.09319570110124516,0.04827457898531917,0.02027305039401637,0.02491768189517638,0.04886661399705783,0.021861711377112635,0.02827668915483649],[0.004355255034800355,0.004921183071384463,0.12738222817180095,0.009541429944820113,0.04267054937248651,0.01725284128187396,0.04299358789854437,0.10753619341129857,0.07795440083890133,0.045460268300619826,0.12558549577176079,0.07470860205159542,0.007999054404012149,0.14073855116021436,0.03618215650976642,0.018485207229219567,0.02246290167345859,0.04293604639127732,0.021040514746410048,0.029793532735754826],[0.0067121091077402655,0.006517991745133819,0.08950670141616163,0.01095751357323074,0.030924813012805696,0.022843853684279488,0.06074501998939581,0.08135429246024518,0.0670063447018919,0.0644544730072232,0.12835069296135648,0.09962622865208838,0.012636244266229037,0.09886167871596713,0.04912236779893853,0.02333659902753861,0.029845894842506954,0.05562897473405779,0.025668772540389635,0.03589943376281953],[0.025154524772247295,0.024930266405832683,0.06448611442382354,0.027927158953605962,0.04544873960359145,0.03730497385292606,0.05765547850652757,0.06607311652532868,0.058494146107043954,0.06261954495851046,0.07883252891556362,0.07248651376801922,0.036179705500862296,0.07298835615304329,0.05506735748797755,0.03758188442572043,0.04200361430493553,0.054091630402189624,0.037849664277519804,0.042824680654730975],[0.0025229219596662146,0.003576379687312634,0.1712041036317675,0.011122234888982016,0.07150446251682907,0.008340940511732314,0.01836287936482908,0.12253072118967857,0.10655514256587609,0.02125426943797956,0.08676396637177201,0.035475350450120284,0.004565760177355477,0.22558130407390975,0.018398387725074204,0.015394513390869852,0.012484165670223656,0.024738098491076294,0.019385236725598026,0.0202391611693476],[0.0076988972728648224,0.008799502374960166,0.05652009338263854,0.015205468567056206,0.02747437841510512,0.04323242026550466,0.0501744386997877,0.06862127350787509,0.055446465492347094,0.045314371892653,0.0918095665756064,0.07255129587185179,0.014178194100248198,0.07572633434723008,0.056785905974055306,0.04736895433687588,0.06468777932548885,0.07355935513381073,0.049341763559724576,0.07550354090431571],[0.002130377482288339,0.003314923290854859,0.010303307739471525,0.05455355778759636,0.009972942501689364,0.03822572013276024,0.010792978311759594,0.013988018321219778,0.06577829500682188,0.006895603578512429,0.01699626639969477,0.012489330616578621,0.003506234433072091,0.02295983962715282,0.017164435087786034,0.21634074917308788,0.08625415297039395,0.04577262465361704,0.2294251178705674,0.13313552501507517],[0.0033820528619245417,0.0051422291495023306,0.015199549782683855,0.02136738631148527,0.011293026399785655,0.07062392409935728,0.020646114083183453,0.026780682816100274,0.03667815582269456,0.012974639178187168,0.031617645621665046,0.024452353637978808,0.005999064413937418,0.028503413500330955,0.035883304013880755,0.13204272551066693,0.13980625016795156,0.0719505221728171,0.12948432020474793,0.1761726402511191],[0.004644286215037786,0.005804317262919435,0.04026461049549286,0.019931641123467035,0.020826670274525415,0.04405032168183027,0.03598831692083877,0.050376028597300754,0.06444875179160689,0.029267202374867587,0.069513160421371,0.05242258477107977,0.008886039642329724,0.0649658276196924,0.04693419860141714,0.08059750405021716,0.08275900516141475,0.07955696253119537,0.0880607922521861,0.11070177821120979],[0.0019502882583208468,0.0029883101043981382,0.011658933455395783,0.05495845079254593,0.010645051458041484,0.031744810265402885,0.010279912816213715,0.014484886166531754,0.07418139103137704,0.006849655299580616,0.017820379166270495,0.012654298469025648,0.0032527883316839823,0.02663209720121992,0.016469550966570375,0.21133544244816088,0.07791374678686593,0.046067875617329786,0.2384379143518106,0.1296742170132542],[0.0024417730163170783,0.0038591625792531764,0.016416578270360273,0.023552781404036407,0.011711198743476831,0.055722443927692315,0.016586992964958282,0.026076722655853972,0.04519285236380249,0.010449118694895761,0.029761110108913424,0.020873107756695916,0.004340646806926338,0.032793918399209775,0.02972356894143049,0.1446411525098697,0.1250264546162689,0.06830252182701113,0.15293968058507093,0.1795882138279568]],&quot;scores&quot;:[[0.3104728248977679,0.29473721315022605,0.9099159011472777,0.307100245249156,0.6529132453039649,0.3469859588525836,0.6177736469616655,0.7481655202409532,0.628251722955924,0.5897270358256308,0.7159395024500155,0.6072984909865087,0.18159174428171665,0.6536865906344868,0.354483019724741,0.08483262484028138,0.12118897662601899,0.2983896476874596,0.07864067223197299,0.13836959029218557],[0.29473721315022605,0.4415613509657143,1.1640611228639761,0.6201412645760277,1.0177380444596023,0.7150078102835188,0.6022636148796372,1.0938319784715764,0.9275498190707747,0.49716319688797767,0.8381052957438451,0.5779515802732297,0.17263653612963356,1.0026198812335918,0.48810108402234376,0.5269679224457233,0.5401927680236743,0.5213539509386976,0.5053715309526382,0.5960953803949194],[0.9099159011472777,1.1640611228639761,5.064156743888036,1.8333025454213867,4.035342338451474,1.6386836942551382,2.688235097411554,4.521120604700351,4.067471701381308,2.80418556067506,4.091748569593245,3.197698764966881,1.1230038728715332,4.871125286249186,2.3480021224572525,1.6609984225250225,1.6239719037511697,2.4582248862809957,1.8667361921623582,2.043936863223799],[0.307100245249156,0.6201412645760277,1.8333025454213867,3.3393077166782144,1.909195902618619,1.6895476614461171,1.0936314016568345,1.591231116106108,3.348223266197673,0.8247555302268441,1.5001996961044355,1.0974106583569956,0.2861536070367022,2.137215100870909,1.0350610497345445,3.3277163699124306,1.964571851313951,1.7550604298191161,3.417240945409657,2.404889088651823],[0.6529132453039649,1.0177380444596023,4.035342338451474,1.909195902618619,3.497993827181518,1.3227472333672796,1.7792398108610277,3.6257097736008514,3.474766253819233,1.8372555183618695,2.9980653045112193,2.1349441381176493,0.7731390412415491,3.998028713592237,1.626659788816801,1.6284091150947229,1.326891498349038,1.7989863447018082,1.7757586181456344,1.7061907104175136],[0.3469859588525836,0.7150078102835188,1.6386836942551382,1.6895476614461171,1.3227472333672796,2.946042138474376,1.8471013376390653,2.075913843541117,2.0940438374385306,1.349752252296733,2.092533174388923,1.8320673621173797,0.5756806175199709,1.8494448342204777,2.0799965953349164,2.9720420300404617,3.160075051257045,2.548084609613592,2.868392741571898,3.2660281776549205],[0.6177736469616655,0.6022636148796372,2.688235097411554,1.0936314016568345,1.7792398108610277,1.8471013376390653,2.5044807875086605,2.619833701829065,2.4760788178537956,2.4459130389893344,3.0056073184181615,2.810070369708208,1.0110392251655045,2.6386000540629175,2.228911620206638,1.707429205457595,1.9302332176057295,2.3459463104140084,1.7408552648793953,2.0542640007288617],[0.7481655202409532,1.0938319784715764,4.521120604700351,1.591231116106108,3.6257097736008514,2.075913843541117,2.619833701829065,4.325921360242233,3.661642514263798,2.6347649283570993,3.922383806280942,3.102198863941912,1.1473159074779409,4.53663063678238,2.5420085085391673,1.9667345680707455,2.1903869330763452,2.682267393469212,2.0837692582781155,2.5066882329605558],[0.628251722955924,0.9275498190707747,4.067471701381308,3.348223266197673,3.474766253819233,2.0940438374385306,2.4760788178537956,3.661642514263798,4.795080295643303,2.440449402999244,3.600680383594599,2.908172578281567,1.0254806351812864,4.396931474741245,2.3288238819538085,3.5148233598855065,2.5048874645602095,2.9286223167221483,3.717176809795104,3.0565841096244553],[0.5897270358256308,0.49716319688797767,2.80418556067506,0.8247555302268441,1.8372555183618695,1.349752252296733,2.4459130389893344,2.6347649283570993,2.440449402999244,2.5527765602705363,3.06139505279478,2.8693443960576355,1.0936314016568347,2.784826642935305,2.127030154933119,1.259417485083719,1.4657027155602391,2.1392194707917276,1.3348618155802734,1.592162808272605],[0.7159395024500155,0.8381052957438451,4.091748569593245,1.5001996961044355,2.9980653045112193,2.092533174388923,3.0056073184181615,3.922383806280942,3.600680383594599,3.06139505279478,4.077543100324019,3.5581515726312083,1.3238796676776348,4.1914602545256745,2.8331224156971793,2.1615271354773156,2.3564214663891656,3.004268047831399,2.2910061851861916,2.638847680150899],[0.6072984909865087,0.5779515802732297,3.197698764966881,1.0974106583569956,2.1349441381176493,1.8320673621173797,2.810070369708208,3.102198863941912,2.908172578281567,2.8693443960576355,3.5581515726312083,3.304810736134018,1.239954480061208,3.297106954805671,2.597699753383798,1.8534081682420005,2.099432570497762,2.7220894601576475,1.9486604431789887,2.2841067890773528],[0.18159174428171665,0.17263653612963356,1.1230038728715332,0.2861536070367022,0.7731390412415491,0.5756806175199709,1.0110392251655045,1.1473159074779409,1.0254806351812864,1.0936314016568347,1.3238796676776348,1.239954480061208,0.5450522925983036,1.2468538761700474,0.9651110700179919,0.5830760896027275,0.6943096219570007,0.9472334203216014,0.5901760625263083,0.7136685396967566],[0.6536865906344868,1.0026198812335918,4.871125286249186,2.137215100870909,3.998028713592237,1.8494448342204777,2.6386000540629175,4.53663063678238,4.396931474741245,2.784826642935305,4.1914602545256745,3.297106954805671,1.2468538761700474,5.146949497194107,2.640531890155583,2.4622800256361166,2.2527299479418352,2.9366133573297684,2.6927806358579405,2.7358882523753265],[0.354483019724741,0.48810108402234376,2.3480021224572525,1.0350610497345445,1.626659788816801,2.0799965953349164,2.228911620206638,2.5420085085391673,2.3288238819538085,2.127030154933119,2.8331224156971793,2.597699753383798,0.9651110700179919,2.640531890155583,2.3526940731141965,2.1713729547545118,2.482978213962635,2.6114985456014774,2.212176765901644,2.6375854669872263],[0.08483262484028138,0.5269679224457233,1.6609984225250225,3.3277163699124306,1.6284091150947229,2.9720420300404617,1.707429205457595,1.9667345680707455,3.5148233598855065,1.259417485083719,2.1615271354773156,1.8534081682420005,0.5830760896027275,2.4622800256361166,2.1713729547545118,4.705388146228393,3.7858316442229047,3.1522196365200457,4.764110131559335,4.219901033573875],[0.12118897662601899,0.5401927680236743,1.6239719037511697,1.964571851313951,1.326891498349038,3.160075051257045,1.9302332176057295,2.1903869330763452,2.5048874645602095,1.4657027155602391,2.3564214663891656,2.099432570497762,0.6943096219570007,2.2527299479418352,2.482978213962635,3.7858316442229047,3.8429636326234817,3.178684786645048,3.766265890206742,4.074170520675406],[0.2983896476874596,0.5213539509386976,2.4582248862809957,1.7550604298191161,1.7989863447018082,2.548084609613592,2.3459463104140084,2.682267393469212,2.9286223167221483,2.1392194707917276,3.004268047831399,2.7220894601576475,0.9472334203216014,2.9366133573297684,2.6114985456014774,3.1522196365200457,3.178684786645048,3.139225229521875,3.2407793516246013,3.4695918575266536],[0.07864067223197299,0.5053715309526382,1.8667361921623582,3.417240945409657,1.7757586181456344,2.868392741571898,1.7408552648793953,2.0837692582781155,3.717176809795104,1.3348618155802734,2.2910061851861916,1.9486604431789887,0.5901760625263083,2.6927806358579405,2.212176765901644,4.764110131559335,3.766265890206742,3.2407793516246013,4.884772445058215,4.275688767950494],[0.13836959029218557,0.5960953803949194,2.043936863223799,2.404889088651823,1.7061907104175136,3.2660281776549205,2.0542640007288617,2.5066882329605558,3.0565841096244553,1.592162808272605,2.638847680150899,2.2841067890773528,0.7136685396967566,2.7358882523753265,2.6375854669872263,4.219901033573875,4.074170520675406,3.4695918575266536,4.275688767950494,4.436311697983661]],&quot;contexts&quot;:[[0.3059839129212822,0.16676333558547934,0.2870058574058053,0.0855282392214442,0.0034397943867309206,0.11811111201352957],[0.2940396293129693,0.16280299923959407,0.27694804619555907,0.11186858240629458,0.019411348046672515,0.129762396949255],[0.5431060344915681,0.26669888421912363,0.2962789026830161,0.08803148886185926,-0.08824566980612669,0.10788244405469431],[0.3032274208194916,0.08233250734423919,0.07341644835629138,0.23627806591122785,0.23947906539743813,0.17394027852989707],[0.49262133844133005,0.25064039342196526,0.256813344407625,0.11076563649081897,-0.02588935140140327,0.12486477151792406],[0.10669867207351003,0.06870531485451452,0.4054206527076708,0.24864436793476413,0.018147008003507888,0.14853739452424303],[0.39105701570513574,0.18811541154325387,0.4282165489136052,0.12640481792318928,-0.07136892454662916,0.12219136869989632],[0.5079695297497493,0.2641183784647175,0.34611860691483864,0.1100242338924369,-0.09014533733549443,0.10521569454316795],[0.48550694915970677,0.2026366148256786,0.21916425371143974,0.17732556728791768,0.07410400378976024,0.15069403185534758],[0.44599052054908545,0.21197183660182817,0.4294861710305235,0.10301999303757226,-0.0954208709284041,0.10931902631038382],[0.4913402178648496,0.24115907846118304,0.4052975008241152,0.1145515899836456,-0.10445731789757148,0.09983509530095445],[0.43998696726516995,0.20926111161785324,0.44477761473786165,0.11780048870075485,-0.10291391870357734,0.10494278283413705],[0.3232184181663776,0.16936117805735665,0.3654300646825821,0.11389607489158837,-0.03818657546779774,0.10378686730153797],[0.5350149738953882,0.26949090816332477,0.3147157566560133,0.11487254233754905,-0.08625424215284114,0.08343796418114748],[0.29534887893533884,0.15048718618353435,0.4426370079092682,0.17168163043704238,-0.06372796166560364,0.11198575334018174],[0.10135179915313985,0.029515589727432567,0.22040388836260333,0.31632901003655717,0.18701746083896564,0.1109893990570017],[0.03993164162755015,0.035988543295947195,0.4078426116697084,0.2970346544770778,0.03799788258203737,0.12269765658549536],[0.2172101630433491,0.10898595635874932,0.4137619160942689,0.22622589637395943,-0.011308573367606383,0.1149797794492505],[0.11730386448659999,0.0341563880529383,0.21099458763112916,0.317847666596912,0.19622264093149383,0.11168792423398875],[0.05375620770292995,0.037929775712871344,0.3775673560208521,0.30849665183687425,0.066341279287609,0.11749259866669653]]},{&quot;queries&quot;:[[3.2,0,0,0,0.09000000000000001,0.18000000000000002],[3.2,0,0,0,0.225,0.09000000000000001],[0,3.2,0,0,0.9,0.765],[3.2,0,0,0,0.225,0.135],[3.2,0,0,0,0.855,0.405],[0,3.2,0,0,0.09000000000000001,0.315],[3.2,0,0,0,0.135,0.765],[0,3.2,0,0,0.81,0.675],[3.2,0,0,0,0.5850000000000001,0.63],[0,3.2,0,0,0.18000000000000002,0.81],[0,3.2,0,0,0.49500000000000005,0.9],[0,3.2,0,0,0.225,0.9],[3.2,0,0,0,0.09000000000000001,0.315],[0,3.2,0,0,0.9,0.7200000000000001],[0,3.2,0,0,0.18000000000000002,0.63],[3.2,0,0,0,0.09000000000000001,0.27],[0,3.2,0,0,0.09000000000000001,0.36000000000000004],[0,3.2,0,0,0.18000000000000002,0.63],[3.2,0,0,0,0.135,0.315],[0,3.2,0,0,0.18000000000000002,0.405]],&quot;keys&quot;:[[0,0,0,3.2,0.09000000000000001,0.18000000000000002],[0,0,0,3.2,0.225,0.09000000000000001],[3.2,0,0,0,0.9,0.765],[0,3.2,0,0,0.225,0.135],[0,0,0,3.2,0.855,0.405],[0,0,3.2,0,0.09000000000000001,0.315],[0,0,0,3.2,0.135,0.765],[3.2,0,0,0,0.81,0.675],[0,3.2,0,0,0.5850000000000001,0.63],[0,0,3.2,0,0.18000000000000002,0.81],[3.2,0,0,0,0.49500000000000005,0.9],[0,0,3.2,0,0.225,0.9],[0,0,0,3.2,0.09000000000000001,0.315],[3.2,0,0,0,0.9,0.7200000000000001],[0,0,3.2,0,0.18000000000000002,0.63],[0,3.2,0,0,0.09000000000000001,0.27],[0,0,3.2,0,0.09000000000000001,0.36000000000000004],[0,0,3.2,0,0.18000000000000002,0.63],[0,3.2,0,0,0.135,0.315],[0,0,3.2,0,0.18000000000000002,0.405]],&quot;values&quot;:[[0.09004419001662088,0.09292955173303705,-0.5087025510459782,-0.052236305737539755,0.13834516510934142,-0.06264066410028701],[-0.014434403550365543,0.03278306982921844,-0.5222131381709862,-0.04032311550044469,0.23483534368229986,-0.004841016912617957],[0.7123215701416069,-0.3898388192501836,-0.20826762759262604,-0.2987554683797586,-0.0854726411436271,0.23455588069457453],[0.0745950543841762,-0.39865441691813075,-0.6742099233878649,0.0681319449997671,0.8057704451882522,0.2849166362947962],[0.08439720160264795,-0.15218444384966262,-0.46832397827674177,0.04183779588829202,0.4790869667215435,0.23851518089202428],[-0.34326356735416014,-0.17571259948901594,0.29579445565784945,-0.0912765898087635,-0.12535660318958108,0.615109969944073],[0.11146612186544078,0.050673113066502865,-0.20458493422919508,0.18935232496741794,0.1545923139915678,0.24278195105580425],[0.7288459540356509,0.022962965014543077,0.25348395843607197,-0.1359038628046111,-0.2850907501265527,0.0046182388424368115],[0.5830367074690217,-0.02984588194631954,-0.04697361968845383,0.18581401973782125,0.37914670723466687,-0.010800457601148603],[0.39944668223424445,0.1908869202675766,0.6727808360782394,-0.03142910777557978,-0.5050271194899132,0.23369969802061746],[1.051018666515251,0.4530402458986875,0.5400240862909567,-0.1107681372676794,-0.702901371729117,-0.4644791076660114],[0.5044779847964387,0.34674389011836393,0.839946111460298,-0.04916986557898895,-0.7339978292935494,-0.03497283430704359],[0.414550575703992,0.75076518681998,0.19517832286510473,0.15881039721905565,-0.2998708604040836,-0.6973817078438002],[1.02729808973706,0.43912649145502863,0.49713027992827885,-0.16509355332694922,-0.6272903613004022,-0.6867149870646518],[0.13242672182515894,0.2416666779241819,0.7892429493193113,-0.041173538397610815,-0.6806966843995905,-0.0713596180352099],[0.08998912931750894,0.1880932082933549,0.09018398925313947,0.2244644922419031,0.12413894588972701,-0.456331864417428],[-0.3665263093177485,0.18955407555056636,0.7050042354715202,-0.00565215413494749,-0.5101114917058165,-0.01383994673695027],[-0.3054062292045631,-0.021992182336147303,0.6270788807807282,0.030727573798604288,-0.4022129875728281,0.21485858333736196],[-0.23119437885157668,-0.07086050266724567,-0.009198420666724438,0.2977203849723871,0.3457156489983064,-0.15216385123652554],[-0.5863338466166301,0.08416976169030889,0.6788260719199648,0.043572934545448236,-0.37207036242192526,0.1458658451124617]],&quot;weights&quot;:[[0.003373256350727859,0.0033676835981466496,0.23724441430416623,0.0033788383249507177,0.003527256962979761,0.0034068870556648225,0.003527256962979761,0.2349024825743956,0.003550662219759459,0.00354479638568317,0.23607054432299904,0.0035742227830707425,0.0034068870556648225,0.23646118753423997,0.0034982172328397298,0.003395639730192743,0.0034181716354808015,0.0034982172328397298,0.0034125246810770746,0.003440853052141163],[0.0033218171398132494,0.003352162617900005,0.23909763478236595,0.0033577096867789865,0.0035932199745515275,0.0033383350049901016,0.00340804819604887,0.23634630965337455,0.003534297927637205,0.003427827472011567,0.23151173734304084,0.003453426738104904,0.0033383350049901016,0.23870263605625164,0.003405231917376024,0.003332819943849852,0.0033438591923057475,0.003405231917376024,0.003352162617900005,0.0033771968133326597],[0.0031776038987736247,0.003246643502854025,0.005136858684493008,0.21532276523745703,0.0045153202148608485,0.003314441934849571,0.0038781676765424883,0.004832025487914748,0.286862785912116,0.00399862597932626,0.004617239806559677,0.004181176839669186,0.003314441934849571,0.005065170473859477,0.0037800415715787115,0.21372663907602826,0.0033613517896677585,0.0037800415715787115,0.2203651215631318,0.003523536843889312],[0.0032873798416801214,0.0033119302346051355,0.23917559775618322,0.003320154374646584,0.0035706981096487434,0.0033119302346051355,0.0034091594641403274,0.23603279475364672,0.003526692926362108,0.003431781080171878,0.23216230101702856,0.0034631311013150505,0.0033119302346051355,0.23858315132493763,0.0033979046366532702,0.003303726466050004,0.003320154374646584,0.0033979046366532702,0.0033256484771422893,0.003356028955278135],[0.0026033427156517217,0.0026886459105004805,0.2488164194519769,0.0027087249146673016,0.0035290295043315695,0.002662105242782815,0.002913129282848644,0.23755994630743515,0.0033333586950404543,0.002981347967717757,0.22089117330925176,0.0030739504919385006,0.002662105242782815,0.24697201439781385,0.0028939265159624856,0.002642371816928858,0.0026819860393033235,0.0028939265159624856,0.0027042499942371563,0.002788245682865877],[0.0035004519261343224,0.0034773776455901957,0.003887955091582493,0.22872670741761658,0.003705931241123864,0.00356175300380066,0.0037801944163819295,0.0038305281268918474,0.2470056554132831,0.003808425184569548,0.00389760960870183,0.003859134790908334,0.00356175300380066,0.0038655207837549016,0.00372128146289501,0.23158070148305518,0.003582424335753894,0.00372128146289501,0.23331016308745348,0.0036151505138072087],[0.0029090198443699642,0.0028495145074327035,0.23879894469467947,0.0028898441660821753,0.003255180672937437,0.0030342917709820826,0.0035008213967942623,0.23103145054034696,0.003440569008683163,0.0035591853397339782,0.24358423797926965,0.003669735852521364,0.0030342917709820826,0.23546634979616388,0.003364622901643533,0.002991946251869711,0.0030772366133569543,0.003364622901643533,0.003041826482972824,0.003136307507534481],[0.0032236742251899164,0.003288273449617944,0.004950955161236189,0.21772344920957568,0.004417153725084418,0.0033458587872762704,0.0038443689476718836,0.004688056647961566,0.28109054381137155,0.003950691625528025,0.004494508389361895,0.0041106139318104525,0.0033458587872762704,0.004889939728784649,0.003759509479699328,0.21610952746350917,0.0033876075678646563,0.003759509479699328,0.2220864105314207,0.003533489050059945],[0.0026590986440269836,0.0026833900532878133,0.24526961233071018,0.0027146275982925317,0.003382305985501038,0.0027530481798035238,0.0031242499970421944,0.23456110119524495,0.0033600104994202687,0.003194770418388083,0.23052408676259653,0.0033049126491128526,0.0027530481798035238,0.2424472655166246,0.0030502387693242157,0.0027213685245643096,0.002785096620287009,0.0030502387693242157,0.0027827951246031674,0.0028787341820420594],[0.00335244310910913,0.0032865832504003906,0.004317430439096128,0.2181519075968833,0.0038202215062706417,0.0035054935261730675,0.004081418623937543,0.004163206192796778,0.2638374741217125,0.004156328411909477,0.004382157003467155,0.004296068073187127,0.0035054935261730675,0.004253659917179073,0.0039161518100091575,0.22585950825078585,0.0035580475986879126,0.0039161518100091575,0.23000490215262212,0.003635353079590504],[0.003248541226340617,0.00322979646922649,0.004743787746036292,0.2147373541475458,0.004118420608252522,0.003413739129369836,0.004064303947628474,0.004506768357680041,0.2770062672830233,0.004169809220048831,0.004593280664073252,0.004349374868461801,0.003413739129369836,0.004665998552470868,0.003902955400372064,0.2195843954238594,0.003470651280312487,0.003902955400372064,0.22528458708200835,0.0035932740635477166],[0.00331809704560711,0.003250223846642339,0.0044314968458120515,0.2160954957580923,0.003866429438227403,0.0034868320672030028,0.004130785895901329,0.0042520544920320105,0.26791322610801854,0.0042170475400902414,0.004486791943799298,0.004376883203060469,0.0034868320672030028,0.004358828635432808,0.003947170626196705,0.2242860049949496,0.0035449627870383416,0.003947170626196705,0.22896968506140433,0.003633981017092312],[0.0032692637872875313,0.0032477134528185953,0.2374646016088364,0.0032665621946601974,0.0034611721744636447,0.0033265162214203945,0.0035305306215223076,0.23395713535198767,0.0035276131281298286,0.003556896882242538,0.23805427047266475,0.003604257361166206,0.0033265162214203945,0.2360943815715261,0.003475508587367524,0.0033073215324008654,0.0033458223105813844,0.003475508587367524,0.003332020851329676,0.0033763870808064043],[0.0031889305440942644,0.003263607850432117,0.005100062485140375,0.21626900470562382,0.004512723172706465,0.0033180170877998533,0.0038503876966532657,0.0048053514912616314,0.2855151697939446,0.003966702496080753,0.004572810585354363,0.004140943618417762,0.0033180170877998533,0.005033046903944828,0.003762283796086776,0.21413412938823617,0.003362196855602414,0.003762283796086776,0.22060282040655158,0.0035215102381823712],[0.003397950750335639,0.0033533011710273337,0.00419190396491594,0.2218455941853325,0.00380858418158836,0.0035180049259498705,0.003962754039355726,0.004068985629250427,0.2587205021686556,0.0040221633241220136,0.00421274837073735,0.004129987529332364,0.0035180049259498705,0.004143667223772558,0.003840200359054599,0.22741640079911582,0.0035589582853269514,0.003840200359054599,0.23082580889798324,0.003624278909139263],[0.0033035834551039347,0.0032872375383429416,0.23739238072853763,0.0033035834551039347,0.0034830792804630825,0.003353110508331133,0.0035294568697812876,0.23427300946352464,0.0035352973204376865,0.00355287672413188,0.23739238072853763,0.0035942360287288004,0.003353110508331133,0.23621777861909546,0.0034830792804630825,0.003336519534921664,0.0033697839810024237,0.0034830792804630825,0.0033586591457538013,0.0033977575489443643],[0.0034891333806919256,0.0034604075200978988,0.003917257457413821,0.2277987307364652,0.0037092488756089947,0.0035590521425064394,0.003808684621925242,0.0038530218054593298,0.24825081083822126,0.0038403016331762588,0.003936736172773874,0.003897875121474539,0.0035590521425064394,0.0038914356779855405,0.0037400404414839527,0.23121387069451368,0.0035826683774907273,0.0037400404414839527,0.233133245039414,0.0036183868793070464],[0.003397950750335639,0.0033533011710273337,0.00419190396491594,0.2218455941853325,0.00380858418158836,0.0035180049259498705,0.003962754039355726,0.004068985629250427,0.2587205021686556,0.0040221633241220136,0.00421274837073735,0.004129987529332364,0.0035180049259498705,0.004143667223772558,0.003840200359054599,0.22741640079911582,0.0035589582853269514,0.003840200359054599,0.23082580889798324,0.003624278909139263],[0.0032300908001673817,0.0032167667313975513,0.2381366448598296,0.0032354358678732906,0.003468099287529722,0.0032866572239288586,0.0034911120011522495,0.2342316519398784,0.0035171838807345358,0.003520092748674263,0.23695836017971744,0.0035699132140897616,0.0032866572239288586,0.2367625469934778,0.0034395465995725573,0.0032676925295976327,0.0033057319835822748,0.0034395465995725573,0.0032948186063744824,0.0033414507289204138],[0.0034546859967771256,0.003437592434436074,0.004038924308898331,0.22648397052112432,0.003792968600677248,0.0035326650036879427,0.003818136997816419,0.003953036919367594,0.2523891739577951,0.003859392327579525,0.004008984916533785,0.003930227075885881,0.0035326650036879427,0.004008984916533785,0.0037462241620975084,0.22930998028221455,0.0035590472041301833,0.0037462241620975084,0.23178769621014617,0.003609418998513236]],&quot;scores&quot;:[[0.016534055763786457,0.014880650187407812,4.269746395474406,0.018187461340165103,0.061176006326009884,0.02645448922205833,0.061176006326009884,4.259825962016134,0.06778962863152448,0.06613622305514581,4.264786178745269,0.07440325093703905,0.02645448922205833,4.266439584321648,0.05290897844411666,0.023147678069301042,0.02976130037481562,0.05290897844411666,0.028107894798436974,0.036374922680330206],[0.014880650187407812,0.02397438085749036,4.291240667967328,0.025627786433869006,0.09341741506539346,0.019840866916543746,0.04050843662127682,4.279666828932677,0.07688335930160702,0.04629535613860208,4.258999259227944,0.05373568123230598,0.019840866916543746,4.289587262390949,0.03968173383308749,0.018187461340165103,0.021494272492922392,0.03968173383308749,0.02397438085749036,0.03141470595119427],[0.08928390112444687,0.11077817361736926,0.5695982210624433,4.305294615366546,0.4406325861049089,0.13144574332210232,0.2885192730780736,0.5084222147364335,4.592160482868241,0.3191072762410786,0.46295356138602073,0.36374922680330196,0.13144574332210232,0.5555442736632249,0.26289148664420464,4.297854290272842,0.14549969072132082,0.26289148664420464,4.328442293435847,0.1926217496481122],[0.018187461340165103,0.025627786433869006,4.305294615366546,0.028107894798436974,0.10085774015909736,0.025627786433869003,0.054562384020495305,4.292067370755517,0.08845719833625754,0.0611760063260099,4.275533314991731,0.07026973699609244,0.025627786433869003,4.302814507001979,0.051255572867738006,0.02314767806930104,0.02810789479843698,0.051255572867738006,0.02976130037481562,0.03885503104489817],[0.061176006326009884,0.09341741506539346,4.621095080454868,0.10085774015909736,0.36540263237968057,0.0834969816071216,0.17360758551975777,4.574799724316265,0.30836013999461737,0.19675526358905884,4.502049878955605,0.22734326675206373,0.0834969816071216,4.613654755361164,0.1669939632142432,0.0760566565134177,0.09093730670082549,0.1669939632142432,0.09920433458271873,0.12979233774572366],[0.02645448922205833,0.019840866916543746,0.13144574332210232,4.206090280783828,0.0834969816071216,0.0438152477740341,0.10333784852366533,0.11656509313469451,4.282973640085435,0.11077817361736926,0.1339258516866703,0.1240054182283984,0.0438152477740341,0.12565882380477708,0.0876304955480682,4.218490822606668,0.04960216729135936,0.0876304955480682,4.225931147700371,0.058695897961441916],[0.061176006326009884,0.04050843662127682,4.468981767428032,0.054562384020495305,0.17360758551975777,0.10333784852366533,0.24635743088041817,4.435913655900459,0.2289966723284424,0.26289148664420464,4.488822634344576,0.29347948980720956,0.10333784852366533,4.454927820028813,0.20667569704733066,0.08928390112444685,0.11739179592288383,0.20667569704733066,0.1058179568882333,0.13640596005123826],[0.07936346766617498,0.09920433458271874,0.5084222147364335,4.292067370755517,0.39433722996630693,0.11656509313469451,0.25545116155050074,0.4538598307159383,4.547518532306018,0.2827323535607484,0.4116979885182827,0.32241408739383587,0.11656509313469451,0.4960216729135937,0.23313018626938903,4.284627045661813,0.12896563495753435,0.23313018626938903,4.31190823767206,0.17112747715518983],[0.06778962863152448,0.07688335930160702,4.592160482868241,0.08845719833625754,0.30836013999461737,0.10251114573547603,0.2289966723284424,4.547518532306018,0.3017465176891028,0.25131764760955416,4.530157773754042,0.28521246192531635,0.10251114573547603,4.580586643833591,0.20502229147095205,0.09093730670082549,0.11408498477012655,0.20502229147095205,0.11325828198193721,0.14715309629769946],[0.06613622305514581,0.04629535613860208,0.3191072762410786,4.241638500675968,0.19675526358905884,0.11077817361736926,0.26289148664420464,0.2827323535607484,4.431780141959512,0.2810789479843698,0.3339879264284864,0.31414705951194266,0.11077817361736926,0.3042266260536708,0.22155634723473852,4.27636001777992,0.12565882380477705,0.22155634723473852,4.2945474791200855,0.14715309629769946],[0.08432368439531093,0.07853676487798567,0.46295356138602073,4.275533314991731,0.3215873846056465,0.1339258516866703,0.30836013999461737,0.4116979885182827,4.530157773754042,0.3339879264284864,0.43071215264663715,0.37614976862614186,0.1339258516866703,0.4464195056222343,0.2678517033733406,4.297854290272842,0.15045990745045676,0.2678517033733406,4.3234820767067115,0.1851814245544083],[0.07440325093703905,0.05373568123230598,0.36374922680330196,4.250732231346051,0.22734326675206373,0.1240054182283984,0.29347948980720956,0.32241408739383587,4.465674956275275,0.31414705951194266,0.37614976862614186,0.3513486849804622,0.1240054182283984,0.3472151710395156,0.2480108364567968,4.287933856814571,0.1405394739921849,0.2480108364567968,4.308601426519303,0.16534055763786454],[0.02645448922205833,0.019840866916543746,4.3119082376720606,0.025627786433869003,0.0834969816071216,0.0438152477740341,0.10333784852366533,4.297027587484653,0.10251114573547603,0.11077817361736926,4.314388346036629,0.1240054182283984,0.0438152477740341,4.3061213181547355,0.0876304955480682,0.03802832825670884,0.04960216729135936,0.0876304955480682,0.04546865335041275,0.058695897961441916],[0.08597708997168957,0.10912476804099061,0.5555442736632249,4.302814507001979,0.43319226101120506,0.12565882380477708,0.2744653256788552,0.4960216729135937,4.580586643833591,0.3042266260536708,0.4464195056222343,0.3472151710395156,0.12565882380477708,0.5423170290521958,0.25131764760955416,4.292894073543706,0.13888606841580622,0.25131764760955416,4.322655373918522,0.1851814245544083],[0.05290897844411666,0.03968173383308749,0.26289148664420464,4.231718067217697,0.1669939632142432,0.0876304955480682,0.20667569704733066,0.23313018626938903,4.3854847858209105,0.22155634723473852,0.2678517033733406,0.2480108364567968,0.0876304955480682,0.25131764760955416,0.1752609910961364,4.256519150863376,0.09920433458271873,0.1752609910961364,4.271399801050784,0.11739179592288383],[0.023147678069301042,0.018187461340165103,4.297854290272842,0.02314767806930104,0.0760566565134177,0.03802832825670884,0.08928390112444685,4.284627045661813,0.09093730670082549,0.09589752342996144,4.297854290272842,0.10747136246461196,0.03802832825670884,4.292894073543706,0.07605665651341768,0.033068111527572906,0.042988544985844784,0.07605665651341768,0.03968173383308749,0.05125557286773801],[0.02976130037481562,0.021494272492922392,0.14549969072132082,4.208570389148396,0.09093730670082549,0.04960216729135936,0.11739179592288383,0.12896563495753435,4.2945474791200855,0.12565882380477705,0.15045990745045676,0.1405394739921849,0.04960216729135936,0.13888606841580622,0.09920433458271873,4.223451039335804,0.05621578959687395,0.09920433458271873,4.231718067217697,0.06613622305514581],[0.05290897844411666,0.03968173383308749,0.26289148664420464,4.231718067217697,0.1669939632142432,0.0876304955480682,0.20667569704733066,0.23313018626938903,4.3854847858209105,0.22155634723473852,0.2678517033733406,0.2480108364567968,0.0876304955480682,0.25131764760955416,0.1752609910961364,4.256519150863376,0.09920433458271873,0.1752609910961364,4.271399801050784,0.11739179592288383],[0.028107894798436974,0.02397438085749036,4.328442293435847,0.02976130037481562,0.09920433458271873,0.04546865335041275,0.1058179568882333,4.31190823767206,0.11325828198193721,0.11408498477012655,4.3234820767067115,0.12813893216934502,0.04546865335041275,4.322655373918522,0.0909373067008255,0.03968173383308749,0.05125557286773801,0.0909373067008255,0.04794876171498072,0.062002709114199216],[0.036374922680330206,0.03141470595119427,0.1926217496481122,4.219317525394857,0.12979233774572366,0.058695897961441916,0.13640596005123826,0.17112747715518983,4.327615590647658,0.14715309629769946,0.1851814245544083,0.16534055763786454,0.058695897961441916,0.1851814245544083,0.11739179592288383,4.231718067217696,0.06613622305514581,0.11739179592288383,4.242465203464158,0.08019017045436432]],&quot;contexts&quot;:[[0.8336040120658771,0.12828369563274652,0.2639112115716068,-0.16478092764603924,-0.40502233943663507,-0.21359406640777198],[0.8334408270155877,0.12634984894181767,0.2621402185629016,-0.1654453353283435,-0.40350431832497774,-0.21259145441174884],[0.16988017678452513,-0.06159698278217405,-0.12450863699319381,0.17862966246786433,0.36708775470583344,-0.0738776394257592],[0.8338478050290726,0.12654613986060534,0.2623649648513155,-0.16549715808879883,-0.4038446738350488,-0.2127918483114542],[0.8386457531186462,0.12059261977968541,0.25749160615114147,-0.1691937175565575,-0.4017723703587603,-0.21109380684662016],[0.14224854454426744,-0.06351223202740165,-0.13118899536027528,0.18074876973620543,0.37095884590947836,-0.07917463553726689],[0.839007474592893,0.1303864310334772,0.26638132643553625,-0.16565355598989365,-0.4091303578977051,-0.2160195340859353],[0.16589103012316572,-0.062114272940174846,-0.12588035484011595,0.17887863408198112,0.3680093110342606,-0.0743954220459804],[0.8395212320397464,0.12456240203784062,0.26116156203348617,-0.16797913507960902,-0.4050978028006283,-0.2132719479183332],[0.1533304069259224,-0.06020732093199123,-0.1239803173489893,0.18063636445137424,0.36560863914230624,-0.07943250266212222],[0.16257925087127048,-0.060079034889176375,-0.12265570006547548,0.17977777799299696,0.36507799895619597,-0.07716966363621466],[0.15608584430489034,-0.0596564327131962,-0.12267208177733575,0.18052417158446885,0.36467715507176546,-0.07923785731320651],[0.834838464361408,0.12888732741327544,0.26459699750247295,-0.16493445707534843,-0.4060561339755764,-0.2142066259385654],[0.1689900345193548,-0.06191598786327786,-0.12517496428114136,0.1786274743059151,0.36759785179376203,-0.07379902159214513],[0.1499954741316521,-0.06146198494501536,-0.12660765536144117,0.18060382573911077,0.3676158437973376,-0.07910973515941466],[0.8344289222138954,0.12868582730571088,0.2643690019106094,-0.16488397160066393,-0.40571253495141973,-0.21400260568455456],[0.14304773084001546,-0.06319598071792255,-0.1305308424738808,0.18076513963504956,0.37045924392917906,-0.07926917854417864],[0.1499954741316521,-0.06146198494501536,-0.12660765536144117,0.18060382573911077,0.3676158437973376,-0.07910973515941466],[0.8350481115368591,0.12836846099968266,0.26415002655637215,-0.16519013567509175,-0.4057697943438901,-0.21400168587370816],[0.14589874080868814,-0.06303930156372158,-0.12989929327942218,0.18054294193039722,0.3701219072367089,-0.07867026467260017]]},{&quot;queries&quot;:[[-1.0004207284558295,2.0710283354111567,-0.23910101195775876,1.5820337246976677,0.05,0.1],[-1.1102230246251565e-16,2.3,-2.7755575615628914e-17,1.5999999999999999,0.125,0.05],[1.0004207284558295,2.0710283354111567,0.23910101195775868,1.5820337246976677,0.5,0.425],[1.8016518921432116,1.429702927022528,0.47283233065814323,1.5285383826009697,0.125,0.075],[2.2441637230013156,0.5037153803139955,0.6959448545779683,1.440715363764283,0.475,0.225],[2.239849551019849,-0.5225648177941001,0.9034279574320565,1.3205369838554852,0.05,0.175],[1.7895683528422186,-1.4447993322622998,1.0906220160373346,1.1707021901981134,0.075,0.425],[0.9829737245378091,-2.0793659266392406,1.2533230554039734,0.9945759492330631,0.45,0.375],[-0.01933666894444208,-2.2999187144840865,1.387877160950427,0.7961136766267632,0.325,0.35],[-1.0177970195781598,-2.0625443575685383,1.4912625375475623,0.579772407162678,0.1,0.45],[-1.8136080851802485,-1.4145054660088208,1.5611573725226544,0.35041069934886654,0.275,0.5],[-2.248319270629723,-0.48483033869079306,1.5959919785664871,0.11317952266832482,0.125,0.5],[-2.2353770596241875,0.5413773187952381,1.5949840455262703,-0.12659342209077407,0.05,0.175],[-1.7773583213787703,1.4597936146680597,1.5581562094051122,-0.36352335150893916,0.5,0.4],[-0.965457241031677,2.08755654192635,1.4863355440061907,-0.5922893301620592,0.1,0.35],[0.038671971114004555,2.299674863681855,1.381134986638198,-0.807753767359772,0.05,0.15],[1.0351013696954208,2.053914592784876,1.2449171150206741,-1.0050777963563824,0.05,0.2],[1.8254360868530524,1.399208023424185,1.0807410888818416,-1.1798299448659926,0.1,0.35],[2.2523159001782593,0.4659110277769737,0.8922939478262674,-1.3280856563763552,0.075,0.175],[2.230746564943698,-0.5601515535923217,0.6838078083741277,-1.446515427227298,0.1,0.225]],&quot;keys&quot;:[[0,2.3,0,1.6,0.05,0.1],[1.0004207284558295,2.0710283354111567,0.23910101195775876,1.5820337246976677,0.125,0.05],[1.8016518921432116,1.429702927022528,0.4728323306581433,1.5285383826009697,0.5,0.425],[2.2441637230013156,0.5037153803139954,0.6959448545779683,1.4407153637642833,0.125,0.075],[2.239849551019849,-0.5225648177941004,0.9034279574320566,1.3205369838554855,0.475,0.225],[1.7895683528422186,-1.4447993322622998,1.0906220160373346,1.1707021901981134,0.05,0.175],[0.9829737245378084,-2.0793659266392406,1.2533230554039734,0.9945759492330633,0.075,0.425],[-0.01933666894444182,-2.2999187144840865,1.3878771609504272,0.7961136766267631,0.45,0.375],[-1.0177970195781605,-2.062544357568538,1.491262537547562,0.5797724071626779,0.325,0.35],[-1.8136080851802485,-1.414505466008821,1.5611573725226546,0.35041069934886676,0.1,0.45],[-2.248319270629723,-0.4848303386907933,1.5959919785664871,0.11317952266832465,0.275,0.5],[-2.2353770596241875,0.5413773187952376,1.5949840455262703,-0.12659342209077418,0.125,0.5],[-1.7773583213787703,1.4597936146680597,1.5581562094051125,-0.36352335150893905,0.05,0.175],[-0.9654572410316754,2.087556541926351,1.486335544006191,-0.592289330162059,0.5,0.4],[0.03867197111400433,2.2996748636818545,1.3811349866381981,-0.8077537673597721,0.1,0.35],[1.0351013696954203,2.053914592784876,1.244917115020674,-1.0050777963563826,0.05,0.15],[1.8254360868530524,1.3992080234241853,1.0807410888818416,-1.1798299448659928,0.05,0.2],[2.2523159001782598,0.4659110277769719,0.8922939478262673,-1.3280856563763555,0.1,0.35],[2.2307465649436984,-0.5601515535923195,0.6838078083741284,-1.4465154272272978,0.075,0.175],[1.7650226607952204,-1.4746847143980841,0.459964819748071,-1.5324595800849448,0.1,0.225]],&quot;values&quot;:[[0.22485665308759598,0.08169197775035536,-0.26653443273392563,0.5290632220683066,0.24164408542872703,0.18322333497717647],[0.190541670203179,-0.059537673787847384,-0.3272282571510913,0.37859631710594527,0.26387904842964705,0.1393387976512439],[0.5811473981033867,-0.5727174933896153,-0.30826447814459873,-0.336484388687459,0.0604728643779644,0.14922307273606483],[-0.3170173821182411,-0.4611741740532365,-0.3654733444888956,-0.010791876771768114,0.6367810341451421,0.036523171244662644],[0.2170199530245045,-0.46976829630638495,-0.5645204913174935,-0.10409360303989618,0.17025334119537366,0.01629188160787931],[-0.5943826038785931,-0.3427904140088469,-0.12137654251212725,-0.3306559014379088,-0.1813350571024142,0.2253263742229165],[-0.04421044333241783,-0.29560617048247145,-0.6858327234639762,0.2063876443641136,-0.4165591454075857,-0.01634281118111222],[0.2665892906982957,-0.5911604834787711,-0.25944350799504173,-0.49134640161379417,-0.4642306745904182,-0.4316197093625326],[-0.14292473503528869,-0.3445446490410099,-0.03794855209985354,-0.0018941966667795004,0.09806347958893911,-0.5142251886859366],[-0.0353200492590833,0.1838020298000116,0.20611403688149266,-0.15985912041487912,-0.505701811163052,0.011989470098022675],[0.5318423323871578,0.05224762244525094,0.11113054068765074,-0.14526095008724907,-0.7067586347992516,-0.5827442870194268],[0.2078896771660881,0.4881118174514396,0.5094983205827305,-0.005534692362308817,-0.5476459969925781,-0.07196840088409297],[0.5136678579636307,0.6253275888955382,0.0942977649470339,0.4027159827278375,-0.44799946682807945,-0.4907730847111244],[0.9187715838467079,0.2526203244751703,0.34192238497009864,-0.32643903185481243,-0.44613519498342646,-0.5853787338197459],[0.2502652399057267,0.5387116736370023,0.5329703113136082,-0.09554127384504162,-0.48710544208111417,0.023686553657572176],[-0.045861988627313,0.24839057461770664,0.2715703778102175,0.1676774070346378,-0.01911419675305981,-0.5006886784601992],[-0.1601746031921839,0.384740486908786,0.3826000082710781,-0.2985626692801458,-0.4630434008598916,0.003669028771813798],[-0.09977104593252165,0.2494513361477439,0.18062020257735928,-0.3981429689024672,-0.50930537980181,0.19067221691167513],[-0.3716483263343972,-0.08614121293144311,-0.05200813430485812,-0.0960114205553481,-0.09233476901497495,-0.37604614164211225],[-0.5250730117870035,0.13949577393232654,0.19991562854452477,-0.49881835695076066,-0.5192181487755028,-0.010005281099752628]],&quot;weights&quot;:[[0.33238575492358574,0.17567872163887097,0.0711492352850893,0.024549429806074257,0.009489002468647955,0.004611402883306775,0.0033284973005002277,0.003631727691082771,0.005724800149465668,0.011731489322975748,0.02643926733538334,0.0534845480341457,0.08182769079840041,0.08835997219043287,0.06104184157544869,0.02917977457812158,0.01104897824564575,0.003930164262173947,0.0015623137604319217,0.0008453877502165453],[0.2934644427329364,0.23458779249472803,0.1274204411300627,0.04912509104713701,0.017692574745520852,0.00659698700275809,0.003261238586964158,0.0023714352803676604,0.0025553272903909617,0.0040044686566198485,0.008292415031218496,0.018442298510054248,0.03703227554403934,0.05910813238702138,0.06133604436983052,0.04252449806265568,0.020536479724611523,0.0078040054053594736,0.00274282410988636,0.0011012278878370846],[0.18194570818464156,0.22976927676979503,0.21102012253037244,0.09727587304754871,0.042443721643723405,0.013607258465968159,0.005448060322272616,0.002864076809551662,0.0019850919015696068,0.0020931329416839536,0.00346159785509065,0.006883250247244299,0.014358651069843874,0.03321001805770696,0.047112980599485696,0.04775450623091925,0.033619135369707474,0.016817656111812903,0.006133610844280805,0.0021962709967811773],[0.09077701172146237,0.1720579760610195,0.22255703420547004,0.17218973093384563,0.09312303695813043,0.03601232366405357,0.01281535462959537,0.004975005795471022,0.002426372487992405,0.0017181523826622681,0.0018837886865962616,0.0029573739109150813,0.005980490535942552,0.013808937380322638,0.0274118944061856,0.042195925330052765,0.04480352312079361,0.031493394405866654,0.015093219988499934,0.0057194533951224445],[0.033655965465474655,0.0858827199218555,0.1807792791237146,0.20420846217662758,0.17663009963456117,0.08562016103462913,0.034844364780867075,0.013155899057390397,0.00488666913172219,0.002319102160519034,0.0017211296405715902,0.0018138783365847626,0.0027448916672348574,0.006269217473675471,0.012941663583047927,0.025533443956290616,0.039829340078656454,0.04322894488691789,0.02954558327345905,0.014389184616199866],[0.01231825293629382,0.03485471779174903,0.09114719463647286,0.1668249192588521,0.21305258812697703,0.16776400988144172,0.09035988754165468,0.03591092829525399,0.012610835662825882,0.004822462863090715,0.0023858232867081898,0.0016985156044923367,0.001797827103853589,0.0029168680764932084,0.005910631138247311,0.013044982472084058,0.0265646157668989,0.04173496009050018,0.04367423852744108,0.03060574093866906],[0.0047255922699582726,0.01231031127377429,0.03768007286092549,0.08856739064405036,0.1737530606272801,0.2132958564411129,0.17769858199976465,0.09423262390268121,0.03699416547377105,0.013184922870067345,0.0051002231848600935,0.0024937975160083383,0.0016793272442625665,0.0019208821121206611,0.002975860137380527,0.005884256383435853,0.01330202021394682,0.02774559329823374,0.041761297360311735,0.044694164186053834],[0.0023539262808423074,0.00482153946373482,0.014342372778163094,0.03597741580465218,0.09918588802501473,0.17215455005418528,0.22542600802224994,0.19104250341461526,0.09835423706168608,0.03792871683899899,0.01392053559676442,0.0051654135488124935,0.0023811097843996327,0.0019116279385891974,0.001912459257370021,0.0029073938764449733,0.006006793338267505,0.013901557346785706,0.027336454314144033,0.04296949725427925],[0.001758305756446737,0.0024691775374977233,0.005573971492477591,0.013225745453218068,0.04013240947474796,0.09515354551670893,0.18710306467889984,0.24493768192549795,0.19135173309304368,0.09962566260886517,0.04064768900313946,0.014053792333521139,0.005066649630496382,0.0027282238427294232,0.0018343798485070514,0.0019214290001072214,0.0030614383518687803,0.00645549184042339,0.014063309743126685,0.02883629886867683],[0.0019647244989503486,0.001799761541277764,0.00274171349849474,0.005154445387794282,0.014090885623004598,0.03890565615770492,0.10302065142504133,0.19601323972934506,0.24352499838646408,0.19591323766002655,0.10530625436099116,0.041425963304520017,0.013721885497337202,0.005555981792600213,0.0026603954520645536,0.0018275266402262723,0.00200115237967951,0.003260865123569348,0.006467577729186604,0.014643083811721497],[0.0030754248629796532,0.0019405775642340512,0.002013870865311887,0.0025174395120471428,0.0054961051663121084,0.013598271213805245,0.04068778864454475,0.10612988596123372,0.19689213869211114,0.24580570366470283,0.20187753824668575,0.10497182811041669,0.03855517263179224,0.014975137510824224,0.005405703516853373,0.002534842508354425,0.0018287085641983138,0.002057344716651677,0.003131647038158637,0.006504871008781892],[0.006374901586074213,0.0030895037594778313,0.0021490423954937266,0.0018091699122189226,0.0026593329294220163,0.0052439014193172385,0.014486190026402002,0.041441128004505716,0.10350636475504407,0.19749090886402698,0.25253818908245396,0.19977156432351906,0.0984823993719202,0.04175956275999393,0.014284317378363392,0.005217209410912614,0.002589031891756225,0.0019111907785796163,0.0019983125885940888,0.0031977787619242213],[0.014825339595529414,0.006601760405590715,0.003332767365502678,0.0020390251099403974,0.0019131642392807644,0.002646502065420243,0.005487620941163885,0.014445753629399314,0.040780762774694716,0.10329647925752625,0.19673873942684045,0.24605327583551717,0.19134244681824691,0.1037719897568914,0.040593894613865325,0.014099802111600588,0.00539735884288268,0.0026825343948307895,0.001890840431007073,0.0020599423842693767],[0.027925003272320354,0.013860768766564066,0.007098517704848201,0.0030289177624947244,0.002107436752796635,0.0017664653002364532,0.0025899438021419387,0.005645747561759973,0.014369786192263315,0.03955441911861575,0.10441834575316937,0.19150535633705018,0.22436349459267863,0.20339144067830536,0.09831619484525815,0.037280910799592025,0.013256642981070956,0.005235051511528442,0.0024863390024534022,0.001799217264852149],[0.04295400386841176,0.027550631795407465,0.014545956025586011,0.006080172234342564,0.003073372391269245,0.0018957399363860922,0.00181262749661632,0.0025591370566827635,0.005164868745676157,0.013610016078788648,0.039143809644299185,0.09829369041791985,0.17690073352371766,0.23342078382647896,0.18175055988741146,0.09321303387267679,0.03715842890972685,0.01341692953790211,0.0049861709720468396,0.0024693337786533083],[0.044570942505778255,0.041976881076815215,0.027874595631572498,0.013343424064548791,0.006052027544014648,0.0029173536387582517,0.001873531604870308,0.001734716282037037,0.0024193262475636305,0.004932790607841828,0.013018378805028078,0.0367981603669714,0.09099968910506061,0.176081872450065,0.2184278018467522,0.17182116092483601,0.09113911005292372,0.03644309332636932,0.012709853086197136,0.004865290831995824],[0.030271736803726315,0.043263799527061005,0.04240038056637388,0.026335119411783077,0.013232697269933764,0.005829742346825902,0.0029034980620273277,0.0018419357947113703,0.001689867561160004,0.0023748874161032105,0.004871926966270995,0.012733685479914023,0.03510457328043344,0.09117032368314408,0.1703084171765495,0.20997610741392153,0.16806367788019186,0.09006052976404649,0.035122492079655565,0.012444601516166767],[0.014438938556445747,0.02980703062815478,0.045754470000653594,0.04042860501301728,0.026983818996691465,0.012976475536298993,0.006006968558333126,0.002953839637156099,0.001851061558284497,0.0017147859553642245,0.0024358716412080064,0.004928653284968553,0.012297412601005081,0.03667360224391834,0.09050672941131806,0.16599117082152565,0.20972816389573895,0.17115220030630302,0.088181604681676,0.035188596671938514],[0.005685030143415635,0.015025364739289076,0.03235961468459274,0.04470463976328258,0.04308083106092723,0.02728865755363255,0.01370133291887394,0.006162254270137228,0.002988734214143633,0.0018897296626822805,0.0017573202905680518,0.0024496006070033717,0.00486124378152093,0.013130932258598791,0.036645794330394,0.09113303114168861,0.17295328118195868,0.21964272436566995,0.17277685152772285,0.09176303150389784],[0.0021981613442955622,0.0062145381345165215,0.01728477005322878,0.03416716374301223,0.05034933584993389,0.0464608441555612,0.030648158192453947,0.015266864153190927,0.00676204236463268,0.0032980971397293664,0.002109416747332607,0.0019323050831832676,0.0026183027849052986,0.005542523543708043,0.014229971224119136,0.03953101596807992,0.10033550725828196,0.19276431540161507,0.2377230099427341,0.19056365691548552]],&quot;scores&quot;:[[2.983118893430996,2.345479568240804,1.4416022631443262,0.37751131474086724,-0.5730438202576124,-1.2946451896116633,-1.6206563723757428,-1.5334688304019743,-1.0783696729674013,-0.3609006917967552,0.45167299072937545,1.1562154769851292,1.5814383912340404,1.6582417504134754,1.2883822430908427,0.5502985044380951,-0.42083935617703894,-1.4544960914095904,-2.377009411207356,-2.991137194288561],[3.209341873409043,2.9854152900648554,2.375077569299434,1.4219553141657528,0.4007304362609992,-0.585801579334608,-1.290307551525485,-1.6089192340249074,-1.534234295946594,-1.0850037076874397,-0.3570733640736564,0.44223224901239927,1.1393752350034954,1.6069539093880318,1.6439530602472399,1.2776657254661665,0.5497881940750156,-0.4177774939985601,-1.4634265227634857,-2.3759887904811983],[3.0055725494065086,3.2389398744676736,3.153817709881199,2.3794152073856125,1.5500432152987897,0.4124675746118355,-0.5028761453341356,-1.145889718773893,-1.5124705754028194,-1.459473827755399,-0.9564054961913229,-0.2690448264423858,0.4662168360771514,1.3047157926413597,1.6544127731544547,1.6679376473119918,1.3169596234233132,0.6242935070846704,-0.3843521652168295,-1.411374865729346],[2.3465001889669637,2.9859256004279353,3.243277512553852,2.986691065972555,2.372015707120955,1.4219553141657526,0.3887381427286233,-0.557479354183677,-1.2755085509961697,-1.6206563723757428,-1.5286208819527158,-1.0776042074227818,-0.3734032956922101,0.46341012908021284,1.1490711319020104,1.5804177705078801,1.6403808877056814,1.2878719327277628,0.5523397458904156,-0.41803264918010113],[1.4329269869719692,2.369719310487096,3.114013501560972,3.235878012289194,3.09079438004084,2.3666574483086165,1.467628091661397,0.4936069223415285,-0.4967524209771776,-1.2420832222144405,-1.54028249019067,-1.487796052906329,-1.0735217245181428,-0.24761179119303217,0.47718850888336656,1.1567257873482084,1.601340495394154,1.6832469582043872,1.3026709332570787,0.5832135228567429],[0.38006286655626637,1.4201692278949736,2.3814564488379317,2.9859256004279344,3.2305197534768557,2.9915390144218126,2.3727811726655745,1.4500223841351434,0.40353714325793816,-0.557734509365217,-1.2614750160114745,-1.6012645785787099,-1.54444050320819,-1.0605088102596072,-0.35426665707671784,0.4373843005631403,1.1485608215389322,1.600319874667994,1.6457391465180198,1.2901683293616213],[-0.5730438202576121,0.38440050464244485,1.5030946618954455,2.35772701695472,3.03159837792358,3.236643477833814,3.0540520338990924,2.4197297260689195,1.484723488824572,0.4530372484766822,-0.49675242097717753,-1.2122300659742713,-1.6076434581172074,-1.4732522075585541,-1.0355036024686965,-0.35375634671363787,0.46187919799097266,1.1970403060315158,1.6059332886618718,1.6738062164874095],[-1.278315257993109,-0.5613066819067758,0.5288183373940366,1.4484914530459043,2.462595796567625,3.0139926703973257,3.2835920312371583,3.1180959844656106,2.454175675576807,1.5013085756246665,0.49896518115386607,-0.49241478289099955,-1.266833274823813,-1.4864447468857482,-1.4860099666355504,-1.0671428449796456,-0.3415088979997212,0.49760092340656137,1.1738211845113828,1.6260905480035257],[-1.6186151309234238,-1.2790807235377282,-0.4648580232846883,0.3991995051717601,1.5092183862524036,2.372526017484035,3.048693775086754,3.318037980745047,3.071147431062266,2.41845395016122,1.5219761453293994,0.45992643837825936,-0.5602860611806171,-1.1793150475556224,-1.5762593707877977,-1.5298966578604156,-1.0640809828011668,-0.31803462129804877,0.46060342208327204,1.1786691329606425],[-1.5375513133066132,-1.6252491656434616,-1.204320255346533,-0.5730438202576112,0.43262483395348966,1.4482362978643646,2.422026122702779,3.0652788618868487,3.2823162553294587,3.0647685515237684,2.4439694683152102,1.5110044725231826,0.40608869507333634,-0.49802819688487837,-1.2344285667682433,-1.6099398547510664,-1.519180140235739,-1.0309108092009767,-0.3461016912674403,0.47106478452641093],[-1.073266569336604,-1.533723985583514,-1.4966509541473447,-1.2734673095438502,-0.4926699380725387,0.41323304015645523,1.5092183862524038,2.467954055379963,3.0859464315915814,3.30783177348345,3.1109516393824923,2.456982382573746,1.4553806429474807,0.5096816987785417,-0.5092550248726331,-1.2665781196422725,-1.593099612769432,-1.4752934490108733,-1.05515055144727,-0.3241583456550061],[-0.35834913998135587,-1.0827073110535803,-1.4456954479522433,-1.6178496653788037,-1.232642480497464,-0.5536520264605784,0.462477990193659,1.5135560243385822,2.4289153126043557,3.074974758785365,3.3208446877419853,3.0864567419546614,2.3791600522040723,1.5212106797847786,0.44844445520896403,-0.5587551300913766,-1.2594337745591553,-1.5629913013477221,-1.5184146746911196,-1.048261361545691],[0.43381212802158237,-0.37518938196298973,-1.058722723988828,-1.5500539172020682,-1.6137671824741653,-1.2892869307993255,-0.5600309059990767,0.40787478134411637,1.4456847460489641,2.3750775692994335,3.0193509292096636,3.2430223573723116,2.991539014421813,2.3796703625671527,1.4410919527812476,0.3836350390978259,-0.576615992799171,-1.2757637061777096,-1.625504320825001,-1.5398477099404717],[1.1597876495266883,0.45932764617557365,-0.20984882432512503,-1.061529430985767,-1.4242624127028907,-1.60075426821563,-1.2180986351496892,-0.43883219476761803,0.495393008612307,1.5079426103447031,2.4786705730046386,3.0851809660469613,3.243532667735392,3.1453975888903813,2.41845395016122,1.4487466082274445,0.41476397124569475,-0.5143581285034319,-1.2589234641960745,-1.5823830951447562],[1.589603357043317,1.1454989593604517,0.5067865099419963,-0.36549348506447454,-1.0477510511826131,-1.530917278586576,-1.575749060424718,-1.230856394226685,-0.5286468186696665,0.44027948939968636,1.4967157823569481,2.4174333294350605,3.005062239043429,3.2823162553294587,3.0321086882866592,2.364361051674757,1.444664125322804,0.42599079923344996,-0.5638582337221746,-1.2665781196422738],[1.6388499566164418,1.5788868394186406,1.1694835464252038,0.4327915072954214,-0.35783882961827673,-1.0875552595028393,-1.5304069682234958,-1.607388302935668,-1.2747430854515505,-0.562327302632936,0.40812993652565704,1.447215677138205,2.3526239133239226,3.0127168944896265,3.2282233568429968,2.9882219970617943,2.354154844413161,1.4375197802396869,0.38414534946090584,-0.5761056824360927],[1.2812378980077255,1.6383396462533617,1.6181807373757877,1.1419267868188938,0.45371423218169493,-0.3660037954275532,-1.063060362075007,-1.5181595195095787,-1.6043264407571887,-1.264026567826874,-0.5454870606513015,0.4152742816087746,1.4293548144304111,2.3837528454717916,3.0086344115849872,3.2180171495814007,2.995366342144912,2.371505396757875,1.4298651247934915,0.3923103152701809],[0.559484090973532,1.284299760186204,1.7128449592630168,1.5890930466802378,1.1847928573175996,0.4526936114555358,-0.31752431093496947,-1.0273386366594182,-1.4946852428079067,-1.5711562671569994,-1.2201398766020084,-0.5153787492295918,0.3989443499902201,1.4916126787261499,2.394979673459546,3.00149006650187,3.2353677019261147,3.0321086882866592,2.3689538449424776,1.450277539316682],[-0.42134966654011696,0.5505536596196365,1.3177250889679335,1.6408911980687608,1.6038920472095524,1.1472850456312313,0.4583070254494122,-0.3407434324551024,-1.0643361379827072,-1.5227523127772982,-1.595396009403291,-1.2632611022822526,-0.5778917687068691,0.4157845919718564,1.4421125735074067,2.353134223687002,2.9938354110556733,3.232816150110715,2.9928147903295126,2.360023413588577],[-1.4595991950403895,-0.4203290458139597,0.6026053166537769,1.2840446050046639,1.6717649750350907,1.591389443314097,1.175352115600623,0.47846428479106784,-0.33589548400584274,-1.0538747755395694,-1.5008089671648652,-1.588506819501714,-1.284694137531607,-0.5347705430266251,0.4081299365256554,1.4298651247934888,2.361299189496278,3.0142478255788654,3.2238857187568186,3.0027658424095693]],&quot;contexts&quot;:[[0.2998329787066497,0.10196348166435638,-0.0703252015059887,0.2062606775684208,-0.023100798960656314,-0.030447587473739036],[0.2583703780261743,0.002187400591883119,-0.13752397061932572,0.1810407859753196,0.06546610982097449,0.028444357175443774],[0.21804122530005893,-0.11767948484490753,-0.1833191053957598,0.08114608090381442,0.10243183571661725,0.051038450830155825],[0.13047399845806995,-0.21443058582338842,-0.2225342402797288,-0.013408534989266018,0.12439049744757932,0.05378367553982189],[0.034182949043861335,-0.28857563127614244,-0.26281970734172067,-0.09633509750067462,0.10130689996786303,0.04451136117812053],[-0.07499304478932638,-0.3088199975882448,-0.2846253951204503,-0.1331659828413361,0.01292340902986704,0.025508520612294524],[-0.11788454153131969,-0.31530938185397467,-0.29555389933726994,-0.14821689402909527,-0.12233060268538781,-0.018899554874618252],[-0.08012466305974228,-0.32060718891852724,-0.2779037661367618,-0.15578227740613615,-0.23110965887341872,-0.11151793599814955],[-0.013259801386549506,-0.28858396921174245,-0.19867130409574574,-0.15771994903683656,-0.2856680518098612,-0.21594137903408306],[0.05326747877723471,-0.17741198679251502,-0.06502595682922331,-0.14199902788707172,-0.32721786918005763,-0.27609662345205355],[0.14312729360314036,-0.011773392947077922,0.07045576727503124,-0.11109734035710588,-0.4021266367870934,-0.2952630491379315],[0.2539002157724628,0.16065725690980098,0.17423374074232928,-0.06292189939270998,-0.4735672204208715,-0.3027746161676459],[0.3548667612234022,0.295424562932634,0.23202626246265104,-0.00659172500103089,-0.48152704764192583,-0.31452778137943105],[0.4252779494088053,0.35189468214356334,0.2563371900957116,0.005618701699374725,-0.43799327088646306,-0.3207917408271544],[0.3977092117436332,0.3455474602156365,0.26154656639343893,-0.006888104223319954,-0.3667179553782307,-0.28396137251410747],[0.2737973550585228,0.29779081279739295,0.2501578271078391,-0.03325717623694091,-0.2941327189334811,-0.2189156888415946],[0.11532141206836229,0.2343546950107583,0.2153919615588429,-0.07922985647666678,-0.2510220941238862,-0.15228523140675895],[-0.023509227790276564,0.16375978988151838,0.15950767655729245,-0.1494906480423376,-0.246697788966323,-0.09419026701038753],[-0.1385668748085275,0.09172476495332772,0.09477721153365179,-0.20895607279463668,-0.2568420938020666,-0.0673601796152198],[-0.22816839005031161,0.02913518729271857,0.041564524520793775,-0.24537660213680834,-0.27515006469616016,-0.07367501421566763]]},{&quot;queries&quot;:[[0.21000000000000002,0.42000000000000004,0,0,1.210372811472079,1.5921675970981117],[0.525,0.21000000000000002,0.10500000000000001,0.315,1.4347121817990454,1.3934134186943308],[2.1,1.785,0.42000000000000004,0.21000000000000002,1.6268310095787475,1.163366178927767],[0.525,0.315,2.1,0.525,1.7824147201228706,0.907192242851155],[1.9949999999999999,0.9450000000000001,0.63,0.21000000000000002,1.8979692387111724,0.6306447247905375],[0.21000000000000002,0.735,0.525,1.8900000000000001,1.9708994599769203,0.3399342858004821],[0.315,1.785,0.21000000000000002,0.63,1.9995675283787138,0.041589655606185105],[1.8900000000000001,1.5750000000000002,0.21000000000000002,0.735,1.9833296209049376,-0.2576889885910494],[1.3650000000000002,1.47,1.785,0.42000000000000004,1.9225504059505998,-0.5511804936490255],[0.42000000000000004,1.8900000000000001,0.10500000000000001,0.21000000000000002,1.8185948536513639,-0.8322936730942845],[1.1550000000000002,2.1,0.315,0.63,1.6737975815969954,-1.0947153309605422],[0.525,2.1,0.21000000000000002,0.525,1.4914104243534405,-1.3325520425596484],[0.21000000000000002,0.735,0,0.10500000000000001,1.275529404269008,-1.5404625080946146],[2.1,1.6800000000000002,0.735,0.42000000000000004,1.0310027436429288,-1.7137775067378946],[0.42000000000000004,1.47,0.21000000000000002,1.05,0.7633219841046632,-1.8486047572649271],[0.21000000000000002,0.63,1.9949999999999999,1.6800000000000002,0.4784986584279647,-1.9419163302991809],[0.21000000000000002,0.8400000000000001,0.8400000000000001,2.1,0.1829292844648741,-1.9916166490781224],[0.42000000000000004,1.47,0.735,1.3650000000000002,-0.11674828685515926,-1.9965895515895062],[0.315,0.735,2.1,1.5750000000000002,-0.4138039433467987,-1.956723357163868],[0.42000000000000004,0.9450000000000001,1.1550000000000002,2.1,-0.7015664553792398,-1.872913374581593]],&quot;keys&quot;:[[0.42000000000000004,0.21000000000000002,0,0,0,2],[0.21000000000000002,0.525,0.315,0.10500000000000001,0.29887626494719843,1.9775421558720845],[1.785,2.1,0.21000000000000002,0.42000000000000004,0.5910404133226791,1.910672978251212],[0.315,0.525,0.525,2.1,0.8699310682224604,1.800894204705354],[0.9450000000000001,1.9949999999999999,0.21000000000000002,0.63,1.1292849467900707,1.6506712298193567],[0.735,0.21000000000000002,1.8900000000000001,0.525,1.3632775200466682,1.4633777377476418],[1.785,0.315,0.63,0.21000000000000002,1.5666538192549666,1.243219936541329],[1.5750000000000002,1.8900000000000001,0.735,0.21000000000000002,1.734846451188034,0.9951420957834539],[1.47,1.3650000000000002,0.42000000000000004,1.785,1.8640781719344526,0.7247155089533472],[1.8900000000000001,0.42000000000000004,0.21000000000000002,0.10500000000000001,1.9514467156533182,0.43801337418608344],[2.1,1.1550000000000002,0.63,0.315,1.994989973208109,0.1414744033354058],[2.1,0.525,0.525,0.21000000000000002,1.9937300569078378,-0.15824177761346772],[0.735,0.21000000000000002,0.10500000000000001,0,1.9476952617563905,-0.4544041893861738],[1.6800000000000002,2.1,0.42000000000000004,0.735,1.8579194300077386,-0.7403616627025738],[1.47,0.42000000000000004,1.05,0.21000000000000002,1.7264187332977474,-1.0096922091997151],[0.63,0.21000000000000002,1.6800000000000002,1.9949999999999999,1.5561463937758424,-1.2563472454454783],[0.8400000000000001,0.21000000000000002,2.1,0.8400000000000001,1.350926361102302,-1.4747874310824909],[1.47,0.42000000000000004,1.3650000000000002,0.735,1.115367434782834,-1.6601070704704441],[0.735,0.315,1.5750000000000002,2.1,0.8547597604676603,-1.808144284034122],[0.9450000000000001,0.42000000000000004,2.1,1.1550000000000002,0.5749560246850888,-1.9155744751061807]],&quot;values&quot;:[[0.24507065413901363,0.028819989659946282,0.11147327781231386,0.8407250463523415,0.2217888087697056,0.3357073423747895],[0.2984079539812602,-0.12151497079294406,0.034528896265150266,0.6045636841592268,0.15843648072748984,0.21250442743905523],[0.15379075997032846,-0.4637100124479344,-0.2511539689384833,-0.20272363809735497,0.17559830228549106,-0.012161452610249385],[-0.5470615308899676,-0.28865596213588873,0.1295271612828777,-0.08421560564693117,0.1432554078990585,-0.23048437168683322],[0.23903822598124602,-0.547934175031694,-0.37300846118114966,-0.19697357275464986,-0.22535010317658186,-0.21423459461157238],[-0.542573835864677,-0.33516468428817003,-0.47668784070817133,-0.40151603766283267,-0.14489588241134574,-0.2792950774558727],[-0.17735510324071305,-0.49122941590396574,-0.8175450454024511,0.11823725411337055,-0.7754107384323403,-0.26713844016484223],[-0.3315349233003597,-0.903998284946939,-0.6401452804609955,-0.5963736595291116,-0.40677488084958735,-0.6478821567714178],[-0.7960444154894615,-0.4836458239141965,-0.009582959573269129,-0.18863703347600197,-0.23299791764557268,-0.7555744376982917],[-0.45208587542910145,0.08304221514441844,-0.36559902758212925,-0.20681674125348787,-0.24864497030637792,-0.21583120559116487],[-0.25838808215864534,-0.37517306423952773,-0.374400817812592,-0.105721346062947,-0.35041551484810074,-0.4040131439331665],[-0.19464985292462259,0.38071297357532535,-0.08061589838839524,0.040921243432497555,-0.08218572771746155,-0.07228518592599688],[0.35099370241964467,0.1811910378300029,-0.0546417615913788,0.4413768862688327,-0.36780460948478666,-0.03404137232932214],[0.3419920420317816,-0.06263409283312495,0.012453337808572789,-0.32141446760194503,-0.03760669327317291,-0.1857035091744022],[0.24055577932373212,0.5612016209531339,0.0050687170820437315,-0.10121628487588086,-0.045260328963866364,0.10666084496599071],[-0.1583394892489194,0.18209538768434153,0.31455059870545926,0.025433330905646367,-0.15262576617325344,-0.28986890904741697],[0.12781028090862323,0.3838434492296916,-0.13479677047043365,-0.4393103631516947,-0.1799846872851946,0.019308079381395067],[0.15671257015638385,0.39376168299219594,-0.3578917777667416,-0.6240994715980193,-0.35682967643685215,0.06930952722449638],[-0.32269126006583515,-0.05751995105965532,-0.06831184012866434,-0.44081089083361186,-0.4833266616310747,-0.40827606646798503],[-0.19620808887497296,0.1237275982490041,-0.3808820538798337,-0.786986276584313,-0.401745784978863,-0.16077720384006186]],&quot;weights&quot;:[[0.051997006337914625,0.06157651629983168,0.10213217718560834,0.07345244140006398,0.10284389028638205,0.07392324827896994,0.0789205956281985,0.09391157693589519,0.07605170635970095,0.05810214343954068,0.05654283286463612,0.04174325843828579,0.028367654478586014,0.0337878238269534,0.0195699102017876,0.013756450984054295,0.010980485550059359,0.009480938815019081,0.00698152636004356,0.005877816328468806],[0.036172208490134646,0.04293018040923432,0.08155420851823754,0.07235791859999267,0.08198939298842939,0.07352100527711397,0.084013950567348,0.08849047418206257,0.09241406313448901,0.06657403123808193,0.06723283866202541,0.052715667255064595,0.030111247702793668,0.038948662541117174,0.0245930328820173,0.02051039464094376,0.014745695121778939,0.012878789224362145,0.010347349495905496,0.007898889068867631],[0.007507212462048308,0.010137287321406674,0.1462803052539383,0.01833205815076844,0.08484722841891347,0.02726366446002419,0.0585404498623443,0.15591420832556538,0.1009996161673062,0.05616926582172899,0.11240607014086366,0.05990931775833394,0.011379206179486807,0.09376856080419124,0.019772607260179282,0.008515913432231709,0.007806251552451138,0.010682194746718051,0.004814205578755258,0.004954376302744507],[0.010612713215417608,0.017448920409535437,0.035329501981521946,0.04650332927072177,0.04091744340095646,0.14198159767033794,0.06112744233021201,0.08072293908908572,0.07844523606422396,0.042443512008788674,0.0676702357532068,0.0498583774666087,0.020652743106876856,0.04167060262549744,0.04048342364930393,0.06677233656862896,0.06209020461994098,0.02990251242518645,0.031659633928973634,0.03370729441497459],[0.0065112017563162695,0.008498014775124978,0.06936562531024354,0.017242809030451795,0.048562865376227164,0.03585041514882584,0.06836571572027468,0.11615445598293918,0.09476331894684904,0.07554429122700554,0.12937723110106486,0.0905165978835709,0.020787057352859854,0.09312922540461636,0.038884966740233146,0.02039064022820787,0.019685074444282243,0.023236161670238165,0.011445180317592167,0.011689151583076431],[0.0067027314857820205,0.010643252011087383,0.030535766306060575,0.08090075557855939,0.04815421995401455,0.043040162947415084,0.03323618097805566,0.059242626775444576,0.16889859185771341,0.035551342151866755,0.05771186232494306,0.04127653458426769,0.024012068591816163,0.07743230970967302,0.030388203662332476,0.10150491726228313,0.038149251662576794,0.027241132596915428,0.05903931983833663,0.02633876972085629],[0.00614467884924553,0.010132390594254147,0.053271292327121765,0.02775774471481042,0.07222856767419224,0.025969331011258666,0.031240116663986982,0.11044584061641347,0.11999192093931824,0.04334326398013218,0.08582390266162347,0.05199133611496871,0.030367298993550916,0.15603532665173517,0.03681426380186523,0.04104845568365443,0.02737062539186496,0.025999111798789266,0.02555545631893201,0.018469075212282287],[0.0026050452937621494,0.003672345926479414,0.047366246230188286,0.011934548417043684,0.03919064730920862,0.014590256212053305,0.034581792604500526,0.0960903091152288,0.1127734587793615,0.05573543473395444,0.12405459062220994,0.08191148710306763,0.02100456369392247,0.18020383178146185,0.04338732168944164,0.03196710397088942,0.023878817903090654,0.03406830105980998,0.022780075000667994,0.01820382255365749],[0.0017967203466011342,0.0031429578258890816,0.024285981478186544,0.008906105030099974,0.023944954310348397,0.03055601260665673,0.027239254912627343,0.0812215276449556,0.06846982040438217,0.0360648519253746,0.09814138417339996,0.06538308008199291,0.018522844386664166,0.13828370533335899,0.062211650429378436,0.06826770778939527,0.07644443486611016,0.06136646702802496,0.04747065060851053,0.05827988881804314],[0.0036664665647191466,0.005802588823072711,0.03330651444981724,0.011476944680102739,0.04410915012207421,0.014494222263874887,0.02174943335416364,0.08757533411509084,0.07816088753471111,0.04088988564460401,0.0885088699207722,0.05940637919191314,0.03800613346975546,0.21381502676605146,0.05507592632704772,0.04652914199341917,0.041137840755825696,0.04627290640963372,0.03697918137422318,0.033037166239127454],[0.0017563451129784383,0.0027622652289142403,0.030145298716972593,0.007963245462783222,0.031751303853437524,0.009594895060261543,0.017127177246280906,0.07603775760893691,0.081889194627031,0.03385127725295458,0.09196731069071311,0.05878573324990052,0.02340826809403106,0.24839498875872096,0.052049680732902365,0.04990263536354866,0.04140642982512653,0.054645626234411375,0.04608269052721949,0.040477876352875024],[0.0021918756124541675,0.0035026074075165422,0.02488182863205056,0.008718084015998134,0.03176146153442744,0.00947646031620213,0.013900673499160516,0.06559996045341232,0.06991928110259557,0.028739654710592366,0.07386714447082264,0.04905446403035789,0.029440876515470532,0.24242806854004537,0.05533116521460595,0.061581566322278763,0.051816599217326016,0.0624677681949473,0.06152987223227902,0.05379058797745679],[0.004254045047837844,0.005466537204279203,0.01235384792109427,0.009039684717708057,0.01751823323958558,0.012740180403599895,0.018122301335855455,0.036427913893976746,0.04183271975538921,0.03808849812173149,0.06013722595528836,0.05979496896910669,0.05641063479150943,0.1271523751825092,0.08158746542243932,0.0822378992453888,0.08215601168866202,0.09137995179082475,0.08447122725514128,0.0788282780580725],[0.0010121209021803903,0.001352683057900996,0.01863160139751056,0.003193585384823611,0.013159723349076054,0.006609431362818591,0.014414648148018901,0.04672591585319479,0.04530145463047978,0.030312801388486695,0.0885481477072189,0.0674314338532469,0.017298531355433574,0.20848943099543352,0.06938831102364891,0.053066426090525164,0.06318201906346267,0.10170972072792643,0.06741861501442442,0.08275339869418906],[0.0019935538416008323,0.002787239711099431,0.012278407169261504,0.009276707132546922,0.01571740785350442,0.007105188464896286,0.008938369917763424,0.02845088528276994,0.04977958126189882,0.018503231775112202,0.04288126849508896,0.03488807956425263,0.024833560664258757,0.15421843247238579,0.053806754014764445,0.10644200522195271,0.07712404217944542,0.09349370554104766,0.14583716345526557,0.11164441598108424],[0.0006313395789275438,0.0010078896939949378,0.0022002794942239828,0.006096886874111469,0.0031420110516224664,0.008655773251932654,0.0034807875028216714,0.00702436583971987,0.017613423274309245,0.004868094416699851,0.01242169202062412,0.011441439685617682,0.007234776314595033,0.033644214817837685,0.030162880180215113,0.17772363518641737,0.13179222969257598,0.08305577613459501,0.2454705645202918,0.21233194046886647],[0.0010916939224200283,0.0015164478835956868,0.004062297161514874,0.01095743626654206,0.0056145458775604335,0.005760872250569333,0.003932053348502557,0.008512574253137088,0.030700891593256244,0.006446591527372297,0.014910046874574836,0.013511773284229544,0.009892838553140597,0.05378081542908083,0.028959823530273432,0.17348236887286655,0.08913798826235941,0.08204168952365071,0.28468079102589944,0.17100646055945407],[0.001728753568592065,0.0023573185596122664,0.009558090851389547,0.008732414458070676,0.010523847019744717,0.006255850665903363,0.005434190872055903,0.016904830590394358,0.032850256117746834,0.009273642844731988,0.024214728616829048,0.01936028046252686,0.012688324036545498,0.09736056421528869,0.03872488083801253,0.1190254986793214,0.088727531263637,0.09976754804321915,0.21498366693547252,0.18152778136090547],[0.0008852104255094832,0.001284801024319777,0.002835811854974295,0.005879970986898459,0.003172741523593018,0.007963357995049915,0.0030045547809804795,0.006083006918772474,0.013082965554389907,0.0036537979136042407,0.009659576166518012,0.00867992078596195,0.005156267855188003,0.027525380281256485,0.02512602464568697,0.14352656715359738,0.12397888181598624,0.08599840309307008,0.2568018759260299,0.26570088329861297],[0.0014947641876255728,0.0019301648023998795,0.005602895422473281,0.01166386639739009,0.005832367835796569,0.006154028807746172,0.0036094626056534422,0.007738434173001038,0.024463003177940923,0.004756315153077038,0.01183883139363381,0.01015872757262603,0.006198548856287829,0.04203585628856953,0.023218421386455624,0.14615150418923528,0.08599476333616397,0.08275628712884746,0.3008050670137734,0.21759669027130296]],&quot;scores&quot;:[[1.3720143977323471,1.541108820187306,2.0470960803828815,1.717466392239288,2.054040461448557,1.7238556207687183,1.7892704795990375,1.9631819198996343,1.7522417070263878,1.4830308066570697,1.455826705968609,1.1523662149592506,0.7660778205196724,0.9409287470130728,0.39482144406557396,0.042336127799831466,-0.18305209234658865,-0.3298884062832918,-0.6359041796749947,-0.8079864285418944],[1.2457397898394733,1.417023771755988,2.0587166214591766,1.9390735827261432,2.0640385722213233,1.9550198385965463,2.0884315503602093,2.140343596983436,2.183727852615475,1.8557632672807618,1.865610485858017,1.6223613898560802,1.062347466911969,1.3196931210104554,0.8599118737705189,0.6783805004145117,0.3483998711605897,0.21303039906145135,-0.005820913313076998,-0.27582918748586815],[1.4629913713309812,1.7633475911113434,4.4326518313399275,2.3557784900152066,3.887979477949794,2.752681994783029,3.516845117216886,4.496433060624998,4.062243867792903,3.4754968870939686,4.169245092095903,3.5399591995374595,1.8789148217908336,3.987956778448627,2.4314246593943856,1.589063732953502,1.5020520450471406,1.8157054643312835,1.0186981940846238,1.0473984388401194],[0.8577437369935896,1.3549688736742431,2.0604094596673734,2.3352150018382627,2.207247555737192,3.4513885499204777,2.608651997907378,2.8867138808859134,2.858091846164469,2.2438651572378108,2.7103375286920732,2.404877630369181,1.5235392432783463,2.2254870017728683,2.1965836923077195,2.696979966133867,2.6242793354972425,1.8936335990528168,1.9507335864022064,2.013405360007087],[0.938007377393805,1.2043159169756246,3.303874768897894,1.9118785253893589,2.9473424885597783,2.6438384837665083,3.28935480343537,3.819404159143318,3.615865740068896,3.3892024596434314,3.927215745721981,3.5700165725436146,2.0988138870084225,3.5984713857681916,2.725091053435282,2.079559319846253,2.044344042791074,2.210193094479746,1.5020520450471406,1.523144533177617],[0.37657580494821213,0.8389867545417953,1.8929593395373305,2.8672838408685775,2.3484694534186756,2.2361943789862524,1.977699748216623,2.555702006850024,3.603359163829842,2.0450385866438285,2.5295234157918904,2.194354845811805,1.6526172391365122,2.823464808789041,1.888115172869837,3.094167920429137,2.1155668190651657,1.7787887360515924,2.552264337059418,1.7451026647748014],[0.24100093211315993,0.7411517345397033,2.400812033162134,1.7489293426616794,2.7052500943834703,1.68233071786879,1.8671175119923968,3.1299397232218302,3.2128388675951807,2.1945657568898813,2.877712006081185,2.3764915441115115,1.8387807910250424,3.475496887093968,2.0312998259729613,2.1401676674022263,1.7348848249151823,1.6834768284382131,1.6662653009924904,1.3415121758234765],[0.24869343691382162,0.5920740494975589,3.1491532448044923,1.7706807968311618,2.9596815038976203,1.9715972977981235,2.834570692873998,3.8565318438373257,4.0166243914875555,3.311859490447191,4.1119650902969855,3.6968826133114496,2.3359831074902346,4.485331983615128,3.0614106460764727,2.7559507477535803,2.4642351603724415,2.8196107388849287,2.41712962502356,2.1928749770690894],[-0.08996199634935835,0.4692393696296623,2.5139743203070255,1.5108120303439627,2.4998326560141444,2.7436365085841437,2.6287341585432804,3.7212553611397237,3.5504681004765666,2.9093937905059892,3.9104841649616153,3.5043385409778316,2.2430798323478482,4.2533824408973375,3.4546173184737503,3.5475118855317938,3.6606391656287625,3.4409385766854492,3.18418666847642,3.389332103934203],[-0.4455161934863291,0.013559563905015854,1.7610084041081562,0.6955956097519331,2.0419226438229257,0.9290055025890772,1.3348431016441835,2.7277547813952916,2.614024760158157,1.9661381348444074,2.7383581692161547,2.339657011536548,1.8930029509314883,3.6203666774712606,2.2639681090524095,2.0953342229597958,1.9721837947043626,2.0898120122036947,1.8656104858580171,1.7528885745246388],[-0.5157525830198632,-0.06293651428538165,2.327041388720158,0.9958490457062606,2.378946198236103,1.1822435999713838,1.7616789220264335,3.252242435051286,3.3263794559097146,2.4429891388683216,3.4424456028198285,2.994911601150907,2.074101704797066,4.436032583267198,2.8732110686788217,2.831086221750285,2.6444485860482145,2.921881586603186,2.751449810351216,2.6217679694551843],[-0.8179679425163652,-0.3492178991323919,1.61141219939406,0.5626739269934343,1.855528089557802,0.6460852983259279,1.029211728291005,2.5808495292566977,2.6446158857321334,1.755552302484647,2.6995425708030747,2.290205627814622,1.7796585025126026,3.8879794779497945,2.4106107522033584,2.517637013892058,2.344984982294963,2.531925150989112,2.5167972203904174,2.382372943357361],[-1.1587617480545924,-0.9079866905636468,-0.09266446719763856,-0.4050077568650525,0.2566101836326766,-0.06187124384930055,0.2905112435391651,0.9887032916697288,1.1270467482930973,1.0332802956857894,1.4899969957451664,1.4842894721647704,1.4260256465607162,2.23875411755374,1.7950435858504925,1.802984202884206,1.8019879669161678,1.908394054265646,1.8297789162203142,1.7606397367932503],[-0.895188485657556,-0.6051464475638094,2.017622620973012,0.25390771278439617,1.669924385624793,0.9812611054132949,1.7610084041081557,2.93706243612925,2.9061026250768305,2.5043335934165087,3.5763099280215,3.303874768897894,1.9433850872059073,4.432651831339929,3.3324819063282147,3.0643079333171657,3.2387832342383507,3.714886362920906,3.3036846489985137,3.5086285673021202],[-1.3113382180895221,-0.9762053589001094,0.5065850908201209,0.22624953483210328,0.7535117644468101,-0.04043182727356143,0.18909612259721492,1.3469221630906596,1.906347770987873,0.9166882932319024,1.7571779846240698,1.5508880969576593,1.210938876798592,3.0371128759803807,1.9841418844538632,2.666343170778329,2.344157948938911,2.5366369994695526,2.981233566335559,2.7140618492888184],[-1.4955492960897163,-1.0277791617405843,-0.24705349971712642,0.7721403975596023,0.10922516237063735,1.1225886314406655,0.21162066725882797,0.9137470443778337,1.8330234025459808,0.547064675473918,1.4838064059297782,1.4016039298373062,0.9432615476385071,2.4802032242652654,2.370974140430496,4.144591837588626,3.8455887701977196,3.3838744888850165,4.467539145083747,4.322512912240058],[-1.5181256868342836,-1.1894855527289583,-0.20410761710795555,0.7881621028266138,0.11950447421680936,0.1452326615895501,-0.23669446407328973,0.5356881602290428,1.8184354622530159,0.2576953117185497,1.0961790385623371,0.9977051664744563,0.6859548828614157,2.379060578992652,1.7600532398870117,3.5502197398498874,2.8843293649266815,2.801371292849251,4.045512287032537,3.535845102794381],[-1.4321672966848336,-1.1220431954262435,0.2778200404417357,0.18747393689772016,0.37407586180911756,-0.14605083252267184,-0.2868573290374023,0.8480314498964567,1.5123915765420504,0.24760830882794865,1.2073931036173735,0.983655603503235,0.5611142384451397,2.5988532788661547,1.6769143442238548,2.7997697798331167,2.506002262501419,2.6232749955895645,3.3909940925589472,3.2218407423999094],[-1.4806335584842538,-1.1080998037146188,-0.31637540040307127,0.41284816251265866,-0.20410761710795539,0.7161471043887893,-0.258574267581774,0.44679546754794475,1.2126073794879482,-0.06293651428538141,0.9092461069754699,0.8023087374046052,0.2815093687344368,1.956404833178008,1.8652004822808081,3.6078164898380494,3.4614075779806375,3.0956250622111146,4.189601211612268,4.223667511996305],[-1.3761954950393012,-1.1205585662951267,-0.05488045156142187,0.6783317655193918,-0.014740890711930724,0.03894300261970523,-0.494605056847152,0.26803540849482393,1.4189979464585873,-0.21869071446383342,0.6932209693117857,0.540169239981614,0.04615125380743718,1.9603590198162424,1.366782033468312,3.206479828185307,2.676122447548682,2.6377360333480087,3.9282984816484707,3.604479349304937]],&quot;contexts&quot;:[[-0.14003375310104127,-0.2918315523523414,-0.2572502127257621,-0.0916087076676831,-0.16473454452678613,-0.22016727555689936],[-0.1756211191965232,-0.2663654366466502,-0.25610014309917595,-0.11741217857931177,-0.18894429510805702,-0.245342147570532],[-0.14613456993530483,-0.34664282658966183,-0.2976739282543847,-0.21559835364825036,-0.2015534333619395,-0.301984964746185],[-0.20942383104077458,-0.17148302623459277,-0.24475442865365324,-0.21937707008809504,-0.22056138584342294,-0.2588543978617359],[-0.16830625598716198,-0.22787385810167887,-0.27345206581740067,-0.1950934631710891,-0.23067778938425096,-0.28580565611673414],[-0.2345171588285942,-0.1737062323624144,-0.13642340509651565,-0.19802422138269085,-0.20295665304706137,-0.312785612828287],[-0.1267747954880004,-0.2186549616646201,-0.20602416926681977,-0.22069874727634015,-0.20491658570052085,-0.2929624358465985],[-0.12517273145610805,-0.1750570859008513,-0.20832718991636062,-0.22390297390281846,-0.21212120511946564,-0.2871380661226684],[-0.10068458914606838,-0.06635084983308986,-0.19346255694010298,-0.27204453777282883,-0.22949358560495278,-0.2410196052203581],[-0.0574379539833962,-0.11438436842371871,-0.17881340622580352,-0.24101030675475435,-0.20625404820214288,-0.24958826369881612],[-0.05119773256951733,-0.09649539701167677,-0.16360460938160126,-0.26479823603535085,-0.20345963757143404,-0.25150482377196637],[-0.03560600281235997,-0.061574941365823005,-0.15023610160040426,-0.2744575410165738,-0.20750165650329655,-0.23532900532636652],[-0.04409992024071075,0.05398269425721987,-0.14846375201272385,-0.25874315956047955,-0.2362589831120984,-0.18375490392408514],[-0.030804633510714954,0.01395699328419299,-0.16631415925917814,-0.3063298289925889,-0.22354108056621896,-0.20039252031976143],[-0.06575443754183077,0.04116089011578298,-0.12446748237010988,-0.3238174132130122,-0.24899631505673137,-0.21277241444507866],[-0.12894311736198277,0.11995148714940877,-0.10887223740398214,-0.4040602102445362,-0.3062864200441633,-0.21063200686092656],[-0.1435939685425288,0.08297355998599029,-0.09336687577399513,-0.3779604274795817,-0.30600061974151627,-0.23668953872902604],[-0.09979144650925342,0.07320789586640683,-0.13083697044682696,-0.38915675042745174,-0.28737044473766976,-0.21267203915041927],[-0.13568008393711786,0.11813229857510316,-0.1378135445578928,-0.44643837464103714,-0.32282704451087263,-0.20709227089258855],[-0.15319384204951814,0.08115527294925903,-0.11826389331478238,-0.41661504138142336,-0.32175775355705327,-0.23412355890997155]]}]}&lt;/script&gt;
+&lt;/section&gt;
+&lt;script type=&quot;module&quot;&gt;
+  import { mountChart } from &quot;https://persistent.oaistatic.com/plugins/visualize/charts/1.2.3/element.js&quot;;
+  const root = document.getElementById(&#x27;cernan-attention-details&#x27;);
+  const data = JSON.parse(root.querySelector(&#x27;[data-attention-data]&#x27;).textContent);
+  const queryControl = root.querySelector(&#x27;[data-query]&#x27;);
+  const headControl = root.querySelector(&#x27;[data-head]&#x27;);
+  const svg = root.querySelector(&#x27;.attention-scene&#x27;);
+  const detail = root.querySelector(&#x27;[data-detail]&#x27;);
+  const matrixPanel = root.querySelector(&#x27;[data-matrix]&#x27;);
+  const matrixBase = JSON.parse(root.querySelector(&#x27;[data-viz-chart]&#x27;).textContent);
+  const parts = [&#x27;query&#x27;, &#x27;keys&#x27;, &#x27;values&#x27;, &#x27;matrix&#x27;, &#x27;metrics&#x27;, &#x27;life&#x27;];
+  const defaults = { query: 2, head: 0, part: &#x27;query&#x27; };
+  let state = { ...defaults }, chart;
+  function accepted(candidate) {
+    const s = candidate?.privateContent;
+    return s?.version === 1 &amp;&amp; Number.isInteger(s.query) &amp;&amp; s.query &gt;= 0 &amp;&amp; s.query &lt; 20 &amp;&amp;
+      Number.isInteger(s.head) &amp;&amp; s.head &gt;= 0 &amp;&amp; s.head &lt; 4 &amp;&amp; parts.includes(s.part) ? s : defaults;
+  }
+  state = { ...accepted(window.openai?.widgetState) };
+  data.tokens.forEach((token, index) =&gt; {
+    const option = document.createElement(&#x27;option&#x27;);
+    option.value = index; option.textContent = `${token.id} · ${token.label}`; queryControl.append(option);
+  });
+  const points = [
+    [.91,.46],[.78,.43],[.62,.39],[.47,.30],[.30,.22],
+    [.14,.15],[.12,.31],[.32,.38],[.18,.49],[.48,.49],
+    [.71,.61],[.54,.69],[.34,.72],[.18,.77],[.10,.88],
+    [.38,.91],[.61,.87],[.76,.22],[.61,.13],[.43,.09]
+  ];
+  const branches = [[0,1,2,3,4,5],[4,6],[3,7,8],[2,9],[0,10,11,12,13,14],[12,15],[11,16],[1,17,18,19]];
+  const ns = &#x27;http://www.w3.org/2000/svg&#x27;;
+  const node = (tag, attrs, text) =&gt; {
+    const el = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([key,value]) =&gt; el.setAttribute(key, value));
+    if (text !== undefined) el.textContent = text;
+    svg.append(el); return el;
+  };
+  function derived(s) {
+    const h = data.heads[s.head], weights = h.weights[s.query];
+    const rank = weights.map((weight,index) =&gt; ({ weight,index })).sort((a,b) =&gt; b.weight-a.weight);
+    return { h, weights, rank, links: rank.filter(d =&gt; d.index !== s.query).slice(0,3),
+      entropy: -weights.reduce((sum,w) =&gt; sum+w*Math.log2(w),0),
+      top3: rank.slice(0,3).reduce((sum,d) =&gt; sum+d.weight,0),
+      qNorm: Math.hypot(...h.queries[s.query]), cNorm: Math.hypot(...h.contexts[s.query]),
+      span: Math.max(...h.scores[s.query])-Math.min(...h.scores[s.query]) };
+  }
+  function matrixConfig() {
+    const rows = [];
+    data.heads[state.head].weights.forEach((weights,i) =&gt; weights.forEach((weight,j) =&gt; rows.push([data.tokens[j].id,data.tokens[i].id,weight])));
+    const order = data.tokens.map(t =&gt; t.id);
+    return { ...matrixBase, title: `Head ${state.head+1} · A[20×20]`, rows,
+      spec: { ...matrixBase.spec, xOrder: order, yOrder: order } };
+  }
+  function drawNetwork(d) {
+    const w = Math.max(280, root.clientWidth), h = w &lt; 480 ? 320 : 300;
+    svg.setAttribute(&#x27;viewBox&#x27;, `0 0 ${w} ${h}`); svg.setAttribute(&#x27;height&#x27;, h);
+    svg.replaceChildren();
+    const p = points.map(([x,y]) =&gt; [20+x*(w-40), 12+y*(h-95)]);
+    const title = node(&#x27;title&#x27;,{},`Query ${data.tokens[state.query].label}; strongest other keys ${d.links.map(a=&gt;data.tokens[a.index].label).join(&#x27;, &#x27;)}.`);
+    branches.forEach(branch =&gt; node(&#x27;polyline&#x27;,{class:&#x27;branch&#x27;,points:branch.map(i=&gt;p[i].join(&#x27;,&#x27;)).join(&#x27; &#x27;)}));
+    const q = p[state.query];
+    d.links.forEach(({index,weight}, rank) =&gt; {
+      const k = p[index];
+      node(&#x27;line&#x27;,{class:&#x27;link&#x27;,x1:q[0],y1:q[1],x2:k[0],y2:k[1],&#x27;stroke-width&#x27;:1+weight*8,opacity:.40+weight,&#x27;data-tooltip&#x27;:`${data.tokens[index].id} ${data.tokens[index].label} · α ${(weight*100).toFixed(2)}% · score ${d.h.scores[state.query][index].toFixed(3)}`});
+    });
+    p.forEach((position,index) =&gt; {
+      const isQuery = index === state.query, isKey = d.links.some(d=&gt;d.index===index);
+      node(&#x27;rect&#x27;,{x:position[0]-(isQuery?6:4),y:position[1]-(isQuery?6:4),width:isQuery?12:8,height:isQuery?12:8,
+        class:isQuery?&#x27;query&#x27;:isKey?&#x27;key&#x27;:&#x27;token&#x27;,&#x27;data-tooltip&#x27;:`${data.tokens[index].id} ${data.tokens[index].label} · α ${(d.weights[index]*100).toFixed(2)}%`});
+      if (w &gt;= 480 || isQuery || isKey) {
+        const align=position[0]&gt;w*.72?&#x27;end&#x27;:&#x27;start&#x27;, dx=align===&#x27;end&#x27;?-10:10;
+        const label=isQuery?`Q ${data.tokens[index].label}`:isKey?`${data.tokens[index].label} ${(d.weights[index]*100).toFixed(1)}%`:data.tokens[index].id;
+        node(&#x27;text&#x27;,{x:position[0]+dx,y:position[1]+(index%2?16:-10),&#x27;text-anchor&#x27;:align,class:isQuery||isKey?&#x27;&#x27;:&#x27;secondary&#x27;},label);
+      }
+    });
+    const vector = state.part === &#x27;values&#x27; ? d.h.contexts[state.query] : d.h.queries[state.query];
+    const cellW = Math.min(63,(w-30)/6), start=(w-cellW*6)/2, vy=h-48;
+    node(&#x27;text&#x27;,{x:15,y:vy-9,class:&#x27;secondary&#x27;},state.part===&#x27;values&#x27;?&#x27;Context c · weighted values&#x27;:&#x27;Query q · 6 components&#x27;);
+    vector.forEach((value,index) =&gt; {
+      node(&#x27;rect&#x27;,{x:start+index*cellW,y:vy,width:cellW-3,height:29,class:state.part===&#x27;values&#x27;?&#x27;value&#x27;:&#x27;key&#x27;});
+      node(&#x27;text&#x27;,{x:start+index*cellW+(cellW-3)/2,y:vy+19,&#x27;text-anchor&#x27;:&#x27;middle&#x27;},value.toFixed(2));
+    });
+    if (state.part === &#x27;life&#x27;) {
+      const cx=w*.78,cy=h*.28,u=3;
+      const wing=[[1,-1],[2,-2],[3,-3],[4,-2],[3,-1],[2,0],[1,1],[2,2],[3,3],[2,4],[1,3]];
+      [-1,1].forEach(side=&gt;wing.forEach(([x,y])=&gt;node(&#x27;rect&#x27;,{x:cx+side*x*u,y:cy+y*u,width:u-1,height:u-1,class:&#x27;key&#x27;})));
+      node(&#x27;line&#x27;,{x1:cx,y1:cy-8,x2:cx,y2:cy+12,stroke:&#x27;var(--muted-foreground)&#x27;,&#x27;stroke-width&#x27;:2});
+      node(&#x27;text&#x27;,{x:cx,y:cy-20,&#x27;text-anchor&#x27;:&#x27;middle&#x27;,class:&#x27;secondary&#x27;},&#x27;Life-cycle motif&#x27;);
+    }
+  }
+  function render() {
+    const d = derived(state), token = data.tokens[state.query];
+    queryControl.value = state.query; headControl.value = state.head;
+    root.querySelectorAll(&#x27;[data-part]&#x27;).forEach(button=&gt;button.setAttribute(&#x27;aria-pressed&#x27;,String(button.dataset.part===state.part)));
+    root.querySelector(&#x27;[data-network]&#x27;).hidden = state.part === &#x27;matrix&#x27;; matrixPanel.hidden = state.part !== &#x27;matrix&#x27;;
+    if (state.part === &#x27;matrix&#x27;) {
+      if (!chart) chart = mountChart(root.querySelector(&#x27;[data-viz-container]&#x27;),matrixConfig());
+      else chart.config=matrixConfig();
+    } else drawNetwork(d);
+    const descriptions = {
+      query:`${token.id} “${token.label}” · query vector · ‖q‖₂ ${d.qNorm.toFixed(3)}`,
+      keys:`20 keys · strongest other key “${data.tokens[d.links[0].index].label}” · α ${(d.links[0].weight*100).toFixed(2)}%`,
+      values:`6-dimensional context · weighted sum of V · ‖c‖₂ ${d.cNorm.toFixed(3)}`,
+      matrix:`20 query rows × 20 key columns · each row totals 1 · current query ${token.id}`,
+      metrics:`H ${d.entropy.toFixed(3)} bits · top 3 ${(d.top3*100).toFixed(2)}% · Δlogit ${d.span.toFixed(3)} · αself ${d.weights[state.query].toFixed(4)}`,
+      life:&#x27;Butterfly → descent → dust · illustrative life cycle · no loss calculation&#x27;
+    };
+    detail.textContent=descriptions[state.part];
+  }
+  function persist() {
+    window.openai?.setWidgetState?.({modelContent:{query:data.tokens[state.query].label,head:state.head+1,detail:state.part},privateContent:{version:1,...state}})?.catch(()=&gt;{});
+  }
+  queryControl.addEventListener(&#x27;change&#x27;,()=&gt;{state.query=Number(queryControl.value);render();persist();});
+  headControl.addEventListener(&#x27;change&#x27;,()=&gt;{state.head=Number(headControl.value);render();persist();});
+  root.querySelectorAll(&#x27;[data-part]&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;{state.part=button.dataset.part;render();persist();}));
+  window.addEventListener(&#x27;openai:set_globals&#x27;,event=&gt;{
+    if (event.detail?.globals?.widgetState !== undefined) { state={...accepted(event.detail.globals.widgetState)};render(); }
+  });
+  new ResizeObserver(()=&gt;{if(state.part!==&#x27;matrix&#x27;)drawNetwork(derived(state));}).observe(root);
+  render();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (event) =&gt; {
+    for (const target of event.composedPath()) {
+      if (target?.nodeType === Node.ELEMENT_NODE) {
+        const trigger = target.closest(&quot;[data-tooltip]&quot;);
+        if (trigger) return trigger;
+      }
+    }
+    return null;
+  };
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handlers = {
+    pointerover: handlePointerOpen,
+    pointerdown: handlePointer,
+    pointercancel: handlePointer,
+    click: handleTouchClick,
+    pointerout: handleLeave,
+    focusin: handleFocusIn,
+    focusout: handleLeave,
+    keydown: handleKeyDown,
+    contextmenu: handleContextMenu,
+  };
+  const roots = new Map();
+  const handledEvents = new WeakSet();
+  const handleEvent = (event) =&gt; {
+    if (handledEvents.has(event)) return;
+    handledEvents.add(event);
+    handlers[event.type](event);
+  };
+  const discoverRoots = (node) =&gt; {
+    if (node.shadowRoot) listen(node.shadowRoot);
+    for (const element of node.querySelectorAll(&quot;*&quot;)) {
+      if (element.shadowRoot) listen(element.shadowRoot);
+    }
+  };
+  const listen = (root) =&gt; {
+    if (roots.has(root)) return;
+    for (const type of Object.keys(handlers)) root.addEventListener(type, handleEvent);
+    const observer = new window.MutationObserver((records) =&gt; {
+      for (const { addedNodes } of records) {
+        for (const node of addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) discoverRoots(node);
+        }
+      }
+      for (const [root, cleanup] of roots) {
+        if (root.host &amp;&amp; !root.host.isConnected) {
+          cleanup();
+          roots.delete(root);
+        }
+      }
+      if (activeTrigger &amp;&amp; !activeTrigger.isConnected) closeTooltip(false);
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    roots.set(root, () =&gt; {
+      observer.disconnect();
+      for (const type of Object.keys(handlers)) root.removeEventListener(type, handleEvent);
+    });
+    discoverRoots(root);
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    for (const cleanup of roots.values()) cleanup();
+    roots.clear();
+    tooltip = null;
+  };
+
+  // Events between children of one shadow root never reach the document.
+  listen(document);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-carousel&quot;&gt;
+  (() =&gt; {
+    for (const root of document.querySelectorAll(&quot;.viz-carousel&quot;)) {
+      const panels = Array.from(
+        root.querySelectorAll(&quot;:scope &gt; [data-variant]&quot;),
+      );
+      if (panels.length === 0) {
+        continue;
+      }
+      root.setAttribute(&quot;role&quot;, &quot;group&quot;);
+      panels.forEach((panel, index) =&gt; {
+        panel.hidden = index !== 0;
+        panel.setAttribute(&quot;role&quot;, &quot;group&quot;);
+        if (!panel.hasAttribute(&quot;aria-label&quot;)) {
+          panel.setAttribute(&quot;aria-label&quot;, panel.dataset.variant);
+        }
+      });
+      root.dataset.activeVariant = panels[0].dataset.variant;
+      if (panels.length === 1) {
+        continue;
+      }
+
+      const controls = document.createElement(&quot;div&quot;);
+      controls.className = &quot;viz-carousel-controls&quot;;
+      // Portable copy of the settings dropdown&#x27;s legacy glyph; no 14px icon-package preset matches it.
+      // https://github.com/openai/openai/blob/master/codex/codex-apps/webview/src/icons/chevron.svg
+      controls.innerHTML = `
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-previous cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;details class=&quot;viz-carousel-picker&quot;&gt;
+        &lt;summary class=&quot;cursor-interaction&quot;&gt;
+          &lt;span class=&quot;viz-carousel-count tabular-nums&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;viz-carousel-name&quot;&gt;&lt;/span&gt;
+          &lt;svg class=&quot;viz-carousel-caret&quot; width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 20 21&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+            &lt;path d=&quot;M15.2793 7.71101C15.539 7.45131 15.961 7.45131 16.2207 7.71101C16.4804 7.97071 16.4804 8.39272 16.2207 8.65242L10.4707 14.4024C10.211 14.6621 9.78902 14.6621 9.52932 14.4024L3.77932 8.65242L3.69436 8.54792C3.52385 8.28979 3.55205 7.93828 3.77932 7.71101C4.00659 7.48374 4.3581 7.45554 4.61623 7.62605L4.72073 7.71101L10 12.9903L15.2793 7.71101Z&quot; fill=&quot;currentColor&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.6&quot; /&gt;
+          &lt;/svg&gt;
+        &lt;/summary&gt;
+        &lt;div class=&quot;viz-carousel-options&quot;&gt;&lt;/div&gt;
+      &lt;/details&gt;
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-next cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;`;
+      const previous = controls.querySelector(&quot;.viz-carousel-previous&quot;);
+      const next = controls.querySelector(&quot;.viz-carousel-next&quot;);
+      const picker = controls.querySelector(&quot;.viz-carousel-picker&quot;);
+      const summary = picker.querySelector(&quot;summary&quot;);
+      const count = controls.querySelector(&quot;.viz-carousel-count&quot;);
+      const name = controls.querySelector(&quot;.viz-carousel-name&quot;);
+      const options = controls.querySelector(&quot;.viz-carousel-options&quot;);
+      const status = document.createElement(&quot;span&quot;);
+      status.className = &quot;sr-only&quot;;
+      status.setAttribute(&quot;role&quot;, &quot;status&quot;);
+      status.setAttribute(&quot;aria-live&quot;, &quot;polite&quot;);
+      status.setAttribute(&quot;aria-atomic&quot;, &quot;true&quot;);
+      previous.setAttribute(
+        &quot;aria-label&quot;,
+        root.dataset.previousLabel ?? &quot;Previous variant&quot;,
+      );
+      next.setAttribute(&quot;aria-label&quot;, root.dataset.nextLabel ?? &quot;Next variant&quot;);
+
+      let active = 0;
+      let mousePointerId = null;
+      let summaryPointerHandled = false;
+      summary.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+        summaryPointerHandled =
+          event.pointerType === &quot;mouse&quot; &amp;&amp; event.button === 0 &amp;&amp; !event.ctrlKey;
+        if (!summaryPointerHandled) {
+          return;
+        }
+        event.preventDefault();
+        summary.focus({ preventScroll: true });
+        picker.open = !picker.open;
+        mousePointerId = picker.open ? event.pointerId : null;
+      });
+      summary.addEventListener(&quot;click&quot;, (event) =&gt; {
+        if (summaryPointerHandled &amp;&amp; event.detail &gt; 0) {
+          event.preventDefault();
+        }
+      });
+      const choices = panels.map((panel, index) =&gt; {
+        const choice = document.createElement(&quot;button&quot;);
+        choice.type = &quot;button&quot;;
+        choice.className = &quot;cursor-interaction&quot;;
+        choice.textContent = panel.dataset.variant;
+        choice.addEventListener(&quot;click&quot;, () =&gt; {
+          select(index);
+          summary.focus();
+        });
+        choice.addEventListener(&quot;pointerup&quot;, (event) =&gt; {
+          if (
+            picker.open &amp;&amp;
+            event.pointerType === &quot;mouse&quot; &amp;&amp;
+            event.button === 0 &amp;&amp;
+            event.pointerId === mousePointerId
+          ) {
+            choice.click();
+          }
+        });
+        options.appendChild(choice);
+        return choice;
+      });
+      const select = (index) =&gt; {
+        const changed = active !== index;
+        active = index;
+        panels.forEach((panel, position) =&gt; {
+          panel.hidden = position !== active;
+          choices[position].setAttribute(
+            &quot;aria-current&quot;,
+            String(position === active),
+          );
+        });
+        root.dataset.activeVariant = panels[active].dataset.variant;
+        count.textContent = `${active + 1} / ${panels.length}`;
+        name.textContent = panels[active].dataset.variant;
+        picker.open = false;
+        mousePointerId = null;
+        if (changed) {
+          status.textContent = `${count.textContent}: ${name.textContent}`;
+        }
+      };
+      previous.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + panels.length - 1) % panels.length),
+      );
+      next.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + 1) % panels.length),
+      );
+      picker.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+        if (event.key === &quot;Escape&quot; &amp;&amp; picker.open) {
+          event.preventDefault();
+          picker.open = false;
+          mousePointerId = null;
+          summary.focus();
+          return;
+        }
+        if (event.altKey || event.ctrlKey || event.metaKey) {
+          return;
+        }
+        const index = choices.indexOf(document.activeElement);
+        let nextIndex;
+        if (event.key === &quot;ArrowDown&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + 1) % choices.length;
+        } else if (event.key === &quot;ArrowUp&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + choices.length - 1) % choices.length;
+        } else if (picker.open &amp;&amp; event.key === &quot;Home&quot;) {
+          nextIndex = 0;
+        } else if (picker.open &amp;&amp; event.key === &quot;End&quot;) {
+          nextIndex = choices.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        picker.open = true;
+        choices[nextIndex].focus();
+      });
+      picker.addEventListener(&quot;focusout&quot;, (event) =&gt; {
+        if (!picker.contains(event.relatedTarget)) {
+          picker.open = false;
+          mousePointerId = null;
+        }
+      });
+      const dismiss = (event) =&gt; {
+        if (!summary.contains(event.target)) {
+          mousePointerId = null;
+        }
+        if (!picker.contains(event.target)) {
+          picker.open = false;
+        }
+      };
+      const endPointerSelection = () =&gt; {
+        mousePointerId = null;
+      };
+      const sizePicker = () =&gt; {
+        root.style.setProperty(
+          &quot;--viz-carousel-picker-height&quot;,
+          `${picker.open ? options.offsetHeight : 0}px`,
+        );
+      };
+      picker.addEventListener(&quot;toggle&quot;, sizePicker);
+      window.addEventListener(&quot;resize&quot;, sizePicker);
+      document.addEventListener(&quot;pointerdown&quot;, dismiss);
+      document.addEventListener(&quot;pointerup&quot;, endPointerSelection);
+      document.addEventListener(&quot;pointercancel&quot;, endPointerSelection);
+      window.addEventListener(&quot;blur&quot;, endPointerSelection);
+      window.addEventListener(
+        &quot;pagehide&quot;,
+        () =&gt; {
+          document.removeEventListener(&quot;pointerdown&quot;, dismiss);
+          document.removeEventListener(&quot;pointerup&quot;, endPointerSelection);
+          document.removeEventListener(&quot;pointercancel&quot;, endPointerSelection);
+          window.removeEventListener(&quot;blur&quot;, endPointerSelection);
+          window.removeEventListener(&quot;resize&quot;, sizePicker);
+        },
+        { once: true },
+      );
+      root.append(controls, status);
+      select(0);
+    }
+  })();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  const isShare = document.documentElement.classList.contains(
+    "visualization-share-root",
+  );
+  let viewportHeight = globalThis.innerHeight;
+  let sizeFingerprint = null;
+  let sizeWriteTimeout;
+  let lastSize = null;
+  let pendingSize = null;
+  const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
+    globalThis.location.pathname,
+    globalThis.location.search,
+  ])}`;
+  const sizeStorageKey = `${storageKey}:share-size-v1`;
+  const parseState = (serializedState) => {
+    if (
+      typeof serializedState !== "string" ||
+      new TextEncoder().encode(serializedState).length > 16 * 1024
+    ) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    /** @type {unknown} */
+    const state = JSON.parse(serializedState);
+    if (
+      state == null ||
+      typeof state !== "object" ||
+      Array.isArray(state) ||
+      ("imageIds" in state &&
+        (!Array.isArray(state.imageIds) || state.imageIds.length > 0))
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = { modelContent: null, privateContent: null, ...state };
+    const canonicalState = JSON.stringify(
+      storedState,
+      (_key, /** @type {unknown} */ value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new TypeError("Widget state must contain finite numbers");
+        }
+        return value;
+      },
+    );
+    if (new TextEncoder().encode(canonicalState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    return storedState;
+  };
+  let storage = null;
+  let state = null;
+  try {
+    const localStorage = globalThis.localStorage;
+    const probeKey = `${storageKey}:probe`;
+    localStorage.setItem(probeKey, "1");
+    localStorage.removeItem(probeKey);
+    storage = localStorage;
+    const savedState = storage.getItem(storageKey);
+    if (savedState != null) {
+      try {
+        state = parseState(savedState);
+      } catch {
+        // Invalid saved state does not disable future writes.
+      }
+    }
+  } catch {
+    storage = null;
+  }
+  const persistSize = () => {
+    globalThis.clearTimeout(sizeWriteTimeout);
+    if (pendingSize == null) {
+      return;
+    }
+    try {
+      storage?.setItem(sizeStorageKey, pendingSize);
+    } catch {
+      // A denied or full cache must not affect the visualization.
+    }
+    pendingSize = null;
+  };
+  if (isShare) {
+    globalThis.addEventListener("pagehide", persistSize);
+  }
+  const initialGlobals = {
+    widgetState: state,
+    statePersistence: storage == null ? "none" : "local",
+  };
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "widget-state-write") {
+      if (!Number.isSafeInteger(data.id) || data.id <= 0) {
+        return;
+      }
+      let ok = false;
+      try {
+        if (storage != null) {
+          const state = parseState(data.state);
+          storage.setItem(storageKey, JSON.stringify(state));
+          ok = true;
+        }
+      } catch {
+        // Storage denial, quota limits, and invalid state return a failed receipt.
+      }
+      channel.port1.postMessage({
+        type: "widget-state-result",
+        id: data.id,
+        ok,
+      });
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height !== "number" ||
+        !Number.isFinite(height) ||
+        height < 0
+      ) {
+        return;
+      }
+      if (height <= 10_000) {
+        const width = isShare && storage != null ? frame.clientWidth : null;
+        frame.style.height = Math.ceil(height) + "px";
+        if (isShare && storage != null) {
+          const size = JSON.stringify({
+            fingerprint: sizeFingerprint,
+            width,
+            viewportHeight: globalThis.innerHeight,
+            dark: globalThis.matchMedia("(prefers-color-scheme: dark)").matches,
+            scale: globalThis.devicePixelRatio,
+            height: Math.ceil(height),
+          });
+          if (size !== lastSize) {
+            lastSize = size;
+            pendingSize = size;
+            globalThis.clearTimeout(sizeWriteTimeout);
+            sizeWriteTimeout = globalThis.setTimeout(persistSize, 100);
+          }
+        }
+      }
+      if (isShare) {
+        // Keep unusually tall content accessible without accepting an unbounded height.
+        if (height > 10_000 && Number.parseFloat(frame.style.height) === 0) {
+          frame.style.removeProperty("height");
+        }
+        frame.scrolling = height > 10_000 ? "auto" : "no";
+        document.documentElement.classList.add("visualization-share-ready");
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!isShare && (!Number.isFinite(height) || height <= viewportHeight)) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  // Match the trusted bootstrap element, not the same text in an authored title.
+  const frameHtml = srcdoc.replace(
+    '<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__<\/script>',
+    () =>
+      '<script type="application/json" id="codex-visualization-widget-state">' +
+      JSON.stringify(initialGlobals).replaceAll("<", "\\u003c") +
+      "<\/script>",
+  );
+  if (isShare && storage != null) {
+    // Fingerprint the rendered document, including restored widget state, without
+    // storing its content. This is a layout cache, not a security identity.
+    let hash = 5381;
+    for (let index = 0; index < frameHtml.length; index += 1) {
+      hash = (hash * 33 + frameHtml.charCodeAt(index)) % 4_294_967_296;
+    }
+    sizeFingerprint = hash.toString(36);
+    try {
+      const size = JSON.parse(storage.getItem(sizeStorageKey) ?? "null");
+      if (
+        size?.fingerprint === sizeFingerprint &&
+        size.width === frame.clientWidth &&
+        size.viewportHeight === globalThis.innerHeight &&
+        size.dark ===
+          globalThis.matchMedia("(prefers-color-scheme: dark)").matches &&
+        size.scale === globalThis.devicePixelRatio &&
+        typeof size.height === "number" &&
+        Number.isFinite(size.height) &&
+        size.height >= 0 &&
+        size.height <= 10_000
+      ) {
+        frame.style.height = size.height + "px";
+      }
+    } catch {
+      // Ignore missing or invalid cache entries and measure the live frame.
+    }
+  }
+  frame.srcdoc = frameHtml;
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>

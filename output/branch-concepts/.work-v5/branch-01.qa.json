@@ -1,0 +1,38 @@
+{
+  "file": "v5/branch-01.png",
+  "width": 2880,
+  "height": 1800,
+  "sourceSize": [
+    1586,
+    992
+  ],
+  "sourceBounds": [
+    871,
+    268,
+    2879,
+    1588
+  ],
+  "finalBounds": [
+    1290,
+    300,
+    2879,
+    1499
+  ],
+  "rightEdgeRuns": [
+    [
+      474,
+      810,
+      336
+    ]
+  ],
+  "sourceProtectedPixels": 113112,
+  "removedProtectedPixels": 0,
+  "changedPixels": {
+    "navigation": 0,
+    "requestedButton": 0,
+    "actualButton": 0,
+    "copy": 0
+  },
+  "outsideAlphaChanged": 0,
+  "passed": true
+}

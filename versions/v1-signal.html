@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cernan — V1 Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #070707;
+    --fg: #f2f0ec;
+    --muted: #8a8780;
+    --line: rgba(242, 240, 236, 0.08);
+    --accent: #ff6a1f;
+    --sans: "Geist", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body { overflow: hidden; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  /* frame lines */
+  .frame { position: fixed; inset: 0; pointer-events: none; }
+  .frame::before, .frame::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+  .frame::before { left: 48px; }
+  .frame::after { right: 48px; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px; border-bottom: 1px solid var(--line);
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; text-transform: none; }
+  .brand i { width: 10px; height: 10px; background: var(--accent); display: block; }
+  .links { display: flex; gap: 36px; color: var(--muted); }
+  .links a { color: inherit; text-decoration: none; transition: color .2s; }
+  .links a:hover { color: var(--fg); }
+  .nav-cta { color: var(--fg); text-decoration: none; border: 1px solid var(--line); padding: 9px 14px; transition: border-color .2s; }
+  .nav-cta:hover { border-color: var(--accent); }
+
+  main {
+    position: relative; z-index: 2; height: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 9vh 96px;
+  }
+  .tag { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
+  .tag b { color: var(--accent); font-weight: 500; }
+  h1 { font-weight: 400; font-size: clamp(48px, 7.4vw, 124px); line-height: 0.95; letter-spacing: -0.045em; max-width: 11ch; }
+  h1 span { display: block; }
+  h1 .dim { color: #5c5a55; }
+  .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-top: 44px; flex-wrap: wrap; }
+  p { max-width: 440px; color: var(--muted); font-size: 16px; line-height: 1.55; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 18px;
+    background: var(--accent); color: #0a0a0a; text-decoration: none;
+    font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 18px 22px 18px 26px; transition: background .2s, transform .2s;
+  }
+  .btn svg { transition: transform .25s; }
+  .btn:hover { background: #ff8240; }
+  .btn:hover svg { transform: translate(3px, -3px); }
+  .corner { position: fixed; z-index: 3; font-family: var(--mono); font-size: 11px; color: #4a4843; letter-spacing: 0.08em; }
+  .corner.tr { top: 92px; right: 72px; text-align: right; line-height: 1.7; }
+
+  .fade { opacity: 0; transform: translateY(14px); animation: in .9s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+  @media (max-width: 760px) {
+    .links, .corner, .frame { display: none; }
+    nav { padding: 18px 20px; }
+    main { padding: 0 20px 8vh; }
+  }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="frame"></div>
+<nav>
+  <div class="brand"><i></i>Cernan</div>
+  <div class="links"><a href="#">Research</a><a href="#">Products</a><a href="#">Systems</a><a href="#">Journal</a></div>
+  <a class="nav-cta" href="#">Contact</a>
+</nav>
+<div class="corner tr fade" style="animation-delay:.6s">[ 001 / SIGNAL ]<br/>LAT 12.97 N · LON 77.59 E</div>
+<main>
+  <div class="tag fade" style="animation-delay:.1s"><b>●</b> Research &amp; Engineering Studio</div>
+  <h1 class="fade" style="animation-delay:.2s"><span>Ideas, engineered.</span><span class="dim">Built to move you.</span></h1>
+  <div class="row fade" style="animation-delay:.35s">
+    <p>We research new possibilities, create thoughtful products, and engineer neural systems that automate your work and help you navigate what comes next.</p>
+    <a class="btn" href="#">Work with us
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6"/></svg>
+    </a>
+  </div>
+</main>
+<script>
+// Orange ASCII sphere, Factory-style dithered glyph field
+const c = document.getElementById('c'), x = c.getContext('2d');
+const chars = ' .·:-=+*#%@';
+let W, H, dpr, cell = 11, t = 0, mx = 0, my = 0;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function size() {
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  c.width = W * dpr; c.height = H * dpr;
+  x.setTransform(dpr, 0, 0, dpr, 0, 0);
+  x.font = `500 ${cell}px "Geist Mono", monospace`;
+  x.textBaseline = 'middle'; x.textAlign = 'center';
+}
+addEventListener('resize', size); size();
+addEventListener('pointermove', e => { mx = e.clientX / W - .5; my = e.clientY / H - .5; });
+function frame() {
+  x.clearRect(0, 0, W, H);
+  const cx = W * 0.68 + mx * 30, cy = H * 0.42 + my * 30;
+  const R = Math.min(W, H) * 0.36;
+  const lx = Math.cos(t * .35), ly = -0.45, lz = Math.sin(t * .35);
+  for (let gy = cell / 2; gy < H; gy += cell) {
+    for (let gx = cell / 2; gx < W; gx += cell * 0.82) {
+      const dx = (gx - cx) / R, dy = (gy - cy) / R, d2 = dx * dx + dy * dy;
+      let v = 0, col;
+      if (d2 < 1) {
+        const dz = Math.sqrt(1 - d2);
+        let l = dx * lx + dy * ly + dz * lz; l = Math.max(0, l);
+        const band = 0.5 + 0.5 * Math.sin((dy * 9) + t * 1.4 + dx * 3);
+        v = l * 0.8 + band * 0.25 * dz;
+        col = `rgba(255,${(90 + v * 80) | 0},${(20 + v * 40) | 0},${0.25 + v * 0.75})`;
+      } else {
+        const ring = Math.abs(Math.sqrt(d2) - 1.18 - Math.sin(t + Math.atan2(dy, dx) * 3) * 0.02);
+        if (ring < 0.012) { v = 0.35; col = 'rgba(255,106,31,0.5)'; }
+        else {
+          const n = Math.sin(gx * 0.013 + t * .6) * Math.cos(gy * 0.017 - t * .4);
+          if (n > 0.93) { v = 0.12; col = 'rgba(242,240,236,0.18)'; }
+        }
+      }
+      if (v > 0.04) x.fillStyle = col, x.fillText(chars[Math.min(chars.length - 1, (v * chars.length) | 0)], gx, gy);
+    }
+  }
+  if (!reduce) { t += 0.012; requestAnimationFrame(frame); }
+}
+document.fonts.ready.then(() => { size(); frame(); });
+</script>
+</body>
+</html>

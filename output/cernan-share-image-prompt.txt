@@ -1,0 +1,11 @@
+Generation mode: built-in image_gen tool.
+Final website asset: assets/cernan-social-v1.jpg (1200 x 630 JPEG).
+Favicon: native SVG created using Codex CLI; raster exports rendered from the SVG.
+
+Use case: ads-marketing.
+Asset type: final website Open Graph social-share card, very wide landscape 1200 by 630 aspect ratio (1.905:1).
+Primary request: create a sophisticated share thumbnail for Cernan, an engineering agency. Match a premium dark engineering website with an abstract pixel neural-branch sculpture.
+Scene/backdrop: near-black #070707, extremely faint technical grid, restrained and precise.
+Composition: generous 80px safe margins; left 55 percent contains large impeccably legible lowercase wordmark "cernan" in a clean contemporary sans serif, off-white. Beneath in smaller clear sans serif put exactly "Engineering for" on one line and "uncharted problems." on the next. Bottom left small muted text exactly "MODELS / SECURITY / SOFTWARE". Right half: sculptural organic branching intelligence made from tiny luminous crisp square pixels, primarily electric blue #2b9be8 with mint green #7cf0a6 signals flowing along a few branches. Elegant 3D depth, black negative space between branches, no busy text or labels around the sculpture. The branches may slightly extend behind the wordmark but never obscure text.
+Mood: serious, memorable, crafted, scientific; high contrast and legible when thumbnail sized.
+Text must be spelled exactly as specified. No browser frames, no product mockup, no extra slogans, no watermark, no additional logos. Entire output is the actual flat rectangular share artwork, no exterior margins.

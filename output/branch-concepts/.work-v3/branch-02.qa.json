@@ -1,0 +1,22 @@
+{
+  "file": "v3/branch-02.png",
+  "source": ".work-v3/raw/branch-02.png",
+  "sourceSize": [
+    1586,
+    992
+  ],
+  "sourceBounds": [
+    396,
+    123,
+    1585,
+    908
+  ],
+  "placement": [
+    1270,
+    255,
+    2880,
+    1510
+  ],
+  "components": 5,
+  "matte": "sky-drift-corrected colour difference with edge decontamination"
+}

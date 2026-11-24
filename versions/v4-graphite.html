@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cernan — V4 Graphite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #e7e7e4;
+    --panel: #f4f4f2;
+    --ink: #1b1c1e;
+    --muted: #77787a;
+    --line: rgba(27, 28, 30, 0.12);
+    --sans: "Manrope", system-ui, sans-serif;
+    --mono: "Space Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body { overflow: hidden; }
+  .grid { position: fixed; inset: 0; pointer-events: none;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 96px 96px; background-position: -1px -1px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 45%, #000 30%, transparent 100%); }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  nav {
+    position: fixed; top: 16px; left: 16px; right: 16px; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 12px 12px 20px; background: rgba(244,244,242,0.75); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--line); border-radius: 14px; font-size: 14px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; font-size: 17px; }
+  .brand span { width: 22px; height: 22px; border-radius: 6px; background: var(--ink); display: grid; place-items: center; }
+  .brand span::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--panel); }
+  .links { display: flex; gap: 4px; }
+  .links a { color: var(--muted); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: background .2s, color .2s; }
+  .links a:hover { background: rgba(27,28,30,0.06); color: var(--ink); }
+  .nav-cta { color: var(--ink); text-decoration: none; padding: 9px 16px; border-radius: 9px; border: 1px solid var(--line); background: var(--panel); font-weight: 500; }
+
+  main { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; }
+  .label { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
+  .label::before, .label::after { content: ""; width: 28px; height: 1px; background: var(--muted); opacity: .5; }
+  h1 { font-weight: 500; font-size: clamp(50px, 7.6vw, 128px); line-height: 0.98; letter-spacing: -0.05em; color: var(--ink); }
+  h1 span { color: #9a9b9d; }
+  p { margin-top: 28px; max-width: 500px; font-size: 17px; line-height: 1.55; color: #55565a; }
+  .btn-wrap { margin-top: 40px; position: relative; padding: 5px; border-radius: 16px; background: rgba(27,28,30,0.06); border: 1px solid var(--line); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+    color: #f4f4f2; font-weight: 500; font-size: 15px; padding: 16px 22px 16px 26px; border-radius: 12px;
+    background: linear-gradient(180deg, #3a3b3e 0%, #1b1c1e 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 8px 24px rgba(27,28,30,0.22);
+    transition: transform .2s;
+  }
+  .btn kbd { font-family: var(--mono); font-size: 11px; padding: 3px 7px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.18); color: #b9babd; }
+  .btn:hover { transform: translateY(-1px); }
+  .coords { position: fixed; bottom: 24px; left: 32px; right: 32px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; z-index: 3; }
+
+  .fade { opacity: 0; transform: translateY(12px); animation: in 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes in { to { opacity: 1; transform: none; } }
+  @media (max-width: 760px) { .links, .coords { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .fade { animation: none; opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<canvas id="c"></canvas>
+<nav class="fade">
+  <div class="brand"><span></span>Cernan</div>
+  <div class="links"><a href="#">Research</a><a href="#">Products</a><a href="#">Systems</a><a href="#">Journal</a></div>
+  <a class="nav-cta" href="#">Get in touch</a>
+</nav>
+<main>
+  <div class="label fade" style="animation-delay:.1s">Research · Product · Neural systems</div>
+  <h1 class="fade" style="animation-delay:.2s">Ideas, engineered.<br/><span>Built to move you.</span></h1>
+  <p class="fade" style="animation-delay:.35s">We research new possibilities, create thoughtful products, and engineer neural systems that automate your work and help you navigate what comes next.</p>
+  <div class="btn-wrap fade" style="animation-delay:.5s"><a class="btn" href="#">Work with us <kbd>↵</kbd></a></div>
+</main>
+<div class="coords fade" style="animation-delay:.7s"><span>N 12°58′ E 77°35′</span><span id="clock">00:00:00</span><span>v.04 / Graphite</span></div>
+<script>
+// Topographic contour lines from a drifting noise field (marching squares)
+const c = document.getElementById('c'), x = c.getContext('2d');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let W, H, dpr, t = 0;
+function size() { dpr = Math.min(devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight; c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); }
+addEventListener('resize', size); size();
+function field(px, py) {
+  const a = px * 0.0042, b = py * 0.0042;
+  return Math.sin(a + t) * Math.cos(b * 1.3 - t * 0.7) + 0.6 * Math.sin(a * 2.1 - b * 1.7 + t * 0.5) + 0.35 * Math.cos(a * 3.7 + b * 2.9 - t * 0.3);
+}
+function frame() {
+  x.clearRect(0, 0, W, H);
+  const s = 14, cols = Math.ceil(W / s) + 1, rows = Math.ceil(H / s) + 1;
+  const v = new Float32Array(cols * rows);
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) v[j * cols + i] = field(i * s, j * s);
+  const levels = 14;
+  for (let k = 0; k < levels; k++) {
+    const iso = -1.8 + (k / (levels - 1)) * 3.6;
+    const major = k % 4 === 0;
+    x.strokeStyle = major ? 'rgba(27,28,30,0.34)' : 'rgba(27,28,30,0.13)';
+    x.lineWidth = major ? 1 : 0.8;
+    x.beginPath();
+    for (let j = 0; j < rows - 1; j++) for (let i = 0; i < cols - 1; i++) {
+      const a = v[j * cols + i], b = v[j * cols + i + 1], cc = v[(j + 1) * cols + i + 1], d = v[(j + 1) * cols + i];
+      const idx = (a > iso) | (b > iso) << 1 | (cc > iso) << 2 | (d > iso) << 3;
+      if (idx === 0 || idx === 15) continue;
+      const X = i * s, Y = j * s;
+      const pt = (p, q, e) => { const f = (iso - p) / (q - p); return e === 0 ? [X + f * s, Y] : e === 1 ? [X + s, Y + f * s] : e === 2 ? [X + s - f * s, Y + s] : [X, Y + s - f * s]; };
+      const E = [pt(a, b, 0), pt(b, cc, 1), pt(cc, d, 2), pt(d, a, 3)];
+      const segs = { 1:[[3,0]],2:[[0,1]],3:[[3,1]],4:[[1,2]],5:[[3,0],[1,2]],6:[[0,2]],7:[[3,2]],8:[[2,3]],9:[[0,2]],10:[[0,1],[2,3]],11:[[1,2]],12:[[1,3]],13:[[0,1]],14:[[0,3]] }[idx];
+      for (const [p, q] of segs) { x.moveTo(E[p][0], E[p][1]); x.lineTo(E[q][0], E[q][1]); }
+    }
+    x.stroke();
+  }
+  // soften center for legibility
+  const g = x.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.42);
+  g.addColorStop(0, 'rgba(231,231,228,0.92)'); g.addColorStop(0.55, 'rgba(231,231,228,0.55)'); g.addColorStop(1, 'rgba(231,231,228,0)');
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  if (!reduce) { t += 0.004; requestAnimationFrame(frame); }
+}
+frame();
+const clock = document.getElementById('clock');
+setInterval(() => { clock.textContent = new Date().toLocaleTimeString('en-GB', { hour12: false }); }, 1000);
+</script>
+</body>
+</html>
