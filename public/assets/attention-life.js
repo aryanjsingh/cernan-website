@@ -92,6 +92,20 @@
     }
   }
 
+  function tracking(ctx, origin, age, unit) {
+    const alpha = smooth(age / 0.8);
+    if (alpha <= 0) return;
+    const half = 24 * unit + 3, left = origin[0] - half, right = origin[0] + half;
+    const top = origin[1] - 24 * unit, bottom = origin[1] + 21 * unit, corner = 5;
+    // Four isolated camera corners; no strokes connect along the sides.
+    ctx.globalAlpha = alpha * 0.72; ctx.strokeStyle = '#287844'; ctx.lineWidth = 0.75;
+    ctx.setLineDash([]); ctx.beginPath();
+    ctx.moveTo(left, top + corner); ctx.lineTo(left, top); ctx.lineTo(left + corner, top);
+    ctx.moveTo(right - corner, top); ctx.lineTo(right, top); ctx.lineTo(right, top + corner);
+    ctx.moveTo(left, bottom - corner); ctx.lineTo(left, bottom); ctx.lineTo(left + corner, bottom);
+    ctx.moveTo(right - corner, bottom); ctx.lineTo(right, bottom); ctx.lineTo(right, bottom - corner); ctx.stroke();
+  }
+
   const detritus=Array.from({length:23},(_,i) => {
     const seed=i*73+19, period=7.2+random(seed)*2.2;
     return {seed,period,life:3.5+random(seed+1)*1.5,offset:random(seed+2)*period,
@@ -145,6 +159,7 @@
       const vx = (curr[0] - prev[0]) / 0.05;
       const vy = (curr[1] - prev[1]) / 0.05;
       specimen(ctx, origin, age, vx, vy, unit);
+      tracking(ctx, origin, age, unit);
       counts.butterflies = 1;
       counts.phase = 'flight';
       counts.pattern = 'continuous';
